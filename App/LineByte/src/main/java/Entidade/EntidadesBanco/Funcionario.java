@@ -1,10 +1,21 @@
 package Entidade.EntidadesBanco;
 
+import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-public class Funcionario {
-    private int id;
+@Entity
+public class Funcionario implements Serializable{
+    
+    @Id
+    private Integer id;
+    
     private Pessoa pessoa;
+    
+    @OneToMany
     private Cargo cargo;
     private Login login;
     private Date dataAdmissao;
