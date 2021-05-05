@@ -1,13 +1,31 @@
 package Entidade.EntidadesBanco;
 
+import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Venda {
+
+@Entity
+public class Venda implements Serializable {
+    
+    @Id
     private Integer id;
+    
+    @OneToMany
     private Funcionario funcionario;
+    
     private Float valorVenda;
+    
+    @Temporal(TemporalType.DATE)
     private Date dataVenda;
+    
+    @OneToMany
     private Cliente cliente;
+    
     private Integer notaFiscal;
 
     public Integer getId() {

@@ -1,8 +1,20 @@
 package Entidade.EntidadesBanco;
 
-public class Gerente {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Gerente implements Serializable{
+    
+    @Id
     private int id;
+    
+    @OneToOne
     private Login login;
+    
+    @OneToOne
     private Pessoa pessoa;
 
     public int getId() {

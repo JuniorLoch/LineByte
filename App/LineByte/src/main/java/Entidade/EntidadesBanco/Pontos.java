@@ -1,12 +1,30 @@
 package Entidade.EntidadesBanco;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Pontos {
-    private int id;
+@Entity
+public class Pontos implements Serializable{
+    
+    @Id
+    private Integer id;
+    
+    @OneToMany
+    private Integer idFuncionario;
+    
+    @Temporal(TemporalType.TIME)
     private Time horaEntrada;
+    
+    @Temporal(TemporalType.TIME)
     private Time horaSaida;
+    
+    @Temporal(TemporalType.DATE)
     private Date dataPonto;
 
     public int getId() {
@@ -17,6 +35,14 @@ public class Pontos {
         this.id = id;
     }
 
+    public Integer getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(Integer idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
+    
     public Time getHoraEntrada() {
         return horaEntrada;
     }

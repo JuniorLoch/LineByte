@@ -1,7 +1,16 @@
 package Entidade.EntidadesBanco;
 
-public class Login {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Login implements Serializable{
+    
+    @Id
     private int id;
+
     private String usuario;
     private String senha;
 

@@ -1,7 +1,15 @@
 package Entidade.EntidadesBanco;
 
-class TipoDespesa {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+class TipoDespesa implements Serializable{
+    
+    @Id
     private Integer id;
+    
     private String nome;
 
     public Integer getId() {

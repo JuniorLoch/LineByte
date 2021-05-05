@@ -1,7 +1,15 @@
 package Entidade.EntidadesBanco;
 
-class Produto {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+class Produto implements Serializable{
+
+    @Id
     private Integer id;
+    
     private String nome;
     private String tamanho;
     private String marca;

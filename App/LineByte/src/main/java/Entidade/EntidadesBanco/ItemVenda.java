@@ -1,9 +1,22 @@
 package Entidade.EntidadesBanco;
 
-public class ItemVenda {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class ItemVenda implements Serializable{
+    
+    @Id
     private Integer id;
+    
+    @OneToMany
     private Produto produto;
+    
+    @OneToMany
     private Venda venda;
+    
     private Float valor;
     private Integer quantidade;
 
