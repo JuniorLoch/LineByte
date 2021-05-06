@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
+@Entity(name = "tabpessoa")
 public class Pessoa implements Serializable{
     
     @Id

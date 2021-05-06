@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity
+@Entity(name = "tabitemvenda")
 public class ItemVenda implements Serializable{
     
     @Id

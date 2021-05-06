@@ -9,7 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-@Entity
+@Entity(name = "tabvenda")
 public class Venda implements Serializable {
     
     @Id
