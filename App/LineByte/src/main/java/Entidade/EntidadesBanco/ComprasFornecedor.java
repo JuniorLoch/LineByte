@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 public class ComprasFornecedor implements Serializable{
     @Id
     private Integer id;
-    @ManyToOne // temporário
+    @ManyToOne // temporário, vai ter que mudar
     private Produto produto;
     
     private String nomeFornecedor;
