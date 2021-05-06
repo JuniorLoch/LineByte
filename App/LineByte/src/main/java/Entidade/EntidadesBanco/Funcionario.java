@@ -5,17 +5,18 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-@Entity
+@Entity(name = "tabfuncionario")
 public class Funcionario implements Serializable{
     
     @Id
     private Integer id;
     
+    @OneToOne
     private Pessoa pessoa;
     
-    @OneToMany
+    @ManyToOne
     private Cargo cargo;
     private Login login;
     private Date dataAdmissao;

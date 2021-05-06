@@ -1,7 +1,13 @@
 package Entidade.EntidadesBanco;
 
-public class Endereco {
-    private int id;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "tabendereco")
+public class Endereco implements Serializable{
+    @Id
+    private Integer id;
     private String cidade;
     private String estado;
     private String bairro;

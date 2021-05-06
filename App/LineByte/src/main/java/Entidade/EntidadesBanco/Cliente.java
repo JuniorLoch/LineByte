@@ -1,14 +1,24 @@
 package Entidade.EntidadesBanco;
 
-public class Cliente {
-    private int id;
-    private Pessoa pessoa;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-    public int getId() {
+@Entity(name = "tabcliente")
+public class Cliente implements Serializable{
+    @Id
+    private Integer id;
+    
+    @OneToOne
+    private Pessoa pessoa;
+    private String senha;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -18,5 +28,13 @@ public class Cliente {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

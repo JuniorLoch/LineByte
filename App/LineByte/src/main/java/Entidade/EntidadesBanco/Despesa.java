@@ -1,11 +1,24 @@
 package Entidade.EntidadesBanco;
 
+import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Despesa {
+@Entity(name = "tabdespesas")
+public class Despesa implements Serializable{
+    @Id
     private Integer id;
+    
+    @ManyToOne
     private TipoDespesa tipoDespesa;
+    
+    @Temporal(TemporalType.DATE)
     private Date dataVencimento;
+    
     private String pago;
     private String nome;
 
@@ -48,6 +61,4 @@ public class Despesa {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
 }

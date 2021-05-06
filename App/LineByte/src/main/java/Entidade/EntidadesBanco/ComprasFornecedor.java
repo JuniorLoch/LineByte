@@ -1,12 +1,24 @@
 package Entidade.EntidadesBanco;
 
+import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class ComprasFornecedor {
+@Entity(name = "tabcomprasFornecedor")
+public class ComprasFornecedor implements Serializable{
+    @Id
     private Integer id;
+    @ManyToOne // temporário
     private Produto produto;
+    
     private String nomeFornecedor;
     private Float valorPago;
+    
+    @Temporal(TemporalType.DATE)
     private Date dataCompra;
 
     public Integer getId() {

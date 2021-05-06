@@ -3,6 +3,20 @@
   <persistence-unit name="Persistencia" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidade.EntidadesBanco.Cargo</class>
+    <class>Entidade.EntidadesBanco.Cliente</class>
+    <class>Entidade.EntidadesBanco.ComprasFornecedor</class>
+    <class>Entidade.EntidadesBanco.Despesa</class>
+    <class>Entidade.EntidadesBanco.Endereco</class>
+    <class>Entidade.EntidadesBanco.Estoque</class>
+    <class>Entidade.EntidadesBanco.Funcionario</class>
+    <class>Entidade.EntidadesBanco.Gerente</class>
+    <class>Entidade.EntidadesBanco.ItemVenda</class>
+    <class>Entidade.EntidadesBanco.Login</class>
+    <class>Entidade.EntidadesBanco.Pessoa</class>
+    <class>Entidade.EntidadesBanco.Pontos</class>
+    <class>Entidade.EntidadesBanco.Produto</class>
+    <class>Entidade.EntidadesBanco.TipoDespesa</class>
+    <class>Entidade.EntidadesBanco.Venda</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/teste"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
