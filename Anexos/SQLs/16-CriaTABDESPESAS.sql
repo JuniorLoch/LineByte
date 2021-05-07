@@ -5,5 +5,5 @@ create table tabdespesas(
 	pago char,
 	nome varchar(200),
 	valor float,
-	constraint fk_tipoDespesa_despsa foreign key (id_categoria) references tabtipo_despesa(id)
+	constraint fk_tipoDespesa_despsa foreign key (id_tipo_despesa) references tabtipo_despesa(id)
 );

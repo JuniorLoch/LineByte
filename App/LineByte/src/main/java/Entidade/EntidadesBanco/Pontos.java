@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,8 +15,8 @@ public class Pontos implements Serializable{
     @Id
     private Integer id;
     
-    @OneToMany
-    private Integer idFuncionario;
+    @ManyToOne
+    private Funcionario funcionario;
     
     @Temporal(TemporalType.TIME)
     private Time horaEntrada;
@@ -35,12 +35,12 @@ public class Pontos implements Serializable{
         this.id = id;
     }
 
-    public Integer getIdFuncionario() {
-        return idFuncionario;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setIdFuncionario(Integer idFuncionario) {
-        this.idFuncionario = idFuncionario;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
     
     public Time getHoraEntrada() {
