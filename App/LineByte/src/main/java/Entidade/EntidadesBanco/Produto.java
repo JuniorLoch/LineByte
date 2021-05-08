@@ -11,12 +11,6 @@ import javax.persistence.OneToMany;
 class Produto implements Serializable{
 
     @OneToMany(mappedBy = "produto",fetch = FetchType.LAZY)
-    private List<ItemCompra> itemCompras;
-    
-    @OneToMany(mappedBy = "produto",fetch = FetchType.LAZY)
-    private List<ItemVenda> itemVendas;
-
-    @OneToMany(mappedBy = "produto",fetch = FetchType.LAZY)
     private List<Estoque> estoques;
 
     @Id
@@ -29,6 +23,14 @@ class Produto implements Serializable{
     private String cor;
     private String sexo;
 
+    public List<Estoque> getEstoques() {
+        return estoques;
+    }
+
+    public void setEstoques(List<Estoque> estoques) {
+        this.estoques = estoques;
+    }
+    
     public Integer getId() {
         return id;
     }

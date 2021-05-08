@@ -46,4 +46,18 @@ public class DAO {
     public List listaNative(Class c){ 
         return  em.createNativeQuery("select * from "+c.getSimpleName(),c).getResultList();
     }
+    
+    public List listarItemVenda(){ 
+        return  em.createNativeQuery("select * from tabvenda o join tabitem_venda i on i.id_venda=o.id").getResultList();
+    }
+    
+    public List listarItemCompra(){ 
+        return  em.createNativeQuery("select * from tabcompra o join tabitem_compra i on i.id_compra=o.id").getResultList();
+    }
+    
+    public List listarEstoque(){ 
+        return  em.createNativeQuery("select * from tabproduto o join tabestoque i on i.id_produto=o.id").getResultList();
+    }
+    
+    
 }

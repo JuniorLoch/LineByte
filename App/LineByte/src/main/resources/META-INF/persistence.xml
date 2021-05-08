@@ -18,6 +18,7 @@
     <class>Entidade.EntidadesBanco.Venda</class>
     <class>Entidade.EntidadesBanco.Fornecedor</class>
     <class>Entidade.EntidadesBanco.ItemCompra</class>
+    <class>Entidade.EntidadesBanco.Compra</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/linebyte"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
