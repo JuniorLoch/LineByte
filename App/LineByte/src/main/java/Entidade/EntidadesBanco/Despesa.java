@@ -19,7 +19,7 @@ public class Despesa implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date dataVencimento;
     
-    private String pago;
+    private Boolean pago;
     private String nome;
 
     public Integer getId() {
@@ -46,11 +46,11 @@ public class Despesa implements Serializable{
         this.dataVencimento = dataVencimento;
     }
 
-    public String getPago() {
+    public Boolean getPago() {
         return pago;
     }
 
-    public void setPago(String pago) {
+    public void setPago(Boolean pago) {
         this.pago = pago;
     }
 

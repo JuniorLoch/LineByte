@@ -11,10 +11,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author User
- */
 public class DAO {
     //ligacao com o persistence.xml, recebe por parametro o nome da unidade de persistencia que voce colocou no arquivo
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
@@ -35,16 +31,18 @@ public class DAO {
     
     public void editar(Object o){
         tx.begin();
-        em.equals(o);// inserir ou update
+        em.merge(o);// inserir ou update
         tx.commit();
     }
     
-    //existe diferenca no resultado dos dois metodos?
+    //nao tem diferenca nos dois métodos, acho mais facil o native -Gilberto
+    
+    //JPQL
     public List lista(Class c){ 
         return  em.createQuery("select o from "+c.getSimpleName()+ " o ").getResultList();
     }
     
-    
+    //Sql nativo
     public List listaNative(Class c){ 
         return  em.createNativeQuery("select * from "+c.getSimpleName(),c).getResultList();
     }

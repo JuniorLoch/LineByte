@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 public class Estoque implements Serializable{
     @Id
     private Integer id;
+    
     @ManyToOne
     private Produto produto;
     private Integer qtdEstoque;

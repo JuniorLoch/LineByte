@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name = "tabfuncionario")
 public class Funcionario implements Serializable{
@@ -18,8 +20,13 @@ public class Funcionario implements Serializable{
     
     @ManyToOne
     private Cargo cargo;
+    
+    @OneToOne
     private Login login;
+    
+    @Temporal(TemporalType.DATE)
     private Date dataAdmissao;
+    
     private String descricao;
 
     public int getId() {

@@ -8,16 +8,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name = "tabcomprasFornecedor")
-public class ComprasFornecedor implements Serializable{
+@Entity(name = "tabitem_compra")
+public class ItemCompra implements Serializable{
     @Id
     private Integer id;
-    @ManyToOne // temporário, vai ter que mudar
+    
+    @ManyToOne
+    private Fornecedor fornecedor;
+    
+    @ManyToOne
     private Produto produto;
     
-    private String nomeFornecedor;
-    private Float valorPago;
-    
+    private Integer quantidade;
+    private Float valorCompra;
     @Temporal(TemporalType.DATE)
     private Date dataCompra;
 
@@ -29,6 +32,14 @@ public class ComprasFornecedor implements Serializable{
         this.id = id;
     }
 
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
     public Produto getProduto() {
         return produto;
     }
@@ -37,20 +48,20 @@ public class ComprasFornecedor implements Serializable{
         this.produto = produto;
     }
 
-    public String getNomeFornecedor() {
-        return nomeFornecedor;
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
-    public void setNomeFornecedor(String nomeFornecedor) {
-        this.nomeFornecedor = nomeFornecedor;
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public Float getValorPago() {
-        return valorPago;
+    public Float getValorCompra() {
+        return valorCompra;
     }
 
-    public void setValorPago(Float valorPago) {
-        this.valorPago = valorPago;
+    public void setValorCompra(Float valorCompra) {
+        this.valorCompra = valorCompra;
     }
 
     public Date getDataCompra() {
@@ -60,6 +71,7 @@ public class ComprasFornecedor implements Serializable{
     public void setDataCompra(Date dataCompra) {
         this.dataCompra = dataCompra;
     }
+    
     
     
 }

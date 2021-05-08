@@ -4,7 +4,6 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidade.EntidadesBanco.Cargo</class>
     <class>Entidade.EntidadesBanco.Cliente</class>
-    <class>Entidade.EntidadesBanco.ComprasFornecedor</class>
     <class>Entidade.EntidadesBanco.Despesa</class>
     <class>Entidade.EntidadesBanco.Endereco</class>
     <class>Entidade.EntidadesBanco.Estoque</class>
@@ -17,8 +16,10 @@
     <class>Entidade.EntidadesBanco.Produto</class>
     <class>Entidade.EntidadesBanco.TipoDespesa</class>
     <class>Entidade.EntidadesBanco.Venda</class>
+    <class>Entidade.EntidadesBanco.Fornecedor</class>
+    <class>Entidade.EntidadesBanco.ItemCompra</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/teste"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/linebyte"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="123"/>

@@ -3,7 +3,7 @@ package Entidade.EntidadesBanco;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "tabitemvenda")
 public class ItemVenda implements Serializable{
@@ -11,10 +11,11 @@ public class ItemVenda implements Serializable{
     @Id
     private Integer id;
     
-    @OneToMany
+    
+    @ManyToOne
     private Produto produto;
     
-    @OneToMany
+    @ManyToOne
     private Venda venda;
     
     private Float valor;
