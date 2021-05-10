@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +16,8 @@ public class Venda implements Serializable {
     @Id
     private Integer id;
     
-    @OneToMany//ajustar para @ManyToOne
+    //ajustar para @ManyToOne
+    @ManyToOne
     private Funcionario funcionario;
     
     private Float valorVenda;
@@ -23,7 +25,8 @@ public class Venda implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataVenda;
     
-    @OneToMany//ajustar para @ManyToOne
+    //ajustar para @ManyToOne
+    @ManyToOne
     private Cliente cliente;
     
     private Integer notaFiscal;
