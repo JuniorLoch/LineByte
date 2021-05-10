@@ -21,7 +21,16 @@ public class Despesa implements Serializable{
     
     private Boolean pago;
     private String nome;
+    private Float valor;
+    
+    public Float getValor() {
+        return valor;
+    }
 
+    public void setValor(Float valor) {
+        this.valor = valor;
+    }
+    
     public Integer getId() {
         return id;
     }
