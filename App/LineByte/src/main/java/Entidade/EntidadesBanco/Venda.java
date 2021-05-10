@@ -15,7 +15,7 @@ public class Venda implements Serializable {
     @Id
     private Integer id;
     
-    @OneToMany
+    @OneToMany//ajustar para @ManyToOne
     private Funcionario funcionario;
     
     private Float valorVenda;
@@ -23,7 +23,7 @@ public class Venda implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dataVenda;
     
-    @OneToMany
+    @OneToMany//ajustar para @ManyToOne
     private Cliente cliente;
     
     private Integer notaFiscal;
