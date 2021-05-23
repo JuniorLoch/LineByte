@@ -1,12 +1,13 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 
 @Entity(name = "tabcargo")
-public class Cargo implements Serializable{
+public class Cargo implements Serializable,TemplateLista{
     
     @Id
     private Integer id;
@@ -37,6 +38,16 @@ public class Cargo implements Serializable{
 
     public void setSalario(Float salario) {
         this.salario = salario;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{nomeCargo,salario};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"Cargo","Salario"};
     }
 
     
