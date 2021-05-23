@@ -27,7 +27,7 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         LBbomdia = new javax.swing.JLabel();
-        BTrelatorios = new javax.swing.JButton();
+        BTanalize = new javax.swing.JButton();
         BTvendas = new javax.swing.JButton();
         BTsair = new javax.swing.JButton();
         BTcompras = new javax.swing.JButton();
@@ -44,8 +44,12 @@ public class Principal extends javax.swing.JFrame {
         LBbomdia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LBbomdia.setText("Bom dia");
 
-        BTrelatorios.setText("Relatórios");
+        BTanalize.setBackground(new java.awt.Color(0, 255, 204));
+        BTanalize.setForeground(new java.awt.Color(0, 0, 0));
+        BTanalize.setText("Analize");
 
+        BTvendas.setBackground(new java.awt.Color(102, 255, 51));
+        BTvendas.setForeground(new java.awt.Color(0, 0, 0));
         BTvendas.setText("Vendas");
 
         BTsair.setBackground(new java.awt.Color(247, 87, 87));
@@ -56,6 +60,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        BTcompras.setBackground(new java.awt.Color(255, 204, 51));
+        BTcompras.setForeground(new java.awt.Color(0, 0, 0));
         BTcompras.setText("Compras");
 
         PainelCadastro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -63,6 +69,8 @@ public class Principal extends javax.swing.JFrame {
         LBcadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LBcadastro.setText("O que deseja cadastrar");
 
+        BTcadastro.setBackground(new java.awt.Color(204, 255, 255));
+        BTcadastro.setForeground(new java.awt.Color(0, 0, 0));
         BTcadastro.setText("Cadastrar");
 
         JLentidades.setModel(new javax.swing.AbstractListModel<String>() {
@@ -118,31 +126,31 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(BTrelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BTanalize, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
                         .addComponent(BTsair, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(LBbomdia, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(220, 220, 220))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BTrelatorios, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTanalize, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTvendas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTsair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTcompras, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(LBbomdia, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addComponent(PainelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(PainelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(LBbomdia, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
@@ -190,9 +198,9 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTanalize;
     private javax.swing.JButton BTcadastro;
     private javax.swing.JButton BTcompras;
-    private javax.swing.JButton BTrelatorios;
     private javax.swing.JButton BTsair;
     private javax.swing.JButton BTvendas;
     private javax.swing.JList<String> JLentidades;

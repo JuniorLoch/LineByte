@@ -34,8 +34,12 @@ public class Cadastro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        BTsalvar.setBackground(new java.awt.Color(204, 255, 204));
+        BTsalvar.setForeground(new java.awt.Color(0, 0, 0));
         BTsalvar.setText("Salvar");
 
+        BTcancelar.setBackground(new java.awt.Color(255, 255, 204));
+        BTcancelar.setForeground(new java.awt.Color(0, 0, 0));
         BTcancelar.setText("Cancelar");
 
         javax.swing.GroupLayout PainelCadastroLayout = new javax.swing.GroupLayout(PainelCadastro);
@@ -50,6 +54,7 @@ public class Cadastro extends javax.swing.JFrame {
         );
 
         BTsair.setBackground(new java.awt.Color(255, 86, 86));
+        BTsair.setForeground(new java.awt.Color(0, 0, 0));
         BTsair.setText("Sair");
         BTsair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

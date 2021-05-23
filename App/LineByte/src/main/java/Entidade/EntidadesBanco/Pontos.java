@@ -1,5 +1,6 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
@@ -10,7 +11,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "tabpontos")
-public class Pontos implements Serializable{
+public class Pontos implements Serializable,TemplateLista{
     
     @Id
     private Integer id;
@@ -65,6 +66,16 @@ public class Pontos implements Serializable{
 
     public void setDataPonto(Date dataPonto) {
         this.dataPonto = dataPonto;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,funcionario,horaEntrada,horaSaida,dataPonto};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Funcionario","HoraEntrada","HoraSaida","DataPonto"};
     }
     
     

@@ -1,5 +1,6 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "tabpessoa")
-public class Pessoa implements Serializable{
+public class Pessoa implements Serializable,TemplateLista{
     
     @Id
     private Integer id;
@@ -88,6 +89,16 @@ public class Pessoa implements Serializable{
     @Override
     public String toString() {
         return id+" - "+nome;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,nome,endereco,cpf,rg,data_nasc,sexo};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Nome","Endereco","CPF","RG","DataNascimento","Sexo"};
     }
     
     

@@ -65,6 +65,7 @@ public class Listagem extends javax.swing.JFrame {
         BTeditar.setText("Editar");
 
         BTexcluir.setBackground(new java.awt.Color(255, 255, 117));
+        BTexcluir.setForeground(new java.awt.Color(0, 0, 0));
         BTexcluir.setText("Excluir");
         BTexcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

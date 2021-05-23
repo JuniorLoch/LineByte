@@ -37,17 +37,17 @@
                   <Component id="PainelCadastro" max="32767" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="BTrelatorios" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="BTanalize" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace pref="285" max="32767" attributes="0"/>
                       <Component id="BTsair" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="LBbomdia" min="-2" pref="178" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="LBbomdia" min="-2" pref="178" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -58,19 +58,19 @@
           <Group type="102" attributes="0">
               <EmptySpace min="37" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BTrelatorios" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BTanalize" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="BTvendas" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="BTsair" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="BTcompras" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
-                      <Component id="LBbomdia" min="-2" pref="42" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Component id="PainelCadastro" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="LBbomdia" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="76" max="32767" attributes="0"/>
@@ -88,13 +88,25 @@
         <Property name="text" type="java.lang.String" value="Bom dia"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BTrelatorios">
+    <Component class="javax.swing.JButton" name="BTanalize">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="0" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Analize"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BTvendas">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="ff" red="66" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Vendas"/>
       </Properties>
     </Component>
@@ -111,6 +123,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="BTcompras">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="cc" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Compras"/>
       </Properties>
     </Component>
@@ -169,6 +187,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="BTcadastro">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
         </Component>
