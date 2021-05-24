@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroPessoa extends javax.swing.JPanel {
+public class CadastroPessoa extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroPessoa
@@ -27,7 +29,6 @@ public class CadastroPessoa extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup2 = new javax.swing.ButtonGroup();
         LBnome = new javax.swing.JLabel();
         LBsexo = new javax.swing.JLabel();
         LBcpf = new javax.swing.JLabel();
@@ -40,7 +41,7 @@ public class CadastroPessoa extends javax.swing.JPanel {
         RBsexoMasculino = new javax.swing.JRadioButton();
         RBsexoFeminino = new javax.swing.JRadioButton();
         LBendereco = new javax.swing.JLabel();
-        TFendereco = new javax.swing.JTextField();
+        CBendereco = new javax.swing.JComboBox<>();
 
         LBnome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBnome.setText("Nome:");
@@ -66,6 +67,8 @@ public class CadastroPessoa extends javax.swing.JPanel {
         LBendereco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBendereco.setText("Endereço:");
 
+        CBendereco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,19 +76,6 @@ public class CadastroPessoa extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(164, 164, 164)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LBendereco)
-                        .addGap(18, 18, 18)
-                        .addComponent(TFendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(LBcpf)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TFcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(LBdataNascimento)
-                            .addGap(18, 18, 18)
-                            .addComponent(FTFdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(LBnome)
@@ -101,7 +91,20 @@ public class CadastroPessoa extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LBrg)
                                 .addGap(18, 18, 18)
-                                .addComponent(TFrg, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(TFrg, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(LBendereco)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(CBendereco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(LBcpf)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TFcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(LBdataNascimento)
+                            .addGap(18, 18, 18)
+                            .addComponent(FTFdataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(240, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,13 +130,14 @@ public class CadastroPessoa extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBendereco)
-                    .addComponent(TFendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(205, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBendereco;
     private javax.swing.JFormattedTextField FTFdataNascimento;
     private javax.swing.JLabel LBcpf;
     private javax.swing.JLabel LBdataNascimento;
@@ -144,9 +148,12 @@ public class CadastroPessoa extends javax.swing.JPanel {
     private javax.swing.JRadioButton RBsexoFeminino;
     private javax.swing.JRadioButton RBsexoMasculino;
     private javax.swing.JTextField TFcpf;
-    private javax.swing.JTextField TFendereco;
     private javax.swing.JTextField TFnome;
     private javax.swing.JTextField TFrg;
-    private javax.swing.ButtonGroup buttonGroup2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

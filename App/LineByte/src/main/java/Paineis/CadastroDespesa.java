@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroDespesa extends javax.swing.JPanel {
+public class CadastroDespesa extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroDespesa
@@ -31,12 +33,12 @@ public class CadastroDespesa extends javax.swing.JPanel {
         LBcategoria = new javax.swing.JLabel();
         LBdataVencimento = new javax.swing.JLabel();
         LBpago = new javax.swing.JLabel();
-        TFcargo = new javax.swing.JTextField();
         TFnome = new javax.swing.JTextField();
         CBpago = new javax.swing.JCheckBox();
         FTFvencimento = new javax.swing.JFormattedTextField();
         LBvalor = new javax.swing.JLabel();
         TFvalor = new javax.swing.JTextField();
+        CBcategoria = new javax.swing.JComboBox<>();
 
         LBnome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBnome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -67,6 +69,8 @@ public class CadastroDespesa extends javax.swing.JPanel {
         LBvalor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBvalor.setText("Valor:");
 
+        CBcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,11 +82,11 @@ public class CadastroDespesa extends javax.swing.JPanel {
                         .addComponent(LBpago)
                         .addGap(45, 45, 45)
                         .addComponent(CBpago, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LBcategoria)
-                        .addGap(18, 18, 18)
-                        .addComponent(TFcargo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(LBcategoria)
+                            .addGap(18, 18, 18)
+                            .addComponent(CBcategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(LBdataVencimento)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -103,7 +107,7 @@ public class CadastroDespesa extends javax.swing.JPanel {
                 .addGap(113, 113, 113)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBcategoria)
-                    .addComponent(TFcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBnome)
@@ -130,6 +134,7 @@ public class CadastroDespesa extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBcategoria;
     private javax.swing.JCheckBox CBpago;
     private javax.swing.JFormattedTextField FTFvencimento;
     private javax.swing.JLabel LBcategoria;
@@ -137,8 +142,12 @@ public class CadastroDespesa extends javax.swing.JPanel {
     private javax.swing.JLabel LBnome;
     private javax.swing.JLabel LBpago;
     private javax.swing.JLabel LBvalor;
-    private javax.swing.JTextField TFcargo;
     private javax.swing.JTextField TFnome;
     private javax.swing.JTextField TFvalor;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

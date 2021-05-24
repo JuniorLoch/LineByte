@@ -59,6 +59,11 @@ public class Fornecedor implements Serializable,TemplateLista{
         return new String[]{"ID","NomeForncedor","CNPJ","Endereco"};
     }
 
+    @Override
+    public String toString() {
+        return id+" - "+nomeFornecedor;
+    }
+
     
     
 }

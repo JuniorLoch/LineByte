@@ -87,11 +87,6 @@ public class Pessoa implements Serializable,TemplateLista{
     }
 
     @Override
-    public String toString() {
-        return id+" - "+nome;
-    }
-
-    @Override
     public Object[] getDados() {
         return new Object[]{id,nome,endereco,cpf,rg,data_nasc,sexo};
     }
@@ -101,6 +96,9 @@ public class Pessoa implements Serializable,TemplateLista{
         return new String[]{"ID","Nome","Endereco","CPF","RG","DataNascimento","Sexo"};
     }
     
-    
+    @Override
+    public String toString() {
+        return id+" - "+nome;
+    }
     
 }

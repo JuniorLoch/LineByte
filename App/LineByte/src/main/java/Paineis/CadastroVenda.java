@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroVenda extends javax.swing.JPanel {
+public class CadastroVenda extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroVenda
@@ -31,12 +33,12 @@ public class CadastroVenda extends javax.swing.JPanel {
         LBcliente = new javax.swing.JLabel();
         LBfuncionario = new javax.swing.JLabel();
         LBnotaFiscal = new javax.swing.JLabel();
-        TFcliente = new javax.swing.JTextField();
-        TFfuncionario = new javax.swing.JTextField();
         FTFdata = new javax.swing.JFormattedTextField();
         TFnotaFiscal = new javax.swing.JTextField();
         LBvalor = new javax.swing.JLabel();
         LBvalorVendaDinamico = new javax.swing.JLabel();
+        CBcliente = new javax.swing.JComboBox<>();
+        CBfuncionario = new javax.swing.JComboBox<>();
 
         LBdata.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBdata.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -66,6 +68,10 @@ public class CadastroVenda extends javax.swing.JPanel {
         LBvalorVendaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBvalorVendaDinamico.setText("0");
 
+        CBcliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBfuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,18 +80,18 @@ public class CadastroVenda extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(LBfuncionario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TFfuncionario))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(LBcliente)
-                        .addGap(18, 18, 18)
-                        .addComponent(TFcliente))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBcliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBdata)
                         .addGap(18, 18, 18)
                         .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 322, Short.MAX_VALUE)))
+                        .addGap(0, 322, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LBfuncionario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CBfuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -105,12 +111,12 @@ public class CadastroVenda extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBcliente)
                     .addComponent(LBnotaFiscal)
-                    .addComponent(TFcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TFnotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFnotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CBcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBfuncionario)
-                    .addComponent(TFfuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBfuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -129,6 +135,8 @@ public class CadastroVenda extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBcliente;
+    private javax.swing.JComboBox<String> CBfuncionario;
     private javax.swing.JFormattedTextField FTFdata;
     private javax.swing.JLabel LBcliente;
     private javax.swing.JLabel LBdata;
@@ -136,8 +144,11 @@ public class CadastroVenda extends javax.swing.JPanel {
     private javax.swing.JLabel LBnotaFiscal;
     private javax.swing.JLabel LBvalor;
     private javax.swing.JLabel LBvalorVendaDinamico;
-    private javax.swing.JTextField TFcliente;
-    private javax.swing.JTextField TFfuncionario;
     private javax.swing.JTextField TFnotaFiscal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

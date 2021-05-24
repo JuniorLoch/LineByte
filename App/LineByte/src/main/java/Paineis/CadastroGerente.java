@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroGerente extends javax.swing.JPanel {
+public class CadastroGerente extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroGerente
@@ -29,14 +31,18 @@ public class CadastroGerente extends javax.swing.JPanel {
 
         LBlogin = new javax.swing.JLabel();
         LBpessoa1 = new javax.swing.JLabel();
-        TFpessoa = new javax.swing.JTextField();
-        TFlogin = new javax.swing.JTextField();
+        CBpessoa = new javax.swing.JComboBox<>();
+        CBlogin = new javax.swing.JComboBox<>();
 
         LBlogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBlogin.setText("Login:");
 
         LBpessoa1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBpessoa1.setText("Pessoa:");
+
+        CBpessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBlogin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -48,9 +54,9 @@ public class CadastroGerente extends javax.swing.JPanel {
                     .addComponent(LBpessoa1)
                     .addComponent(LBlogin))
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TFpessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(CBpessoa, 0, 222, Short.MAX_VALUE)
+                    .addComponent(CBlogin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(333, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -59,20 +65,25 @@ public class CadastroGerente extends javax.swing.JPanel {
                 .addGap(147, 147, 147)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBpessoa1)
-                    .addComponent(TFpessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBpessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBlogin)
-                    .addComponent(TFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(283, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBlogin;
+    private javax.swing.JComboBox<String> CBpessoa;
     private javax.swing.JLabel LBlogin;
     private javax.swing.JLabel LBpessoa1;
-    private javax.swing.JTextField TFlogin;
-    private javax.swing.JTextField TFpessoa;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

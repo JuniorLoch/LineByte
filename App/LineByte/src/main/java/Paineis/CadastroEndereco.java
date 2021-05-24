@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroEndereco extends javax.swing.JPanel {
+public class CadastroEndereco extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroEndereco
@@ -164,4 +166,9 @@ public class CadastroEndereco extends javax.swing.JPanel {
     private javax.swing.JTextField TFnumero;
     private javax.swing.JTextField TFrua;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

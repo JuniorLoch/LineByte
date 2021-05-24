@@ -5,11 +5,14 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Cargo;
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroCargo extends javax.swing.JPanel {
+public class CadastroCargo extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroCargo
@@ -40,18 +43,12 @@ public class CadastroCargo extends javax.swing.JPanel {
         LBsalario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBsalario.setText("Salário:");
 
-        TFsalario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFsalarioActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(322, 322, 322)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -59,26 +56,22 @@ public class CadastroCargo extends javax.swing.JPanel {
                         .addComponent(TFsalario))
                     .addComponent(TFnomeCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LBnomeCargo))
-                .addGap(0, 268, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
+                .addGap(21, 21, 21)
                 .addComponent(LBnomeCargo)
                 .addGap(18, 18, 18)
                 .addComponent(TFnomeCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(LBsalario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TFsalario))
-                .addContainerGap(278, Short.MAX_VALUE))
+                    .addComponent(TFsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TFsalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFsalarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TFsalarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -87,4 +80,12 @@ public class CadastroCargo extends javax.swing.JPanel {
     private javax.swing.JTextField TFnomeCargo;
     private javax.swing.JTextField TFsalario;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        Cargo c = new Cargo();
+        c.setNomeCargo(TFnomeCargo.getText());
+        c.setSalario(Float.parseFloat(TFsalario.getText()));
+        return c;
+    }
 }

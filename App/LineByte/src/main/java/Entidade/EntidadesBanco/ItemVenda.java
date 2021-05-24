@@ -72,5 +72,11 @@ public class ItemVenda implements Serializable,TemplateLista{
     public String[] getTitulos() {
         return new String[]{"ID","Produto","Venda","Valor","Quantidade"};
     }
+
+    @Override
+    public String toString() {
+        return produto.getNome()+" - "+quantidade;
+    }
         
+    
 }

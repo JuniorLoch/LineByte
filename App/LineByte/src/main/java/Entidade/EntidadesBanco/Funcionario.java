@@ -87,6 +87,12 @@ public class Funcionario implements Serializable,TemplateLista{
     public String[] getTitulos() {
         return new String[]{"ID","Pessoa","Cargo","Login","DataAdmissao","Descricao"};
     }
+
+    @Override
+    public String toString() {
+        return id+" - "+pessoa.getNome()+" - "+cargo;
+    }
+    
     
     
 }

@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroPontos extends javax.swing.JPanel {
+public class CadastroPontos extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroPontos
@@ -31,10 +33,10 @@ public class CadastroPontos extends javax.swing.JPanel {
         LBFuncionario = new javax.swing.JLabel();
         LBdata = new javax.swing.JLabel();
         LBhoraSaida = new javax.swing.JLabel();
-        TFfuncionario = new javax.swing.JTextField();
         FTFdata = new javax.swing.JFormattedTextField();
         FTFhoraEntrada = new javax.swing.JFormattedTextField();
         FTFhoraSaida = new javax.swing.JFormattedTextField();
+        CBfuncionario = new javax.swing.JComboBox<>();
 
         LBhoraEntrada.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBhoraEntrada.setText("Hora entrada:");
@@ -54,13 +56,15 @@ public class CadastroPontos extends javax.swing.JPanel {
 
         FTFhoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
+        CBfuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(196, 196, 196)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBdata)
                         .addGap(18, 18, 18)
@@ -68,7 +72,7 @@ public class CadastroPontos extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBFuncionario)
                         .addGap(18, 18, 18)
-                        .addComponent(TFfuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CBfuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBhoraEntrada)
                         .addGap(18, 18, 18)
@@ -77,7 +81,7 @@ public class CadastroPontos extends javax.swing.JPanel {
                         .addComponent(LBhoraSaida)
                         .addGap(18, 18, 18)
                         .addComponent(FTFhoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(338, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +89,7 @@ public class CadastroPontos extends javax.swing.JPanel {
                 .addGap(196, 196, 196)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBFuncionario)
-                    .addComponent(TFfuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBfuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBdata)
@@ -102,6 +106,7 @@ public class CadastroPontos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBfuncionario;
     private javax.swing.JFormattedTextField FTFdata;
     private javax.swing.JFormattedTextField FTFhoraEntrada;
     private javax.swing.JFormattedTextField FTFhoraSaida;
@@ -109,6 +114,10 @@ public class CadastroPontos extends javax.swing.JPanel {
     private javax.swing.JLabel LBdata;
     private javax.swing.JLabel LBhoraEntrada;
     private javax.swing.JLabel LBhoraSaida;
-    private javax.swing.JTextField TFfuncionario;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

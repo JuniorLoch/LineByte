@@ -22,9 +22,9 @@
                   <Component id="SPitemCompra" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="LBproduto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="TFproduto" min="-2" pref="213" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="CBproduto" min="-2" pref="225" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="LBValor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="TFvalor" min="-2" pref="89" max="-2" attributes="0"/>
@@ -45,11 +45,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="LBproduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TFproduto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LBquantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TFvalor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TFquantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LBValor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBproduto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="SPitemCompra" min="-2" pref="211" max="-2" attributes="0"/>
@@ -67,8 +67,6 @@
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="text" type="java.lang.String" value="Produto:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="TFproduto">
     </Component>
     <Component class="javax.swing.JLabel" name="LBValor">
       <Properties>
@@ -119,5 +117,20 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JComboBox" name="CBproduto">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
   </SubComponents>
 </Form>

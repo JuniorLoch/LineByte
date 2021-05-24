@@ -48,4 +48,11 @@ public class Cliente implements Serializable,TemplateLista{
     public String[] getTitulos() {
         return new String[]{"Pessoa","Senha"};
     }
+
+    @Override
+    public String toString() {
+        return pessoa.getNome();
+    }
+    
+    
 }

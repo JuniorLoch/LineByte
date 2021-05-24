@@ -89,5 +89,11 @@ public class Venda implements Serializable,TemplateLista {
     public String[] getTitulos() {
         return new String[]{"ID","Funcionario","DataVenda","Cliente","NotaFiscal"};
     }
+
+    @Override
+    public String toString() {
+        return id+" - "+funcionario.getPessoa().getNome()+" - "+dataVenda+" - "+valorVenda;
+    }
+    
     
 }

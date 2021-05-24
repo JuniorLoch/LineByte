@@ -23,9 +23,9 @@
                   <Component id="LBlogin" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="TFlogin" min="-2" pref="222" max="-2" attributes="0"/>
-                  <Component id="TFpessoa" min="-2" pref="222" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="CBpessoa" pref="222" max="32767" attributes="0"/>
+                  <Component id="CBlogin" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="333" max="32767" attributes="0"/>
           </Group>
@@ -37,12 +37,12 @@
               <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="LBpessoa1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TFpessoa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBpessoa" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="LBlogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TFlogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBlogin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="283" max="32767" attributes="0"/>
           </Group>
@@ -66,9 +66,35 @@
         <Property name="text" type="java.lang.String" value="Pessoa:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TFpessoa">
+    <Component class="javax.swing.JComboBox" name="CBpessoa">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="TFlogin">
+    <Component class="javax.swing.JComboBox" name="CBlogin">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

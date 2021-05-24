@@ -5,17 +5,27 @@
  */
 package Telas;
 
+import Interfaces.TemplatePainelCadastro;
+import java.awt.BorderLayout;
+
 /**
  *
  * @author User
  */
-public class Cadastro extends javax.swing.JFrame {
-
+public class Cadastro extends javax.swing.JDialog {
+    TemplatePainelCadastro painel;
     /**
      * Creates new form Cadastro
+     * @param parent
+     * @param modal
+     * @param painel
      */
-    public Cadastro() {
+    public Cadastro(java.awt.Frame parent, boolean modal, TemplatePainelCadastro painel) {
+        super(parent, modal);
         initComponents();
+        this.painel=painel;
+        PainelCadastro.add(painel,BorderLayout.CENTER);
+        pack();
     }
 
     /**
@@ -32,7 +42,7 @@ public class Cadastro extends javax.swing.JFrame {
         PainelCadastro = new javax.swing.JPanel();
         BTsair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         BTsalvar.setBackground(new java.awt.Color(204, 255, 204));
         BTsalvar.setForeground(new java.awt.Color(0, 0, 0));
@@ -99,43 +109,8 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_BTsairActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Cadastro().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTcancelar;

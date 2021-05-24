@@ -49,4 +49,11 @@ public class Estoque implements Serializable,TemplateLista{
     public String[] getTitulos() {
         return new String[]{"ID","Produto","QuantidadeEstoque"};
     }
+
+    @Override
+    public String toString() {
+        return produto.getNome()+" - "+qtdEstoque;
+    }
+    
+    
 }

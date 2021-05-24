@@ -60,4 +60,9 @@ public class ItemCompra implements Serializable,TemplateLista{
     public String[] getTitulos() {
         return new String[]{"ID","Produto","Compra","Quantidade"};
     }
+    
+    @Override
+    public String toString() {
+        return produto.getNome()+" - "+quantidade;
+    }
 }

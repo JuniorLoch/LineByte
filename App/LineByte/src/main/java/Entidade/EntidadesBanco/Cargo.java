@@ -50,5 +50,11 @@ public class Cargo implements Serializable,TemplateLista{
         return new String[]{"Cargo","Salario"};
     }
 
+    @Override
+    public String toString() {
+        return id+" - "+nomeCargo;
+    }
+
+    
     
 }

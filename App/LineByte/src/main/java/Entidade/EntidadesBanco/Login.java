@@ -48,4 +48,11 @@ public class Login implements Serializable,TemplateLista{
     public String[] getTitulos() {
         return new String[]{"ID","Usuario","Senha"};
     }
+
+    @Override
+    public String toString() {
+        return id+" - "+usuario;
+    }
+    
+    
 }

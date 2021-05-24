@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity(name = "tabproduto")
-class Produto implements Serializable,TemplateLista{
+public class Produto implements Serializable,TemplateLista{
 
     @OneToMany(mappedBy = "produto",fetch = FetchType.LAZY)
     private List<Estoque> estoques;
@@ -97,4 +97,11 @@ class Produto implements Serializable,TemplateLista{
     public String[] getTitulos() {
         return new String[]{"ID","Nome","Tamanho","Marca","valor","Cor","Sexo"};
     }
+
+    @Override
+    public String toString() {
+        return id+" - "+nome;
+    }
+    
+    
 }

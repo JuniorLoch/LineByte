@@ -5,17 +5,39 @@
  */
 package Telas;
 
+import Entidade.DAO;
+import Interfaces.TemplateLista;
+import Interfaces.TemplatePainelCadastro;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class Listagem extends javax.swing.JFrame {
+    
+    private Class classe;
+    private TemplatePainelCadastro painel;
 
     /**
      * Creates new form Listagem
+     * @param classe
+     * @param painel
      */
-    public Listagem() {
+    public Listagem(Class classe, TemplatePainelCadastro painel) { 
+        this.classe = classe;
+        this.painel = painel;
         initComponents();
+        try {
+            tl= (TemplateLista) classe.newInstance();//cria instacia //porque precisa do (templatelista)
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        atualizaTabela();
     }
 
     /**
@@ -28,7 +50,7 @@ public class Listagem extends javax.swing.JFrame {
     private void initComponents() {
 
         SPtabela = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTtabela = new javax.swing.JTable();
         PainelCabecalho = new javax.swing.JPanel();
         BTnovo = new javax.swing.JButton();
         BTsair = new javax.swing.JButton();
@@ -39,7 +61,7 @@ public class Listagem extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTtabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -50,9 +72,14 @@ public class Listagem extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        SPtabela.setViewportView(jTable1);
+        SPtabela.setViewportView(JTtabela);
 
         BTnovo.setText("Novo");
+        BTnovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTnovoActionPerformed(evt);
+            }
+        });
 
         BTsair.setBackground(new java.awt.Color(255, 86, 86));
         BTsair.setText("Sair");
@@ -63,6 +90,11 @@ public class Listagem extends javax.swing.JFrame {
         });
 
         BTeditar.setText("Editar");
+        BTeditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTeditarActionPerformed(evt);
+            }
+        });
 
         BTexcluir.setBackground(new java.awt.Color(255, 255, 117));
         BTexcluir.setForeground(new java.awt.Color(0, 0, 0));
@@ -137,47 +169,26 @@ public class Listagem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_BTsairActionPerformed
 
     private void BTexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTexcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BTexcluirActionPerformed
 
+    private void BTnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTnovoActionPerformed
+        new Cadastro(this,true,painel).setVisible(true);
+        atualizaTabela();
+    }//GEN-LAST:event_BTnovoActionPerformed
+
+    private void BTeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTeditarActionPerformed
+        new Cadastro(this,true,painel).setVisible(true);
+        atualizaTabela();
+    }//GEN-LAST:event_BTeditarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Listagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Listagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Listagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Listagem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Listagem().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTeditar;
@@ -185,9 +196,23 @@ public class Listagem extends javax.swing.JFrame {
     private javax.swing.JButton BTnovo;
     private javax.swing.JButton BTpesquisa;
     private javax.swing.JButton BTsair;
+    private javax.swing.JTable JTtabela;
     private javax.swing.JPanel PainelCabecalho;
     private javax.swing.JScrollPane SPtabela;
     private javax.swing.JTextField TFpesquisa;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    private List<TemplateLista> lista;
+    private TemplateLista tl;
+    
+    private void atualizaTabela() {
+        //lista = DAO.listaNative(classe);
+   
+        Object[][] dados= new Object[6][tl.getTitulos().length];
+        /*
+        for (int i = 0; i < lista.size(); i++) {
+            dados[i]=lista.get(i).getDados();
+        }
+        */
+        JTtabela.setModel(new DefaultTableModel(dados,tl.getTitulos()));
+    }
 }

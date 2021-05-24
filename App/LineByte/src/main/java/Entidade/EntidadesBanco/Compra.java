@@ -88,4 +88,11 @@ public class Compra implements Serializable,TemplateLista{
         return new String[]{"ID","Data","Fornecedor","ValorTotal","NFe"};
     }
 
+    @Override
+    public String toString() {
+        return id+" - "+fornecedor.getNomeFornecedor()+" - "+dataCompra+" - "+valorTotal;
+    }
+    
+    
+
 }

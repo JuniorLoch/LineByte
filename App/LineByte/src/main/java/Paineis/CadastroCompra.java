@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroCompra extends javax.swing.JPanel {
+public class CadastroCompra extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroCompra
@@ -30,9 +32,9 @@ public class CadastroCompra extends javax.swing.JPanel {
         LBfornecedor = new javax.swing.JLabel();
         LBdata = new javax.swing.JLabel();
         LBvalor = new javax.swing.JLabel();
-        TFfornecedor = new javax.swing.JTextField();
         LBvalorCompraDinamico = new javax.swing.JLabel();
         FTFdata = new javax.swing.JFormattedTextField();
+        CBfornecedor = new javax.swing.JComboBox<>();
 
         LBfornecedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBfornecedor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -53,6 +55,8 @@ public class CadastroCompra extends javax.swing.JPanel {
 
         FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
+        CBfornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,7 +67,7 @@ public class CadastroCompra extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBfornecedor)
                         .addGap(18, 18, 18)
-                        .addComponent(TFfornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CBfornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(LBvalor)
@@ -73,7 +77,7 @@ public class CadastroCompra extends javax.swing.JPanel {
                             .addComponent(LBdata)
                             .addGap(18, 18, 18)
                             .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addContainerGap(535, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,7 +85,7 @@ public class CadastroCompra extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBfornecedor)
-                    .addComponent(TFfornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBfornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBdata)
@@ -96,11 +100,16 @@ public class CadastroCompra extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBfornecedor;
     private javax.swing.JFormattedTextField FTFdata;
     private javax.swing.JLabel LBdata;
     private javax.swing.JLabel LBfornecedor;
     private javax.swing.JLabel LBvalor;
     private javax.swing.JLabel LBvalorCompraDinamico;
-    private javax.swing.JTextField TFfornecedor;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

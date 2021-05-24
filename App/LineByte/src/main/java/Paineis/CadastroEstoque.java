@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroEstoque extends javax.swing.JPanel {
+public class CadastroEstoque extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroEstoque
@@ -29,8 +31,8 @@ public class CadastroEstoque extends javax.swing.JPanel {
 
         LBproduto = new javax.swing.JLabel();
         LBquantidade = new javax.swing.JLabel();
-        TFproduto = new javax.swing.JTextField();
         TFquantidade = new javax.swing.JTextField();
+        CBproduto = new javax.swing.JComboBox<>();
 
         LBproduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBproduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -39,6 +41,8 @@ public class CadastroEstoque extends javax.swing.JPanel {
         LBquantidade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBquantidade.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBquantidade.setText("Quantidade:");
+
+        CBproduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -54,8 +58,8 @@ public class CadastroEstoque extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBproduto)
                         .addGap(46, 46, 46)
-                        .addComponent(TFproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(240, Short.MAX_VALUE))
+                        .addComponent(CBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -63,7 +67,7 @@ public class CadastroEstoque extends javax.swing.JPanel {
                 .addGap(128, 128, 128)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBproduto)
-                    .addComponent(TFproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBquantidade)
@@ -74,9 +78,14 @@ public class CadastroEstoque extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBproduto;
     private javax.swing.JLabel LBproduto;
     private javax.swing.JLabel LBquantidade;
-    private javax.swing.JTextField TFproduto;
     private javax.swing.JTextField TFquantidade;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

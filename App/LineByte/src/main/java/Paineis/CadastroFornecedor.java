@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroFornecedor extends javax.swing.JPanel {
+public class CadastroFornecedor extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroFornecedor
@@ -32,7 +34,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         LBendereco = new javax.swing.JLabel();
         TFnome = new javax.swing.JTextField();
         TFcnpj = new javax.swing.JTextField();
-        TFendereco = new javax.swing.JTextField();
+        CBendereco = new javax.swing.JComboBox<>();
 
         LBnome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBnome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -45,6 +47,8 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         LBendereco.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBendereco.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBendereco.setText("Endereco:");
+
+        CBendereco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,8 +65,8 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                         .addComponent(TFcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(LBendereco)
-                        .addGap(18, 18, 18)
-                        .addComponent(TFendereco))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBendereco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(TFnome, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(249, 249, 249))
         );
@@ -79,18 +83,23 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TFcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LBendereco)
-                        .addComponent(TFendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                        .addComponent(CBendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBendereco;
     private javax.swing.JLabel LBcnpj;
     private javax.swing.JLabel LBendereco;
     private javax.swing.JLabel LBnome;
     private javax.swing.JTextField TFcnpj;
-    private javax.swing.JTextField TFendereco;
     private javax.swing.JTextField TFnome;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -13,23 +13,22 @@ import javax.persistence.Persistence;
 
 public class DAO {
     //ligacao com o persistence.xml, recebe por parametro o nome da unidade de persistencia que voce colocou no arquivo
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
-    EntityManager em =emf.createEntityManager();
-    EntityTransaction tx =em.getTransaction();
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Persistencia");
+    private static EntityManager em =emf.createEntityManager();
+    private static EntityTransaction tx =em.getTransaction();
     
-    public void salvar(Object o){
+    public static Object salvar(Object o){
         tx.begin();
-        em.persist(o);// inserir
-        tx.commit();
+        return em.merge(o);// inserir
     }
     
-    public void remover(Object o){
+    public static void remover(Object o){
         tx.begin();
         em.remove(o);
         tx.commit();
     }
     
-    public void editar(Object o){
+    public static void editar(Object o){
         tx.begin();
         em.merge(o);// inserir ou update
         tx.commit();
@@ -38,24 +37,24 @@ public class DAO {
     //nao tem diferenca nos dois métodos, acho mais facil o native -Gilberto
     
     //JPQL
-    public List lista(Class c){ 
+    public static List lista(Class c){ 
         return  em.createQuery("select o from "+c.getSimpleName()+ " o ").getResultList();
     }
     
     //Sql nativo
-    public List listaNative(Class c){ 
+    public static List listaNative(Class c){ 
         return  em.createNativeQuery("select * from "+c.getSimpleName(),c).getResultList();
     }
     
-    public List listarItemVenda(){ 
+    public static List listarItemVenda(){ 
         return  em.createNativeQuery("select * from tabvenda o join tabitem_venda i on i.id_venda=o.id").getResultList();
     }
     
-    public List listarItemCompra(){ 
+    public static List listarItemCompra(){ 
         return  em.createNativeQuery("select * from tabcompra o join tabitem_compra i on i.id_compra=o.id").getResultList();
     }
     
-    public List listarEstoque(){ 
+    public static List listarEstoque(){ 
         return  em.createNativeQuery("select * from tabproduto o join tabestoque i on i.id_produto=o.id").getResultList();
     }
     

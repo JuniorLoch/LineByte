@@ -5,16 +5,51 @@
  */
 package Telas;
 
+import Entidade.DAO;
+import Entidade.EntidadesBanco.Cargo;
+import Entidade.EntidadesBanco.Login;
+import Entidade.EntidadesBanco.Cliente;
+import Entidade.EntidadesBanco.Compra;
+import Entidade.EntidadesBanco.Despesa;
+import Entidade.EntidadesBanco.Endereco;
+import Entidade.EntidadesBanco.Estoque;
+import Entidade.EntidadesBanco.Fornecedor;
+import Entidade.EntidadesBanco.Funcionario;
+import Entidade.EntidadesBanco.Gerente;
+import Entidade.EntidadesBanco.Pessoa;
+import Entidade.EntidadesBanco.Pontos;
+import Entidade.EntidadesBanco.Produto;
+import Entidade.EntidadesBanco.TipoDespesa;
+import Paineis.CadastroCargo;
+import Paineis.CadastroCliente;
+import Paineis.CadastroCompra;
+import Paineis.CadastroDespesa;
+import Paineis.CadastroEndereco;
+import Paineis.CadastroEstoque;
+import Paineis.CadastroFornecedor;
+import Paineis.CadastroFuncionario;
+import Paineis.CadastroGerente;
+import Paineis.CadastroLogin;
+import Paineis.CadastroPessoa;
+import Paineis.CadastroPontos;
+import Paineis.CadastroProdutos;
+import Paineis.CadastroTipoDespesa;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author User
  */
 public class Principal extends javax.swing.JFrame {
+    private String[] Entidades = {"Cargo","Cliente","Compra","Despesa","Endereco","Estoque","Fornecedor","Funcionario","Gerente","Login","Pessoa","Pontos","Produto","TipoDespesa"};
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        CBentidades.setModel(new DefaultComboBoxModel(Entidades));
     }
 
     /**
@@ -34,8 +69,7 @@ public class Principal extends javax.swing.JFrame {
         PainelCadastro = new javax.swing.JPanel();
         LBcadastro = new javax.swing.JLabel();
         BTcadastro = new javax.swing.JButton();
-        SPlistaEntidades = new javax.swing.JScrollPane();
-        JLentidades = new javax.swing.JList<>();
+        CBentidades = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(115, 245, 245));
@@ -72,32 +106,31 @@ public class Principal extends javax.swing.JFrame {
         BTcadastro.setBackground(new java.awt.Color(204, 255, 255));
         BTcadastro.setForeground(new java.awt.Color(0, 0, 0));
         BTcadastro.setText("Cadastrar");
-
-        JLentidades.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        BTcadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTcadastroActionPerformed(evt);
+            }
         });
-        JLentidades.setToolTipText("");
-        SPlistaEntidades.setViewportView(JLentidades);
+
+        CBentidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout PainelCadastroLayout = new javax.swing.GroupLayout(PainelCadastro);
         PainelCadastro.setLayout(PainelCadastroLayout);
         PainelCadastroLayout.setHorizontalGroup(
             PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(CBentidades, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
             .addGroup(PainelCadastroLayout.createSequentialGroup()
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(BTcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(LBcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(54, 54, 54)
+                        .addComponent(LBcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelCadastroLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SPlistaEntidades, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
         );
         PainelCadastroLayout.setVerticalGroup(
             PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,8 +138,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(LBcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SPlistaEntidades, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(CBentidades, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(212, 212, 212)
                 .addComponent(BTcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -158,9 +191,57 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
-        new Login().setVisible(true);
+        new TLogin().setVisible(true);
         dispose();
     }//GEN-LAST:event_BTsairActionPerformed
+
+    private void BTcadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcadastroActionPerformed
+        switch(CBentidades.getSelectedItem().toString()){
+            case "Cargo":
+                new Listagem(Cargo.class,new CadastroCargo()).setVisible(true);
+            break;
+            case "Cliente":
+                new Listagem(Cliente.class,new CadastroCliente()).setVisible(true);
+            break;
+            case "Compra":
+                new Listagem(Compra.class,new CadastroCompra()).setVisible(true);
+            break;
+            case "Despesa":
+                new Listagem(Despesa.class,new CadastroDespesa()).setVisible(true);
+            break;
+            case "Endereco":
+                new Listagem(Endereco.class,new CadastroEndereco()).setVisible(true);
+            break;
+            case "Estoque":
+                new Listagem(Estoque.class,new CadastroEstoque()).setVisible(true);
+            break;
+            case "Fornecedor":
+                new Listagem(Fornecedor.class,new CadastroFornecedor()).setVisible(true);
+            break;
+            case "Funcionario":
+                new Listagem(Funcionario.class,new CadastroFuncionario()).setVisible(true);
+            break;
+            case "Gerente":
+                new Listagem(Gerente.class,new CadastroGerente()).setVisible(true);
+            break;
+            case "Login":
+                new Listagem(Login.class,new CadastroLogin()).setVisible(true);
+            break;
+            case "Pessoa":
+                new Listagem(Pessoa.class,new CadastroPessoa()).setVisible(true);
+            break;
+            case "Pontos":
+                new Listagem(Pontos.class,new CadastroPontos()).setVisible(true);
+            break;
+            case "Produto":
+                new Listagem(Produto.class,new CadastroProdutos()).setVisible(true);
+            break;
+            case "TipoDespesa":
+                new Listagem(TipoDespesa.class,new CadastroTipoDespesa()).setVisible(true);
+            break;
+        }
+        
+    }//GEN-LAST:event_BTcadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,7 +269,6 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -203,10 +283,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BTcompras;
     private javax.swing.JButton BTsair;
     private javax.swing.JButton BTvendas;
-    private javax.swing.JList<String> JLentidades;
+    private javax.swing.JComboBox<String> CBentidades;
     private javax.swing.JLabel LBbomdia;
     private javax.swing.JLabel LBcadastro;
     private javax.swing.JPanel PainelCadastro;
-    private javax.swing.JScrollPane SPlistaEntidades;
     // End of variables declaration//GEN-END:variables
 }

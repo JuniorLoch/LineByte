@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class ItemCompra extends javax.swing.JPanel {
+public class ItemCompra extends TemplatePainelCadastro {
 
     /**
      * Creates new form ItemCompra
@@ -28,13 +30,13 @@ public class ItemCompra extends javax.swing.JPanel {
     private void initComponents() {
 
         LBproduto = new javax.swing.JLabel();
-        TFproduto = new javax.swing.JTextField();
         LBValor = new javax.swing.JLabel();
         TFvalor = new javax.swing.JTextField();
         LBquantidade = new javax.swing.JLabel();
         TFquantidade = new javax.swing.JTextField();
         SPitemCompra = new javax.swing.JScrollPane();
         TableItemCompra = new javax.swing.JTable();
+        CBproduto = new javax.swing.JComboBox<>();
 
         LBproduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBproduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -73,6 +75,8 @@ public class ItemCompra extends javax.swing.JPanel {
         ));
         SPitemCompra.setViewportView(TableItemCompra);
 
+        CBproduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,9 +87,9 @@ public class ItemCompra extends javax.swing.JPanel {
                     .addComponent(SPitemCompra)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBproduto)
-                        .addGap(18, 18, 18)
-                        .addComponent(TFproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(LBValor)
                         .addGap(18, 18, 18)
                         .addComponent(TFvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,11 +106,11 @@ public class ItemCompra extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBproduto)
-                    .addComponent(TFproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LBquantidade)
                     .addComponent(TFvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LBValor))
+                    .addComponent(LBValor)
+                    .addComponent(CBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(SPitemCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -123,13 +127,18 @@ public class ItemCompra extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBproduto;
     private javax.swing.JLabel LBValor;
     private javax.swing.JLabel LBproduto;
     private javax.swing.JLabel LBquantidade;
     private javax.swing.JScrollPane SPitemCompra;
-    private javax.swing.JTextField TFproduto;
     private javax.swing.JTextField TFquantidade;
     private javax.swing.JTextField TFvalor;
     private javax.swing.JTable TableItemCompra;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

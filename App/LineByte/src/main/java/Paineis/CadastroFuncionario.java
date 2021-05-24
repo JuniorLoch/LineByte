@@ -5,11 +5,13 @@
  */
 package Paineis;
 
+import Interfaces.TemplatePainelCadastro;
+
 /**
  *
  * @author r4f4s
  */
-public class CadastroFuncionario extends javax.swing.JPanel {
+public class CadastroFuncionario extends TemplatePainelCadastro {
 
     /**
      * Creates new form CadastroFuncionario
@@ -33,12 +35,12 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         LBlogin = new javax.swing.JLabel();
         LBdescricao = new javax.swing.JLabel();
         LBdatademissao = new javax.swing.JLabel();
-        TFpessoa = new javax.swing.JTextField();
-        TFcargo = new javax.swing.JTextField();
-        TFlogin = new javax.swing.JTextField();
         TFdescricao = new javax.swing.JTextField();
         FTFdataDemissao = new javax.swing.JFormattedTextField();
         FTFdataAdmissao = new javax.swing.JFormattedTextField();
+        CBpessoa = new javax.swing.JComboBox<>();
+        CBcargo = new javax.swing.JComboBox<>();
+        CBlogin = new javax.swing.JComboBox<>();
 
         LBdataAdmissao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBdataAdmissao.setText("Data de Admissão:");
@@ -72,6 +74,12 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             }
         });
 
+        CBpessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBcargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        CBlogin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,18 +89,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(203, 203, 203)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(LBpessoa)
-                                .addGap(18, 18, 18)
-                                .addComponent(TFpessoa))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(LBcargo)
-                                .addGap(25, 25, 25)
-                                .addComponent(TFcargo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LBlogin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LBdescricao)
                                 .addGap(18, 18, 18)
@@ -100,7 +96,20 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LBdatademissao)
                                 .addGap(18, 18, 18)
-                                .addComponent(FTFdataDemissao))))
+                                .addComponent(FTFdataDemissao))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(LBcargo)
+                                .addGap(18, 18, 18)
+                                .addComponent(CBcargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LBlogin)
+                                .addGap(18, 18, 18)
+                                .addComponent(CBlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(81, 81, 81))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LBpessoa)
+                                .addGap(18, 18, 18)
+                                .addComponent(CBpessoa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(202, 202, 202)
                         .addComponent(LBdataAdmissao)
@@ -114,13 +123,13 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(111, 111, 111)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBpessoa)
-                    .addComponent(TFpessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBpessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBcargo)
                     .addComponent(LBlogin)
-                    .addComponent(TFcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TFlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CBlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBdescricao)
@@ -147,6 +156,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBcargo;
+    private javax.swing.JComboBox<String> CBlogin;
+    private javax.swing.JComboBox<String> CBpessoa;
     private javax.swing.JFormattedTextField FTFdataAdmissao;
     private javax.swing.JFormattedTextField FTFdataDemissao;
     private javax.swing.JLabel LBcargo;
@@ -155,9 +167,11 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private javax.swing.JLabel LBdescricao;
     private javax.swing.JLabel LBlogin;
     private javax.swing.JLabel LBpessoa;
-    private javax.swing.JTextField TFcargo;
     private javax.swing.JTextField TFdescricao;
-    private javax.swing.JTextField TFlogin;
-    private javax.swing.JTextField TFpessoa;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Object getObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
