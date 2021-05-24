@@ -5,17 +5,36 @@
  */
 package Telas;
 
+import Interfaces.TemplateLista;
+import Interfaces.TemplatePainelCadastro;
+import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author r4f4s
  */
-public class VendaCompra extends javax.swing.JFrame {
+public class VendaCompra extends javax.swing.JDialog {
 
+    private TemplatePainelCadastro painelVendaCompra;
+    private TemplatePainelCadastro painelItem;
+    
     /**
      * Creates new form VendaCompra
+     * @param parent
+     * @param modal
+     * @param painelVendaCompra
+     * @param painelItem
      */
-    public VendaCompra() {
+    public VendaCompra(java.awt.Frame parent, boolean modal,TemplatePainelCadastro painelVendaCompra,TemplatePainelCadastro painelItem) {
+        super(parent, modal);
+        this.painelVendaCompra = painelVendaCompra;
+        this.painelItem = painelItem;
         initComponents();
+        JPvendaCompra.add(painelVendaCompra,BorderLayout.CENTER);
+        JPitem.add(painelItem,BorderLayout.CENTER);
+        pack();
     }
 
     /**
@@ -34,7 +53,7 @@ public class VendaCompra extends javax.swing.JFrame {
         BTcancelar = new javax.swing.JButton();
         BTsalvar1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JPvendaCompra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -129,14 +148,14 @@ public class VendaCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_BTsairActionPerformed
 
     private void BTsalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsalvar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BTsalvar1ActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTcancelar;
     private javax.swing.JButton BTsair;

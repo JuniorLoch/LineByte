@@ -5,19 +5,34 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.ItemCompra;
+import Entidade.EntidadesBanco.ItemVenda;
+import Interfaces.TemplateLista;
 import Interfaces.TemplatePainelCadastro;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author r4f4s
  */
-public class ItemCompra extends TemplatePainelCadastro {
+public class CadastroItemVenda extends TemplatePainelCadastro {
 
     /**
-     * Creates new form ItemCompra
+     * Creates new form ItemVenda
      */
-    public ItemCompra() {
+    public CadastroItemVenda() {
         initComponents();
+        try {
+            iv = ItemVenda.class.newInstance();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(CadastroItemVenda.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(CadastroItemVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        atualizaTabela();
     }
 
     /**
@@ -30,39 +45,19 @@ public class ItemCompra extends TemplatePainelCadastro {
     private void initComponents() {
 
         LBproduto = new javax.swing.JLabel();
-        LBValor = new javax.swing.JLabel();
-        TFvalor = new javax.swing.JTextField();
+        SPitemVenda = new javax.swing.JScrollPane();
+        JTItemVenda = new javax.swing.JTable();
         LBquantidade = new javax.swing.JLabel();
+        TFvalor = new javax.swing.JTextField();
+        LBValor = new javax.swing.JLabel();
         TFquantidade = new javax.swing.JTextField();
-        SPitemCompra = new javax.swing.JScrollPane();
-        TableItemCompra = new javax.swing.JTable();
         CBproduto = new javax.swing.JComboBox<>();
 
         LBproduto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBproduto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBproduto.setText("Produto:");
 
-        LBValor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LBValor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LBValor.setText("Valor:");
-
-        TFvalor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFvalorActionPerformed(evt);
-            }
-        });
-
-        LBquantidade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LBquantidade.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LBquantidade.setText("Quantidade:");
-
-        TFquantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFquantidadeActionPerformed(evt);
-            }
-        });
-
-        TableItemCompra.setModel(new javax.swing.table.DefaultTableModel(
+        JTItemVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -73,7 +68,27 @@ public class ItemCompra extends TemplatePainelCadastro {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        SPitemCompra.setViewportView(TableItemCompra);
+        SPitemVenda.setViewportView(JTItemVenda);
+
+        LBquantidade.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        LBquantidade.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LBquantidade.setText("Quantidade:");
+
+        TFvalor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFvalorActionPerformed(evt);
+            }
+        });
+
+        LBValor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        LBValor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LBValor.setText("Valor:");
+
+        TFquantidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFquantidadeActionPerformed(evt);
+            }
+        });
 
         CBproduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -84,11 +99,11 @@ public class ItemCompra extends TemplatePainelCadastro {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SPitemCompra)
+                    .addComponent(SPitemVenda)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBproduto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(LBValor)
                         .addGap(18, 18, 18)
@@ -97,7 +112,7 @@ public class ItemCompra extends TemplatePainelCadastro {
                         .addComponent(LBquantidade)
                         .addGap(18, 18, 18)
                         .addComponent(TFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 246, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,9 +126,9 @@ public class ItemCompra extends TemplatePainelCadastro {
                     .addComponent(TFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LBValor)
                     .addComponent(CBproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(SPitemCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(SPitemVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -128,17 +143,32 @@ public class ItemCompra extends TemplatePainelCadastro {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBproduto;
+    private javax.swing.JTable JTItemVenda;
     private javax.swing.JLabel LBValor;
     private javax.swing.JLabel LBproduto;
     private javax.swing.JLabel LBquantidade;
-    private javax.swing.JScrollPane SPitemCompra;
+    private javax.swing.JScrollPane SPitemVenda;
     private javax.swing.JTextField TFquantidade;
     private javax.swing.JTextField TFvalor;
-    private javax.swing.JTable TableItemCompra;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public Object getObjeto() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private List<TemplateLista> lista;
+    private ItemVenda iv;
+    
+    public void atualizaTabela() {
+        //lista = DAO.listaNative(classe);
+   
+        Object[][] dados= new Object[6][iv.getTitulos().length];
+        /*
+        for (int i = 0; i < lista.size(); i++) {
+            dados[i]=lista.get(i).getDados();
+        }
+        */
+        JTItemVenda.setModel(new DefaultTableModel(dados,iv.getTitulos()));
     }
 }

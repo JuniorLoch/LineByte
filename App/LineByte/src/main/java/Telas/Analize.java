@@ -64,7 +64,7 @@ public class Analize extends javax.swing.JFrame {
         BTaplicarFiltros = new javax.swing.JButton();
         BTsair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         BTanalizeVenda.setBackground(new java.awt.Color(204, 255, 255));
         BTanalizeVenda.setForeground(new java.awt.Color(0, 0, 0));

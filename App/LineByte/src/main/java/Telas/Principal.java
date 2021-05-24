@@ -20,6 +20,7 @@ import Entidade.EntidadesBanco.Pessoa;
 import Entidade.EntidadesBanco.Pontos;
 import Entidade.EntidadesBanco.Produto;
 import Entidade.EntidadesBanco.TipoDespesa;
+import Entidade.EntidadesBanco.Venda;
 import Paineis.CadastroCargo;
 import Paineis.CadastroCliente;
 import Paineis.CadastroCompra;
@@ -29,11 +30,14 @@ import Paineis.CadastroEstoque;
 import Paineis.CadastroFornecedor;
 import Paineis.CadastroFuncionario;
 import Paineis.CadastroGerente;
+import Paineis.CadastroItemCompra;
+import Paineis.CadastroItemVenda;
 import Paineis.CadastroLogin;
 import Paineis.CadastroPessoa;
 import Paineis.CadastroPontos;
 import Paineis.CadastroProdutos;
 import Paineis.CadastroTipoDespesa;
+import Paineis.CadastroVenda;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -263,11 +267,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BTanalizeActionPerformed
 
     private void BTvendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTvendasActionPerformed
-        // TODO add your handling code here:
+        new VendaCompra(this, true, new CadastroVenda(), new CadastroItemVenda()).setVisible(true);
     }//GEN-LAST:event_BTvendasActionPerformed
 
     private void BTcomprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcomprasActionPerformed
-        // TODO add your handling code here:
+        new VendaCompra(this, true, new CadastroCompra(), new CadastroItemCompra()).setVisible(true);
     }//GEN-LAST:event_BTcomprasActionPerformed
 
     /**

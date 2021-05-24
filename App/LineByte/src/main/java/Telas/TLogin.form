@@ -34,7 +34,7 @@
                       <Component id="BTentrar" min="-2" pref="128" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="412" pref="421" max="32767" attributes="0"/>
+              <EmptySpace min="412" pref="423" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
