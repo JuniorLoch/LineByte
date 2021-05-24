@@ -98,6 +98,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Analize"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTanalizeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BTvendas">
       <Properties>
@@ -109,6 +112,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Vendas"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTvendasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BTsair">
       <Properties>
@@ -131,6 +137,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Compras"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTcomprasActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="PainelCadastro">
       <Properties>

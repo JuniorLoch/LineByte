@@ -201,6 +201,7 @@ public class Listagem extends javax.swing.JFrame {
     private javax.swing.JScrollPane SPtabela;
     private javax.swing.JTextField TFpesquisa;
     // End of variables declaration//GEN-END:variables
+    
     private List<TemplateLista> lista;
     private TemplateLista tl;
     

@@ -5,19 +5,35 @@
  */
 package Telas;
 
+import Entidade.EntidadesBanco.Compra;
+import Entidade.EntidadesBanco.Despesa;
+import Entidade.EntidadesBanco.Venda;
+import Interfaces.TemplateLista;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author r4f4s
  */
 public class Analize extends javax.swing.JFrame {
-
+    private Class classe;
     /**
      * Creates new form Analize
      */
     public Analize() {
         initComponents();
+        classe = Venda.class;
+        try {
+            tl= (TemplateLista) classe.newInstance();//cria instacia //porque precisa do (templatelista)
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        atualizaTabela();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +52,7 @@ public class Analize extends javax.swing.JFrame {
         LBdataFinal = new javax.swing.JLabel();
         LBcodigo = new javax.swing.JLabel();
         SPdadosAnalize = new javax.swing.JScrollPane();
-        TableAnalize = new javax.swing.JTable();
+        JTanalize = new javax.swing.JTable();
         LBtotais = new javax.swing.JLabel();
         LBvalor = new javax.swing.JLabel();
         LBquantidadeRegistros = new javax.swing.JLabel();
@@ -52,10 +68,20 @@ public class Analize extends javax.swing.JFrame {
         BTanalizeVenda.setBackground(new java.awt.Color(204, 255, 255));
         BTanalizeVenda.setForeground(new java.awt.Color(0, 0, 0));
         BTanalizeVenda.setText("Analize de VENDAS");
+        BTanalizeVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTanalizeVendaActionPerformed(evt);
+            }
+        });
 
         BTanalizeCompra.setBackground(new java.awt.Color(204, 255, 255));
         BTanalizeCompra.setForeground(new java.awt.Color(0, 0, 0));
         BTanalizeCompra.setText("Analize de COMPRAS");
+        BTanalizeCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTanalizeCompraActionPerformed(evt);
+            }
+        });
 
         BTanalizeDespesa.setBackground(new java.awt.Color(204, 255, 255));
         BTanalizeDespesa.setForeground(new java.awt.Color(0, 0, 0));
@@ -91,7 +117,7 @@ public class Analize extends javax.swing.JFrame {
         LBcodigo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBcodigo.setText("Codigo:");
 
-        TableAnalize.setModel(new javax.swing.table.DefaultTableModel(
+        JTanalize.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -102,7 +128,7 @@ public class Analize extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        SPdadosAnalize.setViewportView(TableAnalize);
+        SPdadosAnalize.setViewportView(JTanalize);
 
         LBtotais.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBtotais.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -190,13 +216,14 @@ public class Analize extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBfiltros)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LBdataInicial)
-                            .addComponent(LBcodigo)
-                            .addComponent(TFcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(FTFdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LBdataFinal)
-                            .addComponent(FTFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LBdataInicial, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(LBcodigo)
+                                .addComponent(TFcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(FTFdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LBdataFinal)
+                                .addComponent(FTFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(BTaplicarFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -218,12 +245,35 @@ public class Analize extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTanalizeDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeDespesaActionPerformed
-        // TODO add your handling code here:
+        try {
+            tl= (TemplateLista) Despesa.class.newInstance();//cria instacia //porque precisa do (templatelista)
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        atualizaTabela();
     }//GEN-LAST:event_BTanalizeDespesaActionPerformed
 
     private void BTanalizeFinanceiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeFinanceiraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BTanalizeFinanceiraActionPerformed
+
+    private void BTanalizeVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeVendaActionPerformed
+        try {
+            tl= (TemplateLista) Venda.class.newInstance();//cria instacia //porque precisa do (templatelista)
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        atualizaTabela();
+    }//GEN-LAST:event_BTanalizeVendaActionPerformed
+
+    private void BTanalizeCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeCompraActionPerformed
+        try {
+            tl= (TemplateLista) Compra.class.newInstance();//cria instacia //porque precisa do (templatelista)
+        } catch (InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        atualizaTabela();
+    }//GEN-LAST:event_BTanalizeCompraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +318,7 @@ public class Analize extends javax.swing.JFrame {
     private javax.swing.JButton BTaplicarFiltros;
     private javax.swing.JFormattedTextField FTFdataFinal;
     private javax.swing.JFormattedTextField FTFdataInicial;
+    private javax.swing.JTable JTanalize;
     private javax.swing.JLabel LBcodigo;
     private javax.swing.JLabel LBdataFinal;
     private javax.swing.JLabel LBdataInicial;
@@ -279,6 +330,19 @@ public class Analize extends javax.swing.JFrame {
     private javax.swing.JTextField TFcodigo;
     private javax.swing.JTextField TFquantidadeRegistros;
     private javax.swing.JTextField TFvalor;
-    private javax.swing.JTable TableAnalize;
     // End of variables declaration//GEN-END:variables
+    private List<TemplateLista> lista;
+    private TemplateLista tl;
+    
+    private void atualizaTabela() {
+        //lista = DAO.listaNative(classe);
+   
+        Object[][] dados= new Object[6][tl.getTitulos().length];
+        /*
+        for (int i = 0; i < lista.size(); i++) {
+            dados[i]=lista.get(i).getDados();
+        }
+        */
+        JTanalize.setModel(new DefaultTableModel(dados,tl.getTitulos()));
+    }
 }

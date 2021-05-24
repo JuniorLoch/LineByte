@@ -81,10 +81,20 @@ public class Principal extends javax.swing.JFrame {
         BTanalize.setBackground(new java.awt.Color(0, 255, 204));
         BTanalize.setForeground(new java.awt.Color(0, 0, 0));
         BTanalize.setText("Analize");
+        BTanalize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTanalizeActionPerformed(evt);
+            }
+        });
 
         BTvendas.setBackground(new java.awt.Color(102, 255, 51));
         BTvendas.setForeground(new java.awt.Color(0, 0, 0));
         BTvendas.setText("Vendas");
+        BTvendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTvendasActionPerformed(evt);
+            }
+        });
 
         BTsair.setBackground(new java.awt.Color(247, 87, 87));
         BTsair.setText("Sair");
@@ -97,6 +107,11 @@ public class Principal extends javax.swing.JFrame {
         BTcompras.setBackground(new java.awt.Color(255, 204, 51));
         BTcompras.setForeground(new java.awt.Color(0, 0, 0));
         BTcompras.setText("Compras");
+        BTcompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTcomprasActionPerformed(evt);
+            }
+        });
 
         PainelCadastro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -242,6 +257,18 @@ public class Principal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_BTcadastroActionPerformed
+
+    private void BTanalizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeActionPerformed
+        new Analize().setVisible(true);
+    }//GEN-LAST:event_BTanalizeActionPerformed
+
+    private void BTvendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTvendasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTvendasActionPerformed
+
+    private void BTcomprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcomprasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTcomprasActionPerformed
 
     /**
      * @param args the command line arguments
