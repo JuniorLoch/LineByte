@@ -1,12 +1,13 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "tabestoque")
-public class Estoque implements Serializable{
+public class Estoque implements Serializable,TemplateLista{
     @Id
     private Integer id;
     
@@ -36,6 +37,22 @@ public class Estoque implements Serializable{
 
     public void setQtdEstoque(Integer qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,produto,qtdEstoque};
+        
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Produto","QuantidadeEstoque"};
+    }
+
+    @Override
+    public String toString() {
+        return produto.getNome()+" - "+qtdEstoque;
     }
     
     

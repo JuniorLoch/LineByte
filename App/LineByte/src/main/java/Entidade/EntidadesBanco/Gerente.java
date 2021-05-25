@@ -1,12 +1,13 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity(name = "tabgerente")
-public class Gerente implements Serializable{
+public class Gerente implements Serializable,TemplateLista{
     
     @Id
     private int id;
@@ -39,6 +40,16 @@ public class Gerente implements Serializable{
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,login,pessoa};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Login","Pessoa"};
     }
     
     

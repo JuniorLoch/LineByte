@@ -1,11 +1,12 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name = "tabtipo_despesa")
-class TipoDespesa implements Serializable{
+public class TipoDespesa implements Serializable,TemplateLista{
     
     @Id
     private Integer id;
@@ -26,6 +27,21 @@ class TipoDespesa implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,nome};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Nome"};
+    }
+
+    @Override
+    public String toString() {
+        return id+" - "+nome;
     }
     
     

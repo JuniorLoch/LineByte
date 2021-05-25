@@ -1,5 +1,6 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -8,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity(name = "tabproduto")
-class Produto implements Serializable{
+public class Produto implements Serializable,TemplateLista{
 
     @OneToMany(mappedBy = "produto",fetch = FetchType.LAZY)
     private List<Estoque> estoques;
@@ -85,6 +86,21 @@ class Produto implements Serializable{
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,nome,tamanho,marca,valor,cor,sexo};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Nome","Tamanho","Marca","valor","Cor","Sexo"};
+    }
+
+    @Override
+    public String toString() {
+        return id+" - "+nome;
     }
     
     

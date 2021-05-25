@@ -1,11 +1,12 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity(name = "tabendereco")
-public class Endereco implements Serializable{
+public class Endereco implements Serializable,TemplateLista{
     @Id
     private Integer id;
     private String cidade;
@@ -79,4 +80,20 @@ public class Endereco implements Serializable{
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
+    @Override
+    public String toString() {
+        return rua + ", "+numero;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,cidade,estado,bairro,rua,numero,cep,complemento};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Cidade","Estado","Bairro","Rua","Numero","CEP","Complemento"};
+    }
+
 }

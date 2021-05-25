@@ -1,5 +1,6 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "tabdespesas")
-public class Despesa implements Serializable{
+public class Despesa implements Serializable,TemplateLista{
     @Id
     private Integer id;
     
@@ -69,5 +70,15 @@ public class Despesa implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,nome,tipoDespesa,valor,pago,dataVencimento};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Nome","TipoDespesa","Valor","Pago","DataVencimento"};
     }
 }

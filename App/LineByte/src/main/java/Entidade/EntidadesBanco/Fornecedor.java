@@ -1,12 +1,13 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity(name = "tabFornecedor")
-public class Fornecedor implements Serializable{
+public class Fornecedor implements Serializable,TemplateLista{
     @Id
     private Integer id;
     
@@ -46,6 +47,21 @@ public class Fornecedor implements Serializable{
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,nomeFornecedor,cpnj,endereco};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","NomeForncedor","CNPJ","Endereco"};
+    }
+
+    @Override
+    public String toString() {
+        return id+" - "+nomeFornecedor;
     }
 
     

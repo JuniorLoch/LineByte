@@ -1,5 +1,6 @@
 package Entidade.EntidadesBanco;
 
+import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "tabcompra")
-public class Compra implements Serializable{
+public class Compra implements Serializable,TemplateLista{
     
     @OneToMany(mappedBy = "itemCompra",fetch = FetchType.LAZY)
     private List<ItemCompra> itemCompras;
@@ -77,6 +78,21 @@ public class Compra implements Serializable{
         this.notaFiscal = notaFiscal;
     }
 
+    @Override
+    public Object[] getDados() {
+        return new Object[]{id,dataCompra,fornecedor,valorTotal,notaFiscal};
+    }
+
+    @Override
+    public String[] getTitulos() {
+        return new String[]{"ID","Data","Fornecedor","ValorTotal","NFe"};
+    }
+
+    @Override
+    public String toString() {
+        return id+" - "+fornecedor.getNomeFornecedor()+" - "+dataCompra+" - "+valorTotal;
+    }
     
     
+
 }
