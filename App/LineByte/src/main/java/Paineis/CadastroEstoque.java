@@ -54,7 +54,7 @@ public class CadastroEstoque extends TemplatePainelCadastro {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBquantidade)
                         .addGap(18, 18, 18)
-                        .addComponent(TFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBproduto)
                         .addGap(46, 46, 46)

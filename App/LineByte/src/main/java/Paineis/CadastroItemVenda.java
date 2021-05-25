@@ -26,7 +26,7 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
     public CadastroItemVenda() {
         initComponents();
         try {
-            iv = ItemVenda.class.newInstance();
+            iv = ItemVenda.class.newInstance(); //caso nao funcione, mudar para class.getdeclaredconstructor().newinstance()
         } catch (InstantiationException ex) {
             Logger.getLogger(CadastroItemVenda.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -112,7 +112,7 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
                         .addComponent(LBquantidade)
                         .addGap(18, 18, 18)
                         .addComponent(TFquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 246, Short.MAX_VALUE)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

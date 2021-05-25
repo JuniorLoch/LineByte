@@ -34,7 +34,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="LBcargo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="CBcargo" max="32767" attributes="0"/>
+                              <Component id="CBcargo" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="LBlogin" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>

@@ -77,7 +77,7 @@ public class CadastroCompra extends TemplatePainelCadastro {
                             .addComponent(LBdata)
                             .addGap(18, 18, 18)
                             .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(535, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

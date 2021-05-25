@@ -32,7 +32,7 @@ public class Listagem extends javax.swing.JFrame {
         this.painel = painel;
         initComponents();
         try {
-            tl= (TemplateLista) classe.newInstance();//cria instacia //porque precisa do (templatelista)
+            tl= (TemplateLista) classe.newInstance();//cria instacia //caso nao funcione, mudar para class.getdeclaredconstructor().newinstance()
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }

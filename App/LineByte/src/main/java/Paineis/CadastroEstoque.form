@@ -22,7 +22,7 @@
                   <Group type="102" attributes="0">
                       <Component id="LBquantidade" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="TFquantidade" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="TFquantidade" min="-2" pref="125" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="LBproduto" min="-2" max="-2" attributes="0"/>

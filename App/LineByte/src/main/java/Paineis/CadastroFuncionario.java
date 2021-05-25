@@ -100,7 +100,7 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(LBcargo)
                                 .addGap(18, 18, 18)
-                                .addComponent(CBcargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CBcargo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LBlogin)
                                 .addGap(18, 18, 18)

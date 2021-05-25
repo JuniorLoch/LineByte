@@ -7,6 +7,7 @@ package Telas;
 
 import Interfaces.TemplatePainelCadastro;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 /**
  *
@@ -24,7 +25,8 @@ public class Cadastro extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.painel=painel;
-        PainelCadastro.add(painel,BorderLayout.CENTER);
+        PainelCadastro.setLayout(new GridLayout(1, 1));
+        PainelCadastro.add(painel);
         pack();
     }
 
@@ -52,16 +54,7 @@ public class Cadastro extends javax.swing.JDialog {
         BTcancelar.setForeground(new java.awt.Color(0, 0, 0));
         BTcancelar.setText("Cancelar");
 
-        javax.swing.GroupLayout PainelCadastroLayout = new javax.swing.GroupLayout(PainelCadastro);
-        PainelCadastro.setLayout(PainelCadastroLayout);
-        PainelCadastroLayout.setHorizontalGroup(
-            PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 938, Short.MAX_VALUE)
-        );
-        PainelCadastroLayout.setVerticalGroup(
-            PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
-        );
+        PainelCadastro.setLayout(new java.awt.GridLayout());
 
         BTsair.setBackground(new java.awt.Color(255, 86, 86));
         BTsair.setForeground(new java.awt.Color(0, 0, 0));

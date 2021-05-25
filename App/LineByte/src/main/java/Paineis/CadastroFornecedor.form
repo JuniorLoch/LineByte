@@ -23,17 +23,17 @@
                   <Component id="LBcnpj" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="TFnome" alignment="0" min="-2" pref="351" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="TFcnpj" min="-2" pref="167" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="LBendereco" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="CBendereco" max="32767" attributes="0"/>
+                      <Component id="LBendereco" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="CBendereco" min="-2" pref="91" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="TFnome" min="-2" pref="351" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

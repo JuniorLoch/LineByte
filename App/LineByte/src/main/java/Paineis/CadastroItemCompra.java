@@ -26,7 +26,7 @@ public class CadastroItemCompra extends TemplatePainelCadastro {
     public CadastroItemCompra() {
         initComponents();
         try {
-            ic = ItemCompra.class.newInstance();
+            ic = ItemCompra.class.newInstance();//caso nao funcione, mudar para class.getdeclaredconstructor().newinstance()
         } catch (InstantiationException ex) {
             Logger.getLogger(CadastroItemCompra.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {

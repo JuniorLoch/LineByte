@@ -55,6 +55,11 @@ public class CadastroPontos extends TemplatePainelCadastro {
         FTFhoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
         FTFhoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        FTFhoraSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FTFhoraSaidaActionPerformed(evt);
+            }
+        });
 
         CBfuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -63,12 +68,12 @@ public class CadastroPontos extends TemplatePainelCadastro {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(196, 196, 196)
+                .addGap(253, 253, 253)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBdata)
                         .addGap(18, 18, 18)
-                        .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBFuncionario)
                         .addGap(18, 18, 18)
@@ -76,12 +81,12 @@ public class CadastroPontos extends TemplatePainelCadastro {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBhoraEntrada)
                         .addGap(18, 18, 18)
-                        .addComponent(FTFhoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
+                        .addComponent(FTFhoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(LBhoraSaida)
                         .addGap(18, 18, 18)
-                        .addComponent(FTFhoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(338, Short.MAX_VALUE))
+                        .addComponent(FTFhoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,6 +108,10 @@ public class CadastroPontos extends TemplatePainelCadastro {
                 .addContainerGap(240, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void FTFhoraSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFhoraSaidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FTFhoraSaidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
