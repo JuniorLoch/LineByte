@@ -5,6 +5,10 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Cargo;
+import Entidade.EntidadesBanco.Funcionario;
+import Entidade.EntidadesBanco.Login;
+import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -172,6 +176,13 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Funcionario f = new Funcionario();
+        f.setCargo((Cargo) CBcargo.getSelectedItem());
+        f.setDescricao(TFdescricao.getText());
+        f.setPessoa((Pessoa) CBpessoa.getSelectedItem());
+        f.setLogin((Login) CBlogin.getSelectedItem());
+        //f.setDataAdmissao(FTFdataAdmissao.getText()); //precisa saber como converter os tipos
+        //f.setDataDemissao(FTFdataDemissao.getText()); // funcionario nao possui datademissao na entidade
+        return f;
     }
 }

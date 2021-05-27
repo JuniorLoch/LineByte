@@ -5,6 +5,8 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Compra;
+import Entidade.EntidadesBanco.Fornecedor;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -110,6 +112,12 @@ public class CadastroCompra extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Compra c = new Compra();
+        
+        c.setDataCompra(null/*FTFdata.getText()*/); // precisa fazer o role do simpledate format esqueci como faz
+        c.setFornecedor((Fornecedor) CBfornecedor.getSelectedItem());
+        c.setItemCompras(null); //como fazer isso
+        c.setNotaFiscal(null); // cade o campo de insercao da nota no design
+        return c;
     }
 }

@@ -5,7 +5,10 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Endereco;
+import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -154,6 +157,33 @@ public class CadastroPessoa extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Pessoa p = new Pessoa();
+        boolean err = false;
+        p.setCpf(TFcpf.getText());
+        p.setData_nasc(null);//saber como converter para simpledateformat
+        p.setEndereco((Endereco) CBendereco.getSelectedItem());
+        p.setNome(TFnome.getText());
+        p.setRg(TFrg.getText());
+        
+        if(RBsexoFeminino.isSelected() == true){
+            if(RBsexoMasculino.isSelected() == true){
+                JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
+                err = true;
+            } else {
+                p.setSexo("Feminino");
+            }
+        } else {
+            if(RBsexoMasculino.isSelected() == true){
+                p.setSexo("Masculino");
+            } else {
+                JOptionPane.showMessageDialog(null, "Marque pelo menos UM sexo!!");
+                err = true;
+            }
+        }
+        if(err == false) {
+            return p;
+        } else {
+            return null; // em todo lugar que chamar esse método precisará de um verificador para nao salvar um objeto nulo
+        }
     }
 }

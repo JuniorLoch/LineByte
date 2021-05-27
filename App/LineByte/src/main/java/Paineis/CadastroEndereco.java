@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Endereco;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -169,6 +170,14 @@ public class CadastroEndereco extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Endereco e = new Endereco();
+        e.setBairro(TFbairro.getText());
+        e.setCep(TFcep.getText());
+        e.setCidade(TFcidade.getText());
+        e.setComplemento(TAcomplemento.getText());
+        e.setEstado(TFestado.getText());
+        e.setNumero(TFnumero.getText());
+        e.setRua(TFrua.getText());
+        return e;
     }
 }

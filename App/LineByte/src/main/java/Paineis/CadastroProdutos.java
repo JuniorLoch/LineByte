@@ -5,7 +5,9 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -152,6 +154,34 @@ public class CadastroProdutos extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Produto p = new Produto();
+        boolean err = false;
+        p.setCor(TFcor.getText());
+        p.setMarca(TFmarca.getText());
+        p.setNome(TFnome.getText());
+        p.setTamanho(TFtamanho.getText());
+        p.setValor(Float.parseFloat(TFtamanho.getText()));
+        p.setEstoques(null);
+        
+        if(RBsexoFeminino.isSelected() == true){
+            if(RBsexoMasculino.isSelected() == true){
+                JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
+                err = true;
+            } else {
+                p.setSexo("Feminino");
+            }
+        } else {
+            if(RBsexoMasculino.isSelected() == true){
+                p.setSexo("Masculino");
+            } else {
+                JOptionPane.showMessageDialog(null, "Marque pelo menos UM sexo!!");
+                err = true;
+            }
+        }
+        if(err == false) {
+            return p;
+        } else {
+            return null; // em todo lugar que chamar esse método precisará de um verificador para nao salvar um objeto nulo
+        }
     }
 }

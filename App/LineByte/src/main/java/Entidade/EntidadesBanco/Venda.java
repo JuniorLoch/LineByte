@@ -30,7 +30,7 @@ public class Venda implements Serializable,TemplateLista {
     @ManyToOne
     private Cliente cliente;
     
-    private Integer notaFiscal;
+    private String notaFiscal;
 
     public Integer getId() {
         return id;
@@ -72,11 +72,11 @@ public class Venda implements Serializable,TemplateLista {
         this.cliente = cliente;
     }
 
-    public Integer getNotaFiscal() {
+    public String getNotaFiscal() {
         return notaFiscal;
     }
 
-    public void setNotaFiscal(Integer notaFiscal) {
+    public void setNotaFiscal(String notaFiscal) {
         this.notaFiscal = notaFiscal;
     }
 

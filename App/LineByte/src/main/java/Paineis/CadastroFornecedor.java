@@ -5,6 +5,8 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Endereco;
+import Entidade.EntidadesBanco.Fornecedor;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -100,6 +102,10 @@ public class CadastroFornecedor extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Fornecedor f = new Fornecedor();
+        f.setCpnj(TFcnpj.getText());
+        f.setEndereco((Endereco) CBendereco.getSelectedItem());
+        f.setNomeFornecedor(TFnome.getText());
+        return f;
     }
 }

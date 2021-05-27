@@ -5,6 +5,9 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Gerente;
+import Entidade.EntidadesBanco.Login;
+import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -84,6 +87,10 @@ public class CadastroGerente extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gerente g = new Gerente();
+        g.setLogin((Login) CBlogin.getSelectedItem());
+        g.setPessoa((Pessoa) CBpessoa.getSelectedItem());
+        return g;
+        
     }
 }

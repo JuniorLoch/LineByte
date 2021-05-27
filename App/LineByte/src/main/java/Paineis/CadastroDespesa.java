@@ -5,6 +5,8 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Despesa;
+import Entidade.EntidadesBanco.TipoDespesa;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -148,6 +150,12 @@ public class CadastroDespesa extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Despesa d = new Despesa();
+        d.setDataVencimento(null);//precisa saber como fazer aquela conversao com simpledateformat
+        d.setNome(TFnome.getText());
+        d.setPago(CBpago.isSelected());
+        d.setTipoDespesa((TipoDespesa)CBcategoria.getSelectedItem());
+        d.setValor(Float.parseFloat(TFvalor.getText()));
+        return d;
     }
 }

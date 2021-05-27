@@ -5,6 +5,9 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Cliente;
+import Entidade.EntidadesBanco.Funcionario;
+import Entidade.EntidadesBanco.Venda;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -149,6 +152,12 @@ public class CadastroVenda extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Venda v = new Venda();
+        v.setCliente((Cliente) CBcliente.getSelectedItem());
+        v.setDataVenda(null);// precisa fazer o role do simpledate format esqueci como faz
+        v.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
+        v.setNotaFiscal(TFnotaFiscal.getText());
+        v.setValorVenda(Float.parseFloat(LBvalor.getText()));
+        return v;
     }
 }

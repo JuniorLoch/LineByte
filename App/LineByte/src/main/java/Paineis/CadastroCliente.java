@@ -5,6 +5,8 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Cliente;
+import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -96,6 +98,9 @@ public class CadastroCliente extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Cliente c = new Cliente();
+        c.setPessoa((Pessoa) CBpessoa.getSelectedItem());
+        c.setSenha(TFsenha.getText());
+        return c;
     }
 }

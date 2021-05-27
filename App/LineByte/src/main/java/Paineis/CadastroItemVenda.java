@@ -7,6 +7,7 @@ package Paineis;
 
 import Entidade.EntidadesBanco.ItemCompra;
 import Entidade.EntidadesBanco.ItemVenda;
+import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplateLista;
 import Interfaces.TemplatePainelCadastro;
 import java.util.List;
@@ -154,7 +155,13 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ItemVenda iv = new ItemVenda();
+        iv.setProduto((Produto) CBproduto.getSelectedItem());
+        iv.setQuantidade(Integer.parseInt(TFquantidade.getText()));
+        iv.setValor(Float.parseFloat(TFvalor.getText()));
+        iv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
+        return iv;
+        
     }
     
     private List<TemplateLista> lista;

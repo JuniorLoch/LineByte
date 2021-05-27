@@ -5,6 +5,8 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Funcionario;
+import Entidade.EntidadesBanco.Pontos;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -127,6 +129,11 @@ public class CadastroPontos extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Pontos p = new Pontos();
+        p.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
+        p.setDataPonto(null); // fazer a conversao do formattedtextfield em simpledate
+        p.setHoraEntrada(null); // como converter a string digitada em TIME
+        p.setHoraSaida(null);// como converter a string digitada em TIME
+        return p;
     }
 }

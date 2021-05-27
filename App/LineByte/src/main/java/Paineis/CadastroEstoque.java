@@ -5,6 +5,8 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Estoque;
+import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -86,6 +88,9 @@ public class CadastroEstoque extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Estoque e = new Estoque();
+        e.setProduto((Produto) CBproduto.getSelectedItem());
+        e.setQtdEstoque(Integer.parseInt(TFquantidade.getText()));
+        return e;
     }
 }

@@ -5,7 +5,9 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Login;
 import Interfaces.TemplatePainelCadastro;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -112,6 +114,20 @@ public class CadastroLogin extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Login l = new Login();
+        boolean err = false;
+        l.setUsuario(TFlogin.getText());
+        if (String.valueOf(PFconfirmaSenha.getPassword()).equals(String.valueOf(PFsenha.getPassword()))) {
+            l.setSenha(String.valueOf(PFsenha.getPassword()));
+            // getpassword retorna um vetor de char, ai precisa chamar essa funcao para converter para string
+        } else {
+            JOptionPane.showMessageDialog(null, "As senhas nao coincidem!!");
+            err = true;
+        }
+        if (err == false){
+            return l;
+        } else {
+            return null; // depois vai precisar de um verificador para ver se o objeto é nulo antes de tentar salvar ele
+        }
     }
 }

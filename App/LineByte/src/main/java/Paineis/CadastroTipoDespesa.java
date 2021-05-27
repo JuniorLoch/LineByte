@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.TipoDespesa;
 import Interfaces.TemplatePainelCadastro;
 
 /**
@@ -65,6 +66,8 @@ public class CadastroTipoDespesa extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TipoDespesa td = new TipoDespesa();
+        td.setNome(TFnome.getText());
+        return td;
     }
 }
