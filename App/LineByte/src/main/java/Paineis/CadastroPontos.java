@@ -8,6 +8,8 @@ package Paineis;
 import Entidade.EntidadesBanco.Funcionario;
 import Entidade.EntidadesBanco.Pontos;
 import Interfaces.TemplatePainelCadastro;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,10 +58,19 @@ public class CadastroPontos extends TemplatePainelCadastro {
 
         FTFhoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
 
-        FTFhoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFhoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         FTFhoraSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FTFhoraSaidaActionPerformed(evt);
+            }
+        });
+        FTFhoraSaida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                FTFhoraSaidaKeyPressed(evt);
             }
         });
 
@@ -115,6 +126,13 @@ public class CadastroPontos extends TemplatePainelCadastro {
         // TODO add your handling code here:
     }//GEN-LAST:event_FTFhoraSaidaActionPerformed
 
+    private void FTFhoraSaidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FTFhoraSaidaKeyPressed
+        String s = FTFhoraSaida.getText();
+        if(s.length() > 0 && Integer.parseInt(s.charAt(0)+"")>2){
+            FTFhoraSaida.setText("");
+        }
+    }//GEN-LAST:event_FTFhoraSaidaKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBfuncionario;
@@ -132,6 +150,8 @@ public class CadastroPontos extends TemplatePainelCadastro {
         Pontos p = new Pontos();
         p.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
         p.setDataPonto(null); // fazer a conversao do formattedtextfield em simpledate
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         p.setHoraEntrada(null); // como converter a string digitada em TIME
         p.setHoraSaida(null);// como converter a string digitada em TIME
         return p;

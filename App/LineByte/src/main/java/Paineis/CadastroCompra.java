@@ -8,6 +8,10 @@ package Paineis;
 import Entidade.EntidadesBanco.Compra;
 import Entidade.EntidadesBanco.Fornecedor;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -113,10 +117,14 @@ public class CadastroCompra extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Compra c = new Compra();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
-        c.setDataCompra(null/*FTFdata.getText()*/); // precisa fazer o role do simpledate format esqueci como faz
+        try {
+            c.setDataCompra(sdf.parse(FTFdata.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
         c.setFornecedor((Fornecedor) CBfornecedor.getSelectedItem());
-        c.setItemCompras(null); //como fazer isso
         c.setNotaFiscal(null); // cade o campo de insercao da nota no design
         return c;
     }

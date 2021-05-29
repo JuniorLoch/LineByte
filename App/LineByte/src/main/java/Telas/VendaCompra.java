@@ -59,10 +59,10 @@ public class VendaCompra extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JPvendaCompra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JPvendaCompra.setLayout(new java.awt.GridLayout());
+        JPvendaCompra.setLayout(new java.awt.GridLayout(1, 0));
 
         JPitem.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        JPitem.setLayout(new java.awt.GridLayout());
+        JPitem.setLayout(new java.awt.GridLayout(1, 0));
 
         BTsair.setBackground(new java.awt.Color(255, 86, 86));
         BTsair.setForeground(new java.awt.Color(0, 0, 0));
@@ -76,6 +76,11 @@ public class VendaCompra extends javax.swing.JDialog {
         BTsalvar.setBackground(new java.awt.Color(204, 255, 204));
         BTsalvar.setForeground(new java.awt.Color(0, 0, 0));
         BTsalvar.setText("Salvar");
+        BTsalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTsalvarActionPerformed(evt);
+            }
+        });
 
         BTcancelar.setBackground(new java.awt.Color(255, 255, 204));
         BTcancelar.setForeground(new java.awt.Color(0, 0, 0));
@@ -135,6 +140,10 @@ public class VendaCompra extends javax.swing.JDialog {
     private void BTsalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsalvar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BTsalvar1ActionPerformed
+
+    private void BTsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTsalvarActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
