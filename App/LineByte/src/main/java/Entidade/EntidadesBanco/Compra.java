@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 @Entity(name = "tabcompra")
 public class Compra implements Serializable,TemplateLista{
     
-    @OneToMany(mappedBy = "itemCompra",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "compra",fetch = FetchType.LAZY)
     private List<ItemCompra> itemCompras;
     
     @Id

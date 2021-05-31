@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import Entidade.DAO;
 import Interfaces.TemplatePainelCadastro;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -49,12 +50,22 @@ public class Cadastro extends javax.swing.JDialog {
         BTsalvar.setBackground(new java.awt.Color(204, 255, 204));
         BTsalvar.setForeground(new java.awt.Color(0, 0, 0));
         BTsalvar.setText("Salvar");
+        BTsalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTsalvarActionPerformed(evt);
+            }
+        });
 
         BTcancelar.setBackground(new java.awt.Color(255, 255, 204));
         BTcancelar.setForeground(new java.awt.Color(0, 0, 0));
         BTcancelar.setText("Cancelar");
+        BTcancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTcancelarActionPerformed(evt);
+            }
+        });
 
-        PainelCadastro.setLayout(new java.awt.GridLayout());
+        PainelCadastro.setLayout(new java.awt.GridLayout(1, 0));
 
         BTsair.setBackground(new java.awt.Color(255, 86, 86));
         BTsair.setForeground(new java.awt.Color(0, 0, 0));
@@ -104,6 +115,17 @@ public class Cadastro extends javax.swing.JDialog {
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
         dispose();
     }//GEN-LAST:event_BTsairActionPerformed
+
+    private void BTsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsalvarActionPerformed
+        if(painel.getObjeto() != null){
+            DAO.salvar(painel.getObjeto());
+            dispose();
+        }
+    }//GEN-LAST:event_BTsalvarActionPerformed
+
+    private void BTcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_BTcancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTcancelar;

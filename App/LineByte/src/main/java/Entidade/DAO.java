@@ -18,8 +18,11 @@ public class DAO {
     private static EntityTransaction tx =em.getTransaction();
     
     public static Object salvar(Object o){
+        
         tx.begin();
-        return em.merge(o);// inserir
+        Object teste = em.merge(o);// inserir
+        tx.commit();
+        return teste;
     }
     
     public static void remover(Object o){
@@ -42,8 +45,8 @@ public class DAO {
     }
     
     //Sql nativo
-    public static List listaNative(Class c){ 
-        return  em.createNativeQuery("select * from "+c.getSimpleName(),c).getResultList();
+    public static List listaNative(Class c){ //como fazer com que a querry pegue o padrao do banco
+        return  em.createNativeQuery("select * from tab"+c.getSimpleName(),c).getResultList();
     }
     
     public static List listarItemVenda(){ 

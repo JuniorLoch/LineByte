@@ -5,7 +5,6 @@
  */
 package Telas;
 
-import Entidade.DAO;
 import Entidade.EntidadesBanco.Cargo;
 import Entidade.EntidadesBanco.Login;
 import Entidade.EntidadesBanco.Cliente;
@@ -20,7 +19,6 @@ import Entidade.EntidadesBanco.Pessoa;
 import Entidade.EntidadesBanco.Pontos;
 import Entidade.EntidadesBanco.Produto;
 import Entidade.EntidadesBanco.TipoDespesa;
-import Entidade.EntidadesBanco.Venda;
 import Paineis.CadastroCargo;
 import Paineis.CadastroCliente;
 import Paineis.CadastroCompra;
@@ -38,9 +36,7 @@ import Paineis.CadastroPontos;
 import Paineis.CadastroProdutos;
 import Paineis.CadastroTipoDespesa;
 import Paineis.CadastroVenda;
-import java.util.List;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 
 /**
  *

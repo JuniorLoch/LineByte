@@ -2,8 +2,8 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
+//import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -20,10 +20,10 @@ public class Pontos implements Serializable,TemplateLista{
     private Funcionario funcionario;
     
     @Temporal(TemporalType.TIME)
-    private Time horaEntrada;
+    private Date horaEntrada;
     
     @Temporal(TemporalType.TIME)
-    private Time horaSaida;
+    private Date horaSaida;
     
     @Temporal(TemporalType.DATE)
     private Date dataPonto;
@@ -44,19 +44,19 @@ public class Pontos implements Serializable,TemplateLista{
         this.funcionario = funcionario;
     }
     
-    public Time getHoraEntrada() {
+    public Date getHoraEntrada() {
         return horaEntrada;
     }
 
-    public void setHoraEntrada(Time horaEntrada) {
+    public void setHoraEntrada(Date horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 
-    public Time getHoraSaida() {
+    public Date getHoraSaida() {
         return horaSaida;
     }
 
-    public void setHoraSaida(Time horaSaida) {
+    public void setHoraSaida(Date horaSaida) {
         this.horaSaida = horaSaida;
     }
 

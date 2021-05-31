@@ -4,7 +4,6 @@ import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity(name = "tablogin")
 public class Login implements Serializable,TemplateLista{

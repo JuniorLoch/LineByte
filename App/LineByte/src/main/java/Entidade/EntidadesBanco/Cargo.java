@@ -2,7 +2,10 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -10,8 +13,10 @@ import javax.persistence.Id;
 public class Cargo implements Serializable,TemplateLista{
     
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO) //vai ser necessário fazer isso em todas as entidades??
     private Integer id;
     
+    @Column(name = "nome_cargo") // isso tbm
     private String nomeCargo;
     
     private Float salario;
