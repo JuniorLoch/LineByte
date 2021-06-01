@@ -3,6 +3,7 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 //import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,12 +21,15 @@ public class Pontos implements Serializable,TemplateLista{
     private Funcionario funcionario;
     
     @Temporal(TemporalType.TIME)
+    @Column(name = "hora_entrada")
     private Date horaEntrada;
     
     @Temporal(TemporalType.TIME)
+    @Column(name = "hora_saida")
     private Date horaSaida;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_ponto")
     private Date dataPonto;
 
     public int getId() {

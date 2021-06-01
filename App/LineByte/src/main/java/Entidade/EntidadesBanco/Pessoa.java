@@ -3,6 +3,7 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -25,6 +26,7 @@ public class Pessoa implements Serializable,TemplateLista{
     private String rg;
 
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_nasc")
     private Date data_nasc;
 
     private String sexo;

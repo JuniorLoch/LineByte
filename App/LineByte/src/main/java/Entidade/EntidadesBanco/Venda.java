@@ -3,6 +3,7 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -20,15 +21,18 @@ public class Venda implements Serializable,TemplateLista {
     @ManyToOne
     private Funcionario funcionario;
     
+    @Column(name = "valor_venda")
     private Float valorVenda;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_venda")
     private Date dataVenda;
     
     //ajustar para @ManyToOne
     @ManyToOne
     private Cliente cliente;
     
+    @Column(name = "nota_fiscal")
     private String notaFiscal;
 
     public Integer getId() {
