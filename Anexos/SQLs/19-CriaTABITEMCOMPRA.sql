@@ -1,4 +1,4 @@
-create table tabitem_compra(
+create table tabitemcompra(
 	id serial primary key not null,
 	id_produto int,
 	id_compra int,
