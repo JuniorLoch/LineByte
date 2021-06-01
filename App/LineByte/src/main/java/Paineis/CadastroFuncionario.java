@@ -10,6 +10,10 @@ import Entidade.EntidadesBanco.Funcionario;
 import Entidade.EntidadesBanco.Login;
 import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -177,12 +181,17 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Funcionario f = new Funcionario();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
         f.setCargo((Cargo) CBcargo.getSelectedItem());
         f.setDescricao(TFdescricao.getText());
         f.setPessoa((Pessoa) CBpessoa.getSelectedItem());
         f.setLogin((Login) CBlogin.getSelectedItem());
-        //f.setDataAdmissao(FTFdataAdmissao.getText()); //precisa saber como converter os tipos
-        //f.setDataDemissao(FTFdataDemissao.getText()); // funcionario nao possui datademissao na entidade
+        try {
+            f.setDataAdmissao(sdf.parse(FTFdataAdmissao.getText()));
+            f.setDataDemissao(sdf.parse(FTFdataDemissao.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return f;
     }
 }

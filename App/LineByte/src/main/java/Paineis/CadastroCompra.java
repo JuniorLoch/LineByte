@@ -41,6 +41,8 @@ public class CadastroCompra extends TemplatePainelCadastro {
         LBvalorCompraDinamico = new javax.swing.JLabel();
         FTFdata = new javax.swing.JFormattedTextField();
         CBfornecedor = new javax.swing.JComboBox<>();
+        LBnotaFiscal = new javax.swing.JLabel();
+        TFnotaFiscal = new javax.swing.JTextField();
 
         LBfornecedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBfornecedor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -63,6 +65,10 @@ public class CadastroCompra extends TemplatePainelCadastro {
 
         CBfornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        LBnotaFiscal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        LBnotaFiscal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LBnotaFiscal.setText("Nota Fiscal:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,15 +80,20 @@ public class CadastroCompra extends TemplatePainelCadastro {
                         .addComponent(LBfornecedor)
                         .addGap(18, 18, 18)
                         .addComponent(CBfornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(LBvalor)
-                            .addGap(18, 18, 18)
-                            .addComponent(LBvalorCompraDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(LBdata)
-                            .addGap(18, 18, 18)
-                            .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(LBvalor)
+                                .addGap(18, 18, 18)
+                                .addComponent(LBvalorCompraDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(LBdata)
+                                .addGap(18, 18, 18)
+                                .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(LBnotaFiscal)
+                        .addGap(18, 18, 18)
+                        .addComponent(TFnotaFiscal)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,7 +106,10 @@ public class CadastroCompra extends TemplatePainelCadastro {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBdata)
-                    .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LBnotaFiscal)
+                        .addComponent(TFnotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBvalor)
@@ -110,8 +124,10 @@ public class CadastroCompra extends TemplatePainelCadastro {
     private javax.swing.JFormattedTextField FTFdata;
     private javax.swing.JLabel LBdata;
     private javax.swing.JLabel LBfornecedor;
+    private javax.swing.JLabel LBnotaFiscal;
     private javax.swing.JLabel LBvalor;
     private javax.swing.JLabel LBvalorCompraDinamico;
+    private javax.swing.JTextField TFnotaFiscal;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -125,7 +141,7 @@ public class CadastroCompra extends TemplatePainelCadastro {
             Logger.getLogger(CadastroCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
         c.setFornecedor((Fornecedor) CBfornecedor.getSelectedItem());
-        c.setNotaFiscal(null); // cade o campo de insercao da nota no design
+        c.setNotaFiscal(TFnotaFiscal.getText()); // cade o campo de insercao da nota no design
         return c;
     }
 }

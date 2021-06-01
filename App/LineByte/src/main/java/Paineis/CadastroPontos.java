@@ -8,7 +8,10 @@ package Paineis;
 import Entidade.EntidadesBanco.Funcionario;
 import Entidade.EntidadesBanco.Pontos;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -129,7 +132,7 @@ public class CadastroPontos extends TemplatePainelCadastro {
     private void FTFhoraSaidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FTFhoraSaidaKeyPressed
         String s = FTFhoraSaida.getText();
         if(s.length() > 0 && Integer.parseInt(s.charAt(0)+"")>2){
-            FTFhoraSaida.setText("");
+            //FTFhoraSaida.setText("");
         }
     }//GEN-LAST:event_FTFhoraSaidaKeyPressed
 
@@ -151,9 +154,14 @@ public class CadastroPontos extends TemplatePainelCadastro {
         p.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
         p.setDataPonto(null); // fazer a conversao do formattedtextfield em simpledate
         
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        p.setHoraEntrada(null); // como converter a string digitada em TIME
-        p.setHoraSaida(null);// como converter a string digitada em TIME
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        try {
+            p.setHoraEntrada(sdf.parse(FTFhoraEntrada.getText()));
+            p.setHoraSaida(sdf.parse(FTFhoraSaida.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPontos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return p;
     }
 }

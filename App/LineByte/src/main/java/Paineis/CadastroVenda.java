@@ -9,6 +9,10 @@ import Entidade.EntidadesBanco.Cliente;
 import Entidade.EntidadesBanco.Funcionario;
 import Entidade.EntidadesBanco.Venda;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -87,25 +91,24 @@ public class CadastroVenda extends TemplatePainelCadastro {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CBcliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(LBdata)
-                        .addGap(18, 18, 18)
-                        .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 251, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(LBfuncionario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CBfuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CBfuncionario, 0, 351, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBnotaFiscal)
                         .addGap(18, 18, 18)
-                        .addComponent(TFnotaFiscal))
+                        .addComponent(TFnotaFiscal)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(LBdata)
+                        .addGap(18, 18, 18)
+                        .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(LBvalor)
                         .addGap(18, 18, 18)
-                        .addComponent(LBvalorVendaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(LBvalorVendaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +116,9 @@ public class CadastroVenda extends TemplatePainelCadastro {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBcliente)
-                    .addComponent(LBnotaFiscal)
-                    .addComponent(TFnotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CBcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LBdata)
+                    .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBfuncionario)
@@ -124,15 +127,15 @@ public class CadastroVenda extends TemplatePainelCadastro {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LBdata)
-                            .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LBnotaFiscal)
+                            .addComponent(TFnotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LBvalor)
                             .addComponent(LBvalorVendaDinamico))
-                        .addGap(19, 19, 19))))
+                        .addGap(22, 22, 22))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,8 +156,13 @@ public class CadastroVenda extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Venda v = new Venda();
-        v.setCliente((Cliente) CBcliente.getSelectedItem());
-        v.setDataVenda(null);// precisa fazer o role do simpledate format esqueci como faz
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        v.setCliente((Cliente) CBcliente.getSelectedItem());        
+        try {
+            v.setDataVenda(sdf.parse(FTFdata.getText()));// precisa fazer o role do simpledate format esqueci como faz
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
         v.setNotaFiscal(TFnotaFiscal.getText());
         v.setValorVenda(Float.parseFloat(LBvalor.getText()));

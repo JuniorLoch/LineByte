@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.ItemCompra;
 import Entidade.EntidadesBanco.ItemVenda;
 import Entidade.EntidadesBanco.Produto;
@@ -168,14 +169,14 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
     private ItemVenda iv;
     
     public void atualizaTabela() {
-        //lista = DAO.listaNative(classe);
+        lista = DAO.listaNative(ItemVenda.class);
    
-        Object[][] dados= new Object[6][iv.getTitulos().length];
-        /*
+        Object[][] dados= new Object[lista.size()][iv.getTitulos().length];
+        
         for (int i = 0; i < lista.size(); i++) {
             dados[i]=lista.get(i).getDados();
         }
-        */
+        
         JTItemVenda.setModel(new DefaultTableModel(dados,iv.getTitulos()));
     }
 }

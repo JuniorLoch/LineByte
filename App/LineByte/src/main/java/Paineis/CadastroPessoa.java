@@ -8,6 +8,10 @@ package Paineis;
 import Entidade.EntidadesBanco.Endereco;
 import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -158,9 +162,14 @@ public class CadastroPessoa extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Pessoa p = new Pessoa();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         boolean err = false;
         p.setCpf(TFcpf.getText());
-        p.setDataNasc(null);//saber como converter para simpledateformat
+        try {
+            p.setDataNasc(sdf.parse(FTFdataNascimento.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
         p.setEndereco((Endereco) CBendereco.getSelectedItem());
         p.setNome(TFnome.getText());
         p.setRg(TFrg.getText());

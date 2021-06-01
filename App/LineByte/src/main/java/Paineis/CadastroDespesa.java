@@ -8,6 +8,10 @@ package Paineis;
 import Entidade.EntidadesBanco.Despesa;
 import Entidade.EntidadesBanco.TipoDespesa;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -151,7 +155,12 @@ public class CadastroDespesa extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Despesa d = new Despesa();
-        d.setDataVencimento(null);//precisa saber como fazer aquela conversao com simpledateformat
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            d.setDataVencimento(sdf.parse(FTFvencimento.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroDespesa.class.getName()).log(Level.SEVERE, null, ex);
+        }
         d.setNome(TFnome.getText());
         d.setPago(CBpago.isSelected());
         d.setTipoDespesa((TipoDespesa)CBcategoria.getSelectedItem());
