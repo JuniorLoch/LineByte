@@ -13,10 +13,10 @@ import javax.persistence.Id;
 public class Cargo implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO) //vai ser necessário fazer isso em todas as entidades??
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
-    @Column(name = "nome_cargo") // isso tbm
+    @Column(name = "nome_cargo")
     private String nomeCargo;
     
     private Float salario;

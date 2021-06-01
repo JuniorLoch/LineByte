@@ -30,6 +30,15 @@ public class Cadastro extends javax.swing.JDialog {
         PainelCadastro.add(painel);
         pack();
     }
+    public Cadastro(java.awt.Frame parent, boolean modal, TemplatePainelCadastro painel, Object o) {
+        super(parent, modal);
+        initComponents();
+        this.painel=painel;
+        PainelCadastro.setLayout(new GridLayout(1, 1));
+        PainelCadastro.add(painel);
+        
+        pack();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -100,7 +100,6 @@ public class CadastroCliente extends TemplatePainelCadastro {
     public Object getObjeto() {
         Cliente c = new Cliente();
         c.setPessoa((Pessoa) CBpessoa.getSelectedItem());
-        c.setSenha(TFsenha.getText());
         return c;
     }
 }

@@ -185,6 +185,7 @@ public class Listagem extends javax.swing.JFrame {
 
     private void BTeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTeditarActionPerformed
         new Cadastro(this,true,painel).setVisible(true);
+        
         atualizaTabela();
     }//GEN-LAST:event_BTeditarActionPerformed
 

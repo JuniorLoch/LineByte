@@ -3,11 +3,14 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "tabendereco")
 public class Endereco implements Serializable,TemplateLista{
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     private String cidade;
     private String estado;

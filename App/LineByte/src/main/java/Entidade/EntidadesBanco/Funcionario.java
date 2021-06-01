@@ -3,7 +3,10 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -14,6 +17,7 @@ import javax.persistence.TemporalType;
 public class Funcionario implements Serializable,TemplateLista{
     
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     @OneToOne
@@ -26,7 +30,13 @@ public class Funcionario implements Serializable,TemplateLista{
     private Login login;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_admissao")
     private Date dataAdmissao;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_demissao")
+    private Date dataDemissao;
+    
     
     private String descricao;
 
@@ -60,6 +70,14 @@ public class Funcionario implements Serializable,TemplateLista{
 
     public void setLogin(Login login) {
         this.login = login;
+    }
+
+    public Date getDataDemissao() {
+        return dataDemissao;
+    }
+
+    public void setDataDemissao(Date dataDemissao) {
+        this.dataDemissao = dataDemissao;
     }
 
     public Date getDataAdmissao() {

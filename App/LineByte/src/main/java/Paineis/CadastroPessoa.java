@@ -160,7 +160,7 @@ public class CadastroPessoa extends TemplatePainelCadastro {
         Pessoa p = new Pessoa();
         boolean err = false;
         p.setCpf(TFcpf.getText());
-        p.setData_nasc(null);//saber como converter para simpledateformat
+        p.setDataNasc(null);//saber como converter para simpledateformat
         p.setEndereco((Endereco) CBendereco.getSelectedItem());
         p.setNome(TFnome.getText());
         p.setRg(TFrg.getText());

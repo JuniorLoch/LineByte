@@ -3,7 +3,10 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -12,12 +15,14 @@ import javax.persistence.TemporalType;
 @Entity(name = "tabdespesas")
 public class Despesa implements Serializable,TemplateLista{
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     @ManyToOne
     private TipoDespesa tipoDespesa;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_vencimento")
     private Date dataVencimento;
     
     private Boolean pago;

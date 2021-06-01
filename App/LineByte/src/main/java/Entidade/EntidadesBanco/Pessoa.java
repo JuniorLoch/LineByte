@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -14,6 +16,7 @@ import javax.persistence.TemporalType;
 public class Pessoa implements Serializable,TemplateLista{
     
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     private String nome;
@@ -27,7 +30,7 @@ public class Pessoa implements Serializable,TemplateLista{
 
     @Temporal(TemporalType.DATE)
     @Column(name = "data_nasc")
-    private Date data_nasc;
+    private Date dataNasc;
 
     private String sexo;
 
@@ -72,12 +75,12 @@ public class Pessoa implements Serializable,TemplateLista{
         this.rg = rg;
     }
 
-    public Date getData_nasc() {
-        return data_nasc;
+    public Date getDataNasc() {
+        return dataNasc;
     }
 
-    public void setData_nasc(Date data_nasc) {
-        this.data_nasc = data_nasc;
+    public void setDataNasc(Date data_nasc) {
+        this.dataNasc = data_nasc;
     }
 
     public String getSexo() {
@@ -90,7 +93,7 @@ public class Pessoa implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,nome,endereco,cpf,rg,data_nasc,sexo};
+        return new Object[]{id,nome,endereco,cpf,rg,dataNasc,sexo};
     }
 
     @Override

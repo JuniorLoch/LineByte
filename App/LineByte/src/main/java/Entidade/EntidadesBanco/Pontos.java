@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 //import java.sql.Time;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -15,6 +17,7 @@ import javax.persistence.TemporalType;
 public class Pontos implements Serializable,TemplateLista{
     
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     @ManyToOne

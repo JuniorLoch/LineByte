@@ -4,8 +4,11 @@ import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -19,15 +22,20 @@ public class Compra implements Serializable,TemplateLista{
     private List<ItemCompra> itemCompras;
     
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_compra")
     private Date dataCompra;
     
     @ManyToOne
     private Fornecedor fornecedor;
     
+    @Column(name = "valor_total")
     private Double valorTotal;
+    
+    @Column(name = "nota_fiscal")
     private String notaFiscal;
 
     public List<ItemCompra> getItemCompras() {
