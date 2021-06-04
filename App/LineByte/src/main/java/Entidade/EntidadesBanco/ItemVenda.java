@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "tabitemvenda")
@@ -17,9 +18,11 @@ public class ItemVenda implements Serializable,TemplateLista{
     
     
     @ManyToOne
+    @JoinColumn(name = "id_produto")
     private Produto produto;
     
     @ManyToOne
+    @JoinColumn(name = "id_venda")
     private Venda venda;
     
     private Float valor;

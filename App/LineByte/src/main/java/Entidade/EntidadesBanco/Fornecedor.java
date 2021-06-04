@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name = "tabFornecedor")
@@ -21,6 +22,7 @@ public class Fornecedor implements Serializable,TemplateLista{
     private String cpnj;
     
     @OneToOne
+    @JoinColumn(name = "id_endereco")
     private Endereco endereco;
     
 

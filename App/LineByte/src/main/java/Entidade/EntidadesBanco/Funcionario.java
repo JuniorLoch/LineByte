@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -21,12 +22,15 @@ public class Funcionario implements Serializable,TemplateLista{
     private Integer id;
     
     @OneToOne
+    @JoinColumn(name = "id_pessoa")
     private Pessoa pessoa;
     
     @ManyToOne
+    @JoinColumn(name = "id_cargo")
     private Cargo cargo;
     
     @OneToOne
+    @JoinColumn(name = "id_login")
     private Login login;
     
     @Temporal(TemporalType.DATE)

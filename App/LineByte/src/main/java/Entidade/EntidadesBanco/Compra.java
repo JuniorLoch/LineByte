@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -30,6 +31,7 @@ public class Compra implements Serializable,TemplateLista{
     private Date dataCompra;
     
     @ManyToOne
+    @JoinColumn(name = "id_fornecedor")
     private Fornecedor fornecedor;
     
     @Column(name = "valor_total")

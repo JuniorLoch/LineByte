@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Endereco;
 import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
@@ -12,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,7 @@ public class CadastroPessoa extends TemplatePainelCadastro {
      */
     public CadastroPessoa() {
         initComponents();
+        CBendereco.setModel(new DefaultComboBoxModel(DAO.listaNative(Endereco.class).toArray()));
     }
 
     /**
@@ -179,11 +182,11 @@ public class CadastroPessoa extends TemplatePainelCadastro {
                 JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
                 err = true;
             } else {
-                p.setSexo("Feminino");
+                p.setSexo("F");
             }
         } else {
             if(RBsexoMasculino.isSelected() == true){
-                p.setSexo("Masculino");
+                p.setSexo("M");
             } else {
                 JOptionPane.showMessageDialog(null, "Marque pelo menos UM sexo!!");
                 err = true;

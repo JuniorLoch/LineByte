@@ -43,7 +43,7 @@ import javax.swing.DefaultComboBoxModel;
  * @author User
  */
 public class Principal extends javax.swing.JFrame {
-    private String[] Entidades = {"Cargo","Cliente","Compra","Despesa","Endereco","Estoque","Fornecedor","Funcionario","Gerente","Login","Pessoa","Pontos","Produto","TipoDespesa"};
+    private String[] Entidades = {"Cargo","Cliente","Despesa","Endereco","Estoque","Fornecedor","Funcionario","Gerente","Login","Pessoa","Pontos","Produto","TipoDespesa"};
     /**
      * Creates new form Principal
      */

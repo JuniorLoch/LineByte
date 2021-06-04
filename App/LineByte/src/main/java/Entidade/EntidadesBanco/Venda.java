@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,6 +23,7 @@ public class Venda implements Serializable,TemplateLista {
     
     //ajustar para @ManyToOne
     @ManyToOne
+    @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
     
     @Column(name = "valor_venda")
@@ -33,6 +35,7 @@ public class Venda implements Serializable,TemplateLista {
     
     //ajustar para @ManyToOne
     @ManyToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
     
     @Column(name = "nota_fiscal")

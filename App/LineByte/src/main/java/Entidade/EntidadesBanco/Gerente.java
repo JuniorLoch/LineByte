@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name = "tabgerente")
@@ -16,9 +17,11 @@ public class Gerente implements Serializable,TemplateLista{
     private int id;
     
     @OneToOne
+    @JoinColumn(name = "id_login")
     private Login login;
     
     @OneToOne
+    @JoinColumn(name = "id_pessoa")
     private Pessoa pessoa;
 
     public int getId() {
