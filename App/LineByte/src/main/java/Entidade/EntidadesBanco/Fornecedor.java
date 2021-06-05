@@ -19,6 +19,7 @@ public class Fornecedor implements Serializable,TemplateLista{
     @Column(name = "nome")
     private String nomeFornecedor;
     
+    @Column(name = "cnpj")
     private String cpnj;
     
     @OneToOne

@@ -42,6 +42,11 @@ public class CadastroCliente extends TemplatePainelCadastro {
         LBpessoa.setText("Pessoa:");
 
         CBpessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBpessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBpessoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,6 +69,10 @@ public class CadastroCliente extends TemplatePainelCadastro {
                 .addContainerGap(203, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CBpessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBpessoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBpessoaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

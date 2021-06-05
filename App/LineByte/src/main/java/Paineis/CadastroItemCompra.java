@@ -14,6 +14,7 @@ import Interfaces.TemplatePainelCadastro;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,6 +36,7 @@ public class CadastroItemCompra extends TemplatePainelCadastro {
             Logger.getLogger(CadastroItemCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
         atualizaTabela();
+        CBproduto.setModel(new DefaultComboBoxModel(DAO.listaNative(Produto.class).toArray()));
     }
 
     /**

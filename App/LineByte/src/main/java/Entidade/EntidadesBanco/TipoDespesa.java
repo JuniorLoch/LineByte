@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "tabtipo_despesa")
+@Entity(name = "tabtipodespesa")
 public class TipoDespesa implements Serializable,TemplateLista{
     
     @Id

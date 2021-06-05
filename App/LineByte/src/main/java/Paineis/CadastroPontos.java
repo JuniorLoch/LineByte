@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Funcionario;
 import Entidade.EntidadesBanco.Pontos;
 import Interfaces.TemplatePainelCadastro;
@@ -12,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,7 @@ public class CadastroPontos extends TemplatePainelCadastro {
      */
     public CadastroPontos() {
         initComponents();
+        CBfuncionario.setModel(new DefaultComboBoxModel(DAO.listaNative(Funcionario.class).toArray()));
     }
 
     /**
@@ -57,9 +60,17 @@ public class CadastroPontos extends TemplatePainelCadastro {
         LBhoraSaida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBhoraSaida.setText("Hora Saida:");
 
-        FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
-        FTFhoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFhoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         try {
             FTFhoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
@@ -151,8 +162,13 @@ public class CadastroPontos extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Pontos p = new Pontos();
+        SimpleDateFormat sdfdata = new SimpleDateFormat("dd/MM/YYYY");
         p.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
-        p.setDataPonto(null); // fazer a conversao do formattedtextfield em simpledate
+        try {
+            p.setDataPonto(sdfdata.parse(FTFdata.getText())); // fazer a conversao do formattedtextfield em simpledate
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPontos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
         try {

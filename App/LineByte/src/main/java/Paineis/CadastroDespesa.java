@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Despesa;
 import Entidade.EntidadesBanco.TipoDespesa;
 import Interfaces.TemplatePainelCadastro;
@@ -12,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -24,6 +26,7 @@ public class CadastroDespesa extends TemplatePainelCadastro {
      */
     public CadastroDespesa() {
         initComponents();
+        CBcategoria.setModel(new DefaultComboBoxModel(DAO.listaNative(TipoDespesa.class).toArray()));
     }
 
     /**
@@ -64,7 +67,11 @@ public class CadastroDespesa extends TemplatePainelCadastro {
 
         CBpago.setText("Sim");
 
-        FTFvencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFvencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         FTFvencimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FTFvencimentoActionPerformed(evt);

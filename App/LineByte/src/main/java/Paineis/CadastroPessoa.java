@@ -68,7 +68,11 @@ public class CadastroPessoa extends TemplatePainelCadastro {
         LBdataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBdataNascimento.setText("Data Nascimento:");
 
-        FTFdataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFdataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         RBsexoMasculino.setText("Masculino");
 

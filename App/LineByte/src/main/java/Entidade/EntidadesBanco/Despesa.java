@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name = "tabdespesas")
+@Entity(name = "tabdespesa")
 public class Despesa implements Serializable,TemplateLista{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

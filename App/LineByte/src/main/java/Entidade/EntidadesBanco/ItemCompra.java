@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "tabitem_compra")
+@Entity(name = "tabitemcompra")
 public class ItemCompra implements Serializable,TemplateLista{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

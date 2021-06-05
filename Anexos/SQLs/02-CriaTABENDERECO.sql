@@ -6,5 +6,5 @@ create table tabendereco (
 	rua varchar(40),
 	numero varchar(5),
 	cep varchar(10),
-	complemento varchar(10)
+	complemento varchar(1000)
 );

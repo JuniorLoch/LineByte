@@ -5,15 +5,18 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Cargo;
 import Entidade.EntidadesBanco.Funcionario;
 import Entidade.EntidadesBanco.Login;
 import Entidade.EntidadesBanco.Pessoa;
+import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -26,6 +29,9 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
      */
     public CadastroFuncionario() {
         initComponents();
+        CBcargo.setModel(new DefaultComboBoxModel(DAO.listaNative(Cargo.class).toArray()));
+        CBlogin.setModel(new DefaultComboBoxModel(DAO.listaNative(Login.class).toArray()));
+        CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
     }
 
     /**
@@ -68,14 +74,22 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
         LBdatademissao.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBdatademissao.setText("Data de Demissão:");
 
-        FTFdataDemissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFdataDemissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         FTFdataDemissao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FTFdataDemissaoActionPerformed(evt);
             }
         });
 
-        FTFdataAdmissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFdataAdmissao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         FTFdataAdmissao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FTFdataAdmissaoActionPerformed(evt);
@@ -181,7 +195,7 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Funcionario f = new Funcionario();
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
         f.setCargo((Cargo) CBcargo.getSelectedItem());
         f.setDescricao(TFdescricao.getText());
         f.setPessoa((Pessoa) CBpessoa.getSelectedItem());

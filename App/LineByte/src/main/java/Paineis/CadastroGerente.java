@@ -5,10 +5,12 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Gerente;
 import Entidade.EntidadesBanco.Login;
 import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -21,6 +23,8 @@ public class CadastroGerente extends TemplatePainelCadastro {
      */
     public CadastroGerente() {
         initComponents();
+        CBlogin.setModel(new DefaultComboBoxModel(DAO.listaNative(Login.class).toArray()));
+        CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
     }
 
     /**

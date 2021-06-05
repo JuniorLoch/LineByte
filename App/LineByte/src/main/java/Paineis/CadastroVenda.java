@@ -5,14 +5,17 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Cliente;
 import Entidade.EntidadesBanco.Funcionario;
+import Entidade.EntidadesBanco.Produto;
 import Entidade.EntidadesBanco.Venda;
 import Interfaces.TemplatePainelCadastro;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -25,6 +28,8 @@ public class CadastroVenda extends TemplatePainelCadastro {
      */
     public CadastroVenda() {
         initComponents();
+        CBcliente.setModel(new DefaultComboBoxModel(DAO.listaNative(Cliente.class).toArray()));
+        CBfuncionario.setModel(new DefaultComboBoxModel(DAO.listaNative(Funcionario.class).toArray()));
     }
 
     /**
@@ -63,7 +68,11 @@ public class CadastroVenda extends TemplatePainelCadastro {
         LBnotaFiscal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBnotaFiscal.setText("Nota Fiscal:");
 
-        FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         LBvalor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBvalor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

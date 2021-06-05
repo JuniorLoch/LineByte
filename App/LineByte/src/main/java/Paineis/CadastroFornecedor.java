@@ -5,9 +5,12 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Endereco;
 import Entidade.EntidadesBanco.Fornecedor;
+import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -20,6 +23,7 @@ public class CadastroFornecedor extends TemplatePainelCadastro {
      */
     public CadastroFornecedor() {
         initComponents();
+        CBendereco.setModel(new DefaultComboBoxModel(DAO.listaNative(Endereco.class).toArray()));
     }
 
     /**

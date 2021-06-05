@@ -159,7 +159,7 @@ public class CadastroProdutos extends TemplatePainelCadastro {
         p.setCor(TFcor.getText());
         p.setMarca(TFmarca.getText());
         p.setNome(TFnome.getText());
-        p.setTamanho(TFtamanho.getText());
+        p.setTamanho(TFtamanho.getText());//ta dando number format exeption, so aceita numero
         p.setValor(Float.parseFloat(TFtamanho.getText()));
         p.setEstoques(null);
         
@@ -168,11 +168,11 @@ public class CadastroProdutos extends TemplatePainelCadastro {
                 JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
                 err = true;
             } else {
-                p.setSexo("Feminino");
+                p.setSexo("F");
             }
         } else {
             if(RBsexoMasculino.isSelected() == true){
-                p.setSexo("Masculino");
+                p.setSexo("M");
             } else {
                 JOptionPane.showMessageDialog(null, "Marque pelo menos UM sexo!!");
                 err = true;
