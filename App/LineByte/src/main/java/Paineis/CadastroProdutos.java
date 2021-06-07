@@ -184,4 +184,14 @@ public class CadastroProdutos extends TemplatePainelCadastro {
             return null; // em todo lugar que chamar esse método precisará de um verificador para nao salvar um objeto nulo
         }
     }
+
+    @Override
+    public Object getObjeto(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

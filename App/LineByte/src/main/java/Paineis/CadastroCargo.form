@@ -18,16 +18,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="LBsalario" min="-2" pref="75" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="LBsalario" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="TFsalario" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="TFnomeCargo" min="-2" pref="360" max="-2" attributes="0"/>
-                  <Component id="LBnomeCargo" min="-2" max="-2" attributes="0"/>
+                  <Component id="TFnomeCargo" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="LBnomeCargo" max="32767" attributes="0"/>
+                      <EmptySpace min="227" pref="227" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="300" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -35,15 +38,15 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
-              <Component id="LBnomeCargo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="LBnomeCargo" max="32767" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="TFnomeCargo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="LBsalario" max="32767" attributes="0"/>
                   <Component id="TFsalario" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="242" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="242" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

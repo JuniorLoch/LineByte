@@ -130,4 +130,14 @@ public class CadastroLogin extends TemplatePainelCadastro {
             return null; // depois vai precisar de um verificador para ver se o objeto é nulo antes de tentar salvar ele
         }
     }
+
+    @Override
+    public Object getObjeto(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

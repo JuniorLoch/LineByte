@@ -184,9 +184,12 @@ public class Listagem extends javax.swing.JFrame {
     }//GEN-LAST:event_BTnovoActionPerformed
 
     private void BTeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTeditarActionPerformed
-        new Cadastro(this,true,painel).setVisible(true);
-        
-        atualizaTabela();
+        if(JTtabela.getSelectedRow() != -1){
+            new Cadastro(this,true,painel,lista.get(JTtabela.getSelectedRow())).setVisible(true);// passando para frente o objeto como parametro
+            atualizaTabela();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um item para editar");
+        }
     }//GEN-LAST:event_BTeditarActionPerformed
 
     /**

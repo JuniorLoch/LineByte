@@ -70,4 +70,14 @@ public class CadastroTipoDespesa extends TemplatePainelCadastro {
         td.setNome(TFnome.getText());
         return td;
     }
+
+    @Override
+    public Object getObjeto(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

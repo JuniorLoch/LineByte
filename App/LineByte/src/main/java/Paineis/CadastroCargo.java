@@ -13,14 +13,14 @@ import Interfaces.TemplatePainelCadastro;
  * @author r4f4s
  */
 public class CadastroCargo extends TemplatePainelCadastro {
-
     /**
      * Creates new form CadastroCargo
      */
     public CadastroCargo() {
         initComponents();
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,27 +49,29 @@ public class CadastroCargo extends TemplatePainelCadastro {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(290, 290, 290)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(LBsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addComponent(LBsalario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TFsalario))
-                    .addComponent(TFnomeCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LBnomeCargo))
-                .addContainerGap(300, Short.MAX_VALUE))
+                    .addComponent(TFnomeCargo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LBnomeCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(227, 227, 227)))
+                .addGap(300, 300, 300))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(172, 172, 172)
-                .addComponent(LBnomeCargo)
+                .addComponent(LBnomeCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(TFnomeCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LBsalario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(TFsalario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(242, 242, 242))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -82,10 +84,38 @@ public class CadastroCargo extends TemplatePainelCadastro {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public Object getObjeto() {
+    public Object getObjeto() { 
         Cargo c = new Cargo();
         c.setNomeCargo(TFnomeCargo.getText());
         c.setSalario(Float.parseFloat(TFsalario.getText()));
         return c;
+    }
+
+    //daqui para baixo copiar e colar nos outros metodos
+    @Override
+    public Object getObjeto(Object o) {
+        Cargo c;
+        if(o == null){
+            c = new Cargo();
+
+        } else {
+            c = (Cargo) o;
+        }
+        //nomes dos campos da tela
+        c.setNomeCargo(TFnomeCargo.getText());
+        c.setSalario(Float.parseFloat(TFsalario.getText()));
+        return c;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        if(o == null){
+            TFnomeCargo.setText("");
+            TFsalario.setText("");
+        }else{
+            Cargo c = (Cargo) o;
+            TFnomeCargo.setText(c.getNomeCargo());
+            TFsalario.setText(c.getSalario().toString());
+        }
     }
 }

@@ -10,5 +10,7 @@ package Interfaces;
  * @author User
  */
 public abstract class TemplatePainelCadastro extends javax.swing.JPanel{
-    public abstract Object getObjeto();
+    public abstract Object getObjeto(); // vai se baise
+    public abstract Object getObjeto(Object o);
+    public abstract void preencherCampos(Object o);
 }

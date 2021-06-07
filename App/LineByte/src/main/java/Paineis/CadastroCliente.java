@@ -86,4 +86,27 @@ public class CadastroCliente extends TemplatePainelCadastro {
         c.setPessoa((Pessoa) CBpessoa.getSelectedItem());
         return c;
     }
+
+    @Override
+    public Object getObjeto(Object o) {
+        Cliente c;
+        if(o == null){
+            c = new Cliente();
+
+        } else {
+            c = (Cliente) o;
+        }
+        c.setPessoa((Pessoa) CBpessoa.getSelectedItem());
+        return c;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+       if(o == null){
+            
+        }else{
+            Cliente c = (Cliente) o;
+            CBpessoa.setSelectedItem(c);
+        }
+    }
 }

@@ -208,4 +208,14 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
         }
         return f;
     }
+
+    @Override
+    public Object getObjeto(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

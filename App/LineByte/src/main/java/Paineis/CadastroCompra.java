@@ -150,7 +150,40 @@ public class CadastroCompra extends TemplatePainelCadastro {
             Logger.getLogger(CadastroCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
         c.setFornecedor((Fornecedor) CBfornecedor.getSelectedItem());
-        c.setNotaFiscal(TFnotaFiscal.getText()); // cade o campo de insercao da nota no design
+        c.setNotaFiscal(TFnotaFiscal.getText());
         return c;
+    }
+
+    @Override
+    public Object getObjeto(Object o) {
+        Compra c;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        if(o == null){
+            c = new Compra();
+
+        } else {
+            c = (Compra) o;
+        }
+         try {
+            c.setDataCompra(sdf.parse(FTFdata.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        c.setFornecedor((Fornecedor) CBfornecedor.getSelectedItem());
+        c.setNotaFiscal(TFnotaFiscal.getText());
+        return c;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        if(o == null){
+            TFnotaFiscal.setText("");
+            FTFdata.setText("");
+        }else{
+            Compra c = (Compra) o;
+            TFnotaFiscal.setText(c.getNotaFiscal());
+            FTFdata.setText(c.getDataCompra().toString());
+            CBfornecedor.setSelectedItem(c);
+        }
     }
 }
