@@ -133,11 +133,42 @@ public class CadastroLogin extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Login l;
+        if(o == null){
+            l = new Login();
+
+        } else {
+            l = (Login) o;
+        }
+        //preenchendo o objeto para salvar, daqui pra baixo voce exclui oq tem e copia tudo do getobjeto() la em cima, tirando
+        // a primeira linha q é a declaracao
+        boolean err = false;
+        l.setUsuario(TFlogin.getText());
+        if (String.valueOf(PFconfirmaSenha.getPassword()).equals(String.valueOf(PFsenha.getPassword()))) {
+            l.setSenha(String.valueOf(PFsenha.getPassword()));
+            // getpassword retorna um vetor de char, ai precisa chamar essa funcao para converter para string
+        } else {
+            JOptionPane.showMessageDialog(null, "As senhas nao coincidem!!");
+            err = true;
+        }
+        if (err == false){
+            return l;
+        } else {
+            return null; // depois vai precisar de um verificador para ver se o objeto é nulo antes de tentar salvar ele
+        }
     }
 
     @Override
-    public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void preencherCampos(Object o) { 
+        if(o == null){
+            TFlogin.setText("");
+            PFsenha.setText("");
+            PFconfirmaSenha.setText("");
+        }else{
+            Login l = (Login) o; // declara o objeto
+            TFlogin.setText(l.getUsuario());
+            PFsenha.setText(l.getSenha());
+            PFconfirmaSenha.setText(l.getSenha());
+        }
     }
 }

@@ -6,6 +6,7 @@
 package Paineis;
 
 import Entidade.DAO;
+import Entidade.EntidadesBanco.Cargo;
 import Entidade.EntidadesBanco.Estoque;
 import Entidade.EntidadesBanco.Pessoa;
 import Entidade.EntidadesBanco.Produto;
@@ -100,11 +101,28 @@ public class CadastroEstoque extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Estoque e;
+        if(o == null){
+            e = new Estoque();
+
+        } else {
+            e = (Estoque) o;
+        }
+        //nomes dos campos da tela
+        e.setProduto((Produto) CBproduto.getSelectedItem());
+        e.setQtdEstoque(Integer.parseInt(TFquantidade.getText()));
+        return e;
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(o == null){
+            TFquantidade.setText("");
+            CBproduto.setSelectedItem(null); // passa nulo no setselecteditem para a combobox aparecer sem nada selecionado
+        }else{
+            Estoque e = (Estoque) o;
+            TFquantidade.setText(e.getQtdEstoque().toString());
+            CBproduto.setSelectedItem(e.getProduto());
+        }
     }
 }

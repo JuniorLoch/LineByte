@@ -208,14 +208,53 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
         }
         return f;
     }
-
+    
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Funcionario f;
+        if(o == null){
+            f = new Funcionario();
+
+        } else {
+            f = (Funcionario) o;
+        }
+        //preenchendo o objeto para salvar, daqui pra baixo voce exclui oq tem e copia tudo do getobjeto() la em cima, tirando
+        // a primeira linha q é a declaracao
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+        f.setCargo((Cargo) CBcargo.getSelectedItem());
+        f.setDescricao(TFdescricao.getText());
+        f.setPessoa((Pessoa) CBpessoa.getSelectedItem());
+        f.setLogin((Login) CBlogin.getSelectedItem());
+        try {
+            f.setDataAdmissao(sdf.parse(FTFdataAdmissao.getText()));
+            f.setDataDemissao(sdf.parse(FTFdataDemissao.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return f;
     }
 
     @Override
-    public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void preencherCampos(Object o) { 
+        //aqui é onde vai preencher os campos da tela como vazios, se tiver clicado em salvar
+        //ou com os dados do objeto, se tiver clicado em editar
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // se houver algum campo de data isso é necessario
+        if(o == null){
+            //setando os campos como vazio quando tiver clicado em novo la no listagem
+            TFdescricao.setText("");
+            FTFdataDemissao.setText("");
+            FTFdataAdmissao.setText("");
+            CBpessoa.setSelectedItem(null);
+            CBlogin.setSelectedItem(null);
+            CBcargo.setSelectedItem(null);
+        }else{
+            Funcionario f = (Funcionario) o; // declara o objeto
+            TFdescricao.setText(f.getDescricao());
+            FTFdataDemissao.setText(f.getDataDemissao().toString());
+            FTFdataAdmissao.setText(f.getDataAdmissao().toString());
+            CBpessoa.setSelectedItem(f.getPessoa());
+            CBlogin.setSelectedItem(f.getLogin());
+            CBcargo.setSelectedItem(f.getCargo());
+        }
     }
 }

@@ -187,11 +187,68 @@ public class CadastroProdutos extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Produto p;
+        if(o == null){
+            p = new Produto();
+
+        } else {
+            p = (Produto) o;
+        }
+        boolean err = false;
+        p.setCor(TFcor.getText());
+        p.setMarca(TFmarca.getText());
+        p.setNome(TFnome.getText());
+        p.setTamanho(TFtamanho.getText());//ta dando number format exeption, so aceita numero
+        p.setValor(Float.parseFloat(TFtamanho.getText()));
+        p.setEstoques(null);
+        
+        if(RBsexoFeminino.isSelected() == true){
+            if(RBsexoMasculino.isSelected() == true){
+                JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
+                err = true;
+            } else {
+                p.setSexo("F");
+            }
+        } else {
+            if(RBsexoMasculino.isSelected() == true){
+                p.setSexo("M");
+            } else {
+                JOptionPane.showMessageDialog(null, "Marque pelo menos UM sexo!!");
+                err = true;
+            }
+        }
+        if(err == false) {
+            return p;
+        } else {
+            return null; // em todo lugar que chamar esse método precisará de um verificador para nao salvar um objeto nulo
+        }
     }
 
     @Override
-    public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void preencherCampos(Object o) { 
+        if(o == null){
+            //setando os campos como vazio quando tiver clicado em novo la no listagem
+            TFvalor.setText("");
+            TFtamanho.setText("");
+            TFnome.setText("");
+            TFmarca.setText("");
+            TFcor.setText("");
+            RBsexoFeminino.setSelected(false); //qualquer RadioButton que colocou fica desselecionado assim
+            RBsexoMasculino.setSelected(false); //qualquer RadioButton que colocou fica desselecionado assim
+
+        }else{
+            Produto p = (Produto) o; // declara o objeto
+            TFvalor.setText(p.getValor().toString());
+            TFtamanho.setText(p.getTamanho());
+            TFnome.setText(p.getNome());
+            TFmarca.setText(p.getMarca());
+            TFcor.setText(p.getCor());
+            if("M".equals(p.getSexo())){  
+            //precisa disso quando tem os botoes de sexo, se verificou que nao é masculino, com certeza vai ser feminino pois ja foi verificado la no getobjeto()
+                RBsexoMasculino.setSelected(true);
+            } else {
+                RBsexoFeminino.setSelected(true);
+            }
+        }
     }
 }

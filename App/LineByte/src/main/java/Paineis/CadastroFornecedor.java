@@ -8,9 +8,15 @@ package Paineis;
 import Entidade.DAO;
 import Entidade.EntidadesBanco.Endereco;
 import Entidade.EntidadesBanco.Fornecedor;
+import Entidade.EntidadesBanco.Pessoa;
 import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -115,11 +121,36 @@ public class CadastroFornecedor extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Fornecedor f;
+        if(o == null){
+            f = new Fornecedor();
+
+        } else {
+            f = (Fornecedor) o;
+        }
+        //preenchendo o objeto para salvar, daqui pra baixo voce exclui oq tem e copia tudo do getobjeto() la em cima, tirando
+        // a primeira linha q é a declaracao
+        f.setCpnj(TFcnpj.getText());
+        f.setEndereco((Endereco) CBendereco.getSelectedItem());
+        f.setNomeFornecedor(TFnome.getText());
+        return f;
     }
 
     @Override
-    public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void preencherCampos(Object o) { 
+        //aqui é onde vai preencher os campos da tela como vazios, se tiver clicado em salvar
+        //ou com os dados do objeto, se tiver clicado em editar
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // se houver algum campo de data isso é necessario
+        if(o == null){
+            //setando os campos como vazio quando tiver clicado em novo la no listagem
+            TFnome.setText("");
+            TFcnpj.setText("");
+            CBendereco.setSelectedItem(null);
+        }else{
+            Fornecedor f = (Fornecedor) o; // declara o objeto
+            TFnome.setText(f.getNomeFornecedor()); // setando campo de texto, padrao do padrao
+            TFcnpj.setText(f.getCpnj());
+            CBendereco.setSelectedItem(f.getEndereco());
+        }
     }
 }
