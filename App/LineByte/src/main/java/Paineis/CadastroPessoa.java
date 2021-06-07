@@ -212,7 +212,8 @@ public class CadastroPessoa extends TemplatePainelCadastro {
         } else {
             p = (Pessoa) o;
         }
-        //nomes dos campos da tela
+        //preenchendo o objeto para salvar, daqui pra baixo voce exclui oq tem e copia tudo do getobjeto() la em cima, tirando
+        // a primeira linha q é a declaracao
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         boolean err = false;
         p.setCpf(TFcpf.getText());
@@ -224,7 +225,7 @@ public class CadastroPessoa extends TemplatePainelCadastro {
         p.setEndereco((Endereco) CBendereco.getSelectedItem());
         p.setNome(TFnome.getText());
         p.setRg(TFrg.getText());
-        
+        //verificando os botoes de sexo para marcar pelo menos um e somente uma opcao
         if(RBsexoFeminino.isSelected() == true){
             if(RBsexoMasculino.isSelected() == true){
                 JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
@@ -248,38 +249,38 @@ public class CadastroPessoa extends TemplatePainelCadastro {
     }
 
     @Override
-    public void preencherCampos(Object o) {
+    public void preencherCampos(Object o) { 
+        //aqui é onde vai preencher os campos da tela como vazios, se tiver clicado em salvar
+        //ou com os dados do objeto, se tiver clicado em editar
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // se houver algum campo de data isso é necessario
         if(o == null){
-            TFrg.setText("");
+            //setando os campos como vazio quando tiver clicado em novo la no listagem
+            TFrg.setText(""); //isso aq é padrao pra todos os campos de texto
             TFnome.setText("");
             TFcpf.setText("");
-            RBsexoFeminino.setEnabled(false);
-            RBsexoMasculino.setEnabled(false);
-            FTFdataNascimento.setText("");
+            RBsexoFeminino.setSelected(false); //qualquer RadioButton que colocou fica desselecionado assim
+            RBsexoMasculino.setSelected(false);
+            FTFdataNascimento.setText(""); // para colocar vazio nao tem problema setar assim
+            CBendereco.setSelectedItem(null); // passa nulo no setselecteditem para a combobox aparecer sem nada selecionado
         }else{
-            Pessoa p = (Pessoa) o;
-            TFrg.setText(p.getRg());
+            Pessoa p = (Pessoa) o; // declara o objeto
+            TFrg.setText(p.getRg()); // setando campo de texto, padrao do padrao
             TFnome.setText(p.getNome());
             TFcpf.setText(p.getCpf());
-            FTFdataNascimento.setText(p.getDataNasc().toString());
-            if(RBsexoFeminino.isSelected() == true){
-                if(RBsexoMasculino.isSelected() == true){
-                    JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
-                    err = true;
-                } else {
-                    p.setSexo("F");
-                }
+            FTFdataNascimento.setText(sdf.format(p.getDataNasc())); 
+            // aq em cima complica um pouco, como la em cima no getobjeto a gente usou o simpledateformat pra da parse nesse role
+            //se vc chamar o tostring aq achando q vai funcionar, nao vai, precisa formatar essa date usando o simpledateformat denovo
+            //pq o tostring vai retorna "Sat Nov 11 00:00:00 AMT 1111" ao invés de "11/11/1111" , vai escrever por extenso tudo por isso colocar format
+            //mas o jeito de fazer nao mudou e é só copiar isso ai e mudar o p.getflinstons ali q da certo
+            CBendereco.setSelectedItem(p.getEndereco());
+            //isso aq n tava dando certo pq alguem deu uma de mula manca e colocou pra procurar "p"(q é uma pessoa), ou "o"(q é um objeto)
+            //na maldita combobox de ENDERECO, tem q fazer igual está aqui, qualquer outro lugar está errado
+            if("M".equals(p.getSexo())){  
+            //precisa disso quando tem os botoes de sexo, se verificou que nao é masculino, com certeza vai ser feminino pois ja foi verificado la no getobjeto()
+                RBsexoMasculino.setSelected(true);
             } else {
-                if(RBsexoMasculino.isSelected() == true){
-                    p.setSexo("M");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Marque pelo menos UM sexo!!");
-                    err = true;
-                }
+                RBsexoFeminino.setSelected(true);
             }
-//            RBsexoFeminino.setEnabled(false);
-//            RBsexoMasculino.setEnabled(false);
-            
         }
     }
 }

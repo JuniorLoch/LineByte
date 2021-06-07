@@ -29,8 +29,8 @@ public class Cadastro extends javax.swing.JDialog {
         this.painel=painel;
         PainelCadastro.setLayout(new GridLayout(1, 1));
         PainelCadastro.add(painel);
-        pack();
         painel.preencherCampos(objeto);
+        pack();
     }
     public Cadastro(java.awt.Frame parent, boolean modal, TemplatePainelCadastro painel, Object objeto) {
         super(parent, modal);
@@ -39,8 +39,8 @@ public class Cadastro extends javax.swing.JDialog {
         PainelCadastro.setLayout(new GridLayout(1, 1));
         PainelCadastro.add(painel);
         this.objeto = objeto;
+        painel.preencherCampos(this.objeto);
         pack();
-        painel.preencherCampos(objeto);
     }
 
     /**
@@ -130,10 +130,8 @@ public class Cadastro extends javax.swing.JDialog {
 
     private void BTsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsalvarActionPerformed
         if(painel.getObjeto(objeto) != null){ // pode dar alguma coisa no futuro
-            
                 DAO.salvar(painel.getObjeto(objeto));
-                dispose();
-                
+                dispose(); 
         }
     }//GEN-LAST:event_BTsalvarActionPerformed
 

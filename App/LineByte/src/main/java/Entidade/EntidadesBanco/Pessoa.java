@@ -3,6 +3,7 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -107,5 +108,13 @@ public class Pessoa implements Serializable,TemplateLista{
     public String toString() {
         return id+" - "+nome;
     }
+    /* //achei que precisava disso mas nao precisa nao, só estou deixando aqui caso futuramente aconteca algum B.O.
+    @Override
+    public boolean equals(Object obj) {
+        Pessoa p = (Pessoa) obj;
+        return (Objects.equals(this.getId(), p.getId()));
+    }
+    */
+    
     
 }
