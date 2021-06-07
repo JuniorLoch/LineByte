@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Cargo;
 import Entidade.EntidadesBanco.Endereco;
 import Interfaces.TemplatePainelCadastro;
 
@@ -183,11 +184,44 @@ public class CadastroEndereco extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Endereco e;
+        if(o == null){
+            e = new Endereco();
+
+        } else {
+            e = (Endereco) o;
+        }
+        //nomes dos campos da tela
+        e.setCidade(TFcidade.getText());
+        e.setRua(TFrua.getText());
+        e.setNumero(TFnumero.getText());
+        e.setEstado(TFestado.getText());
+        e.setCep(TFcep.getText());
+        e.setBairro(TFbairro.getText());
+        e.setComplemento(TAcomplemento.getText());
+        e.setCep(TFcep.getText());
+        return e;
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(o == null){
+            TFrua.setText("");
+            TFnumero.setText("");
+            TFestado.setText("");
+            TFcidade.setText("");
+            TFcep.setText("");
+            TFbairro.setText("");
+            TAcomplemento.setText("");
+        }else{
+            Endereco e = (Endereco) o;
+            TFrua.setText(e.getRua());
+            TFnumero.setText(e.getNumero());
+            TFestado.setText(e.getEstado());
+            TFcidade.setText(e.getCidade());
+            TFcep.setText(e.getCep());
+            TFbairro.setText(e.getBairro());
+            TAcomplemento.setText(e.getComplemento());
+        }
     }
 }

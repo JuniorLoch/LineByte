@@ -183,11 +183,43 @@ public class CadastroPontos extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Pontos p;
+        if(o == null){
+            p = new Pontos();
+
+        } else {
+            p = (Pontos) o;
+        }
+        //nomes dos campos da tela
+        SimpleDateFormat sdfdata = new SimpleDateFormat("dd/MM/YYYY");
+        p.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
+        try {
+            p.setDataPonto(sdfdata.parse(FTFdata.getText())); // fazer a conversao do formattedtextfield em simpledate
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPontos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        try {
+            p.setHoraEntrada(sdf.parse(FTFhoraEntrada.getText()));
+            p.setHoraSaida(sdf.parse(FTFhoraSaida.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPontos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(o == null){
+            FTFdata.setText("");
+            FTFhoraEntrada.setText("");
+            FTFhoraSaida.setText("");
+        }else{
+            Pontos p = (Pontos) o;
+            FTFdata.setText(p.getDataPonto().toString());
+            FTFhoraEntrada.setText(p.getHoraEntrada().toString());
+            FTFhoraSaida.setText(p.getHoraSaida().toString());
+        }
     }
 }

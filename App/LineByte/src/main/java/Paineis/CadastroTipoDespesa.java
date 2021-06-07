@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.EntidadesBanco.Cargo;
 import Entidade.EntidadesBanco.TipoDespesa;
 import Interfaces.TemplatePainelCadastro;
 
@@ -64,20 +65,36 @@ public class CadastroTipoDespesa extends TemplatePainelCadastro {
     private javax.swing.JTextField TFnome;
     // End of variables declaration//GEN-END:variables
 
+    
+//Excluir esse depois
     @Override
     public Object getObjeto() {
         TipoDespesa td = new TipoDespesa();
         td.setNome(TFnome.getText());
         return td;
-    }
-
+    }    
+    
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TipoDespesa td;
+        if(o == null){
+            td = new TipoDespesa();
+
+        } else {
+            td = (TipoDespesa) o;
+        }
+        //nomes dos campos da tela
+        td.setNome(TFnome.getText());
+        return td;
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(o == null){
+            TFnome.setText("");
+        }else{
+            TipoDespesa td = (TipoDespesa) o;
+            TFnome.setText(td.getNome());
+        }
     }
 }

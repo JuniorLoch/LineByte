@@ -205,11 +205,81 @@ public class CadastroPessoa extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Pessoa p;
+        if(o == null){
+            p = new Pessoa();
+
+        } else {
+            p = (Pessoa) o;
+        }
+        //nomes dos campos da tela
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        boolean err = false;
+        p.setCpf(TFcpf.getText());
+        try {
+            p.setDataNasc(sdf.parse(FTFdataNascimento.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        p.setEndereco((Endereco) CBendereco.getSelectedItem());
+        p.setNome(TFnome.getText());
+        p.setRg(TFrg.getText());
+        
+        if(RBsexoFeminino.isSelected() == true){
+            if(RBsexoMasculino.isSelected() == true){
+                JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
+                err = true;
+            } else {
+                p.setSexo("F");
+            }
+        } else {
+            if(RBsexoMasculino.isSelected() == true){
+                p.setSexo("M");
+            } else {
+                JOptionPane.showMessageDialog(null, "Marque pelo menos UM sexo!!");
+                err = true;
+            }
+        }
+        if(err == false) {
+            return p;
+        } else {
+            return null; // em todo lugar que chamar esse método precisará de um verificador para nao salvar um objeto nulo
+        }
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(o == null){
+            TFrg.setText("");
+            TFnome.setText("");
+            TFcpf.setText("");
+            RBsexoFeminino.setEnabled(false);
+            RBsexoMasculino.setEnabled(false);
+            FTFdataNascimento.setText("");
+        }else{
+            Pessoa p = (Pessoa) o;
+            TFrg.setText(p.getRg());
+            TFnome.setText(p.getNome());
+            TFcpf.setText(p.getCpf());
+            FTFdataNascimento.setText(p.getDataNasc().toString());
+            if(RBsexoFeminino.isSelected() == true){
+                if(RBsexoMasculino.isSelected() == true){
+                    JOptionPane.showMessageDialog(null, "Marque somente UM sexo!!");
+                    err = true;
+                } else {
+                    p.setSexo("F");
+                }
+            } else {
+                if(RBsexoMasculino.isSelected() == true){
+                    p.setSexo("M");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Marque pelo menos UM sexo!!");
+                    err = true;
+                }
+            }
+//            RBsexoFeminino.setEnabled(false);
+//            RBsexoMasculino.setEnabled(false);
+            
+        }
     }
 }
