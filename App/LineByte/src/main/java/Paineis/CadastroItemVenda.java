@@ -5,6 +5,7 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.ItemCompra;
 import Entidade.EntidadesBanco.ItemVenda;
 import Entidade.EntidadesBanco.Produto;
@@ -13,6 +14,7 @@ import Interfaces.TemplatePainelCadastro;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,6 +36,7 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
             Logger.getLogger(CadastroItemVenda.class.getName()).log(Level.SEVERE, null, ex);
         }
         atualizaTabela();
+        CBproduto.setModel(new DefaultComboBoxModel(DAO.listaNative(Produto.class).toArray()));
     }
 
     /**
@@ -168,14 +171,44 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
     private ItemVenda iv;
     
     public void atualizaTabela() {
-        //lista = DAO.listaNative(classe);
+        lista = DAO.listaNative(ItemVenda.class);
    
-        Object[][] dados= new Object[6][iv.getTitulos().length];
-        /*
+        Object[][] dados= new Object[lista.size()][iv.getTitulos().length];
+        
         for (int i = 0; i < lista.size(); i++) {
             dados[i]=lista.get(i).getDados();
         }
-        */
+        
         JTItemVenda.setModel(new DefaultTableModel(dados,iv.getTitulos()));
+    }
+
+    @Override
+    public Object getObjeto(Object o) {
+        ItemVenda itv;
+        if(o == null){
+            itv = new ItemVenda();
+
+        } else {
+            itv = (ItemVenda) o;
+        }
+        itv.setProduto((Produto) CBproduto.getSelectedItem());
+        itv.setQuantidade(Integer.parseInt(TFquantidade.getText()));
+        itv.setValor(Float.parseFloat(TFvalor.getText()));
+        itv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
+        return itv;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        if(o == null){
+            TFquantidade.setText("");
+            TFvalor.setText("");
+            CBproduto.setSelectedItem(null);
+        }else{
+            ItemVenda itv = (ItemVenda) o; //coloquei ivc pq netbeans tava reclamando
+            TFquantidade.setText(Integer.toString(itv.getQuantidade())); 
+            TFvalor.setText(Float.toString(itv.getProduto().getValor()*itv.getQuantidade())); //acho q vai ter q mudar depois, temporário
+            CBproduto.setSelectedItem(itv.getProduto());
+        }
     }
 }

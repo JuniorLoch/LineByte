@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Compra;
 import Entidade.EntidadesBanco.Despesa;
 import Entidade.EntidadesBanco.Venda;
@@ -259,7 +260,7 @@ public class Analize extends javax.swing.JFrame {
 
     private void BTanalizeDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeDespesaActionPerformed
         try {
-            tl= (TemplateLista) Despesa.class.newInstance();//cria instacia //porque precisa do (templatelista)
+            tl= (TemplateLista) Despesa.class.newInstance();//cria instacia
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -272,7 +273,7 @@ public class Analize extends javax.swing.JFrame {
 
     private void BTanalizeVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeVendaActionPerformed
         try {
-            tl= (TemplateLista) Venda.class.newInstance();//cria instacia //porque precisa do (templatelista)
+            tl= (TemplateLista) Venda.class.newInstance();//cria instacia
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -281,7 +282,7 @@ public class Analize extends javax.swing.JFrame {
 
     private void BTanalizeCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeCompraActionPerformed
         try {
-            tl= (TemplateLista) Compra.class.newInstance();//cria instacia //porque precisa do (templatelista)
+            tl= (TemplateLista) Compra.class.newInstance();//cria instacia
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -353,14 +354,14 @@ public class Analize extends javax.swing.JFrame {
     private TemplateLista tl;
     
     private void atualizaTabela() {
-        //lista = DAO.listaNative(classe);
+        lista = DAO.listaNative(classe);
    
-        Object[][] dados= new Object[6][tl.getTitulos().length];
-        /*
+        Object[][] dados= new Object[lista.size()][tl.getTitulos().length];
+        
         for (int i = 0; i < lista.size(); i++) {
             dados[i]=lista.get(i).getDados();
         }
-        */
+        
         JTanalize.setModel(new DefaultTableModel(dados,tl.getTitulos()));
     }
 }

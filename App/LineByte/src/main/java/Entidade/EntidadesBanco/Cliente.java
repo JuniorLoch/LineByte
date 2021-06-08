@@ -3,17 +3,21 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name = "tabcliente")
 public class Cliente implements Serializable,TemplateLista{
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     @OneToOne
+    @JoinColumn(name = "id_pessoa")
     private Pessoa pessoa;
-    private String senha;
 
     public Integer getId() {
         return id;
@@ -31,22 +35,14 @@ public class Cliente implements Serializable,TemplateLista{
         this.pessoa = pessoa;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     @Override
     public Object[] getDados() {
-        return new Object[]{pessoa,senha};
+        return new Object[]{pessoa};
     }
 
     @Override
     public String[] getTitulos() {
-        return new String[]{"Pessoa","Senha"};
+        return new String[]{"Pessoa"};
     }
 
     @Override

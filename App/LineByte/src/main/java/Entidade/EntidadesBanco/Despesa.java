@@ -2,22 +2,29 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name = "tabdespesas")
+@Entity(name = "tabdespesa")
 public class Despesa implements Serializable,TemplateLista{
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     @ManyToOne
+    @JoinColumn(name = "id_tipo_despesa")
     private TipoDespesa tipoDespesa;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_vencimento")
     private Date dataVencimento;
     
     private Boolean pago;

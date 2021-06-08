@@ -11,6 +11,7 @@ import Interfaces.TemplatePainelCadastro;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
  * @author User
  */
 public class Listagem extends javax.swing.JFrame {
-    
     private Class classe;
     private TemplatePainelCadastro painel;
 
@@ -170,20 +170,27 @@ public class Listagem extends javax.swing.JFrame {
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
         dispose();
+        
     }//GEN-LAST:event_BTsairActionPerformed
 
     private void BTexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTexcluirActionPerformed
-        // TODO add your handling code here:
+        DAO.remover(lista.get(JTtabela.getSelectedRow()));
+        atualizaTabela();
     }//GEN-LAST:event_BTexcluirActionPerformed
 
     private void BTnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTnovoActionPerformed
-        new Cadastro(this,true,painel).setVisible(true);
+        new Cadastro(this,true,painel).setVisible(true); //o painel continua com os campos preenchidos da ultima chamada
         atualizaTabela();
     }//GEN-LAST:event_BTnovoActionPerformed
 
     private void BTeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTeditarActionPerformed
-        new Cadastro(this,true,painel).setVisible(true);
-        atualizaTabela();
+        if(JTtabela.getSelectedRow() != -1){
+            new Cadastro(this,true,painel,lista.get(JTtabela.getSelectedRow())).setVisible(true);// passando para frente o objeto como parametro
+            painel.preencherCampos(null);
+            atualizaTabela();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um item para editar");
+        }
     }//GEN-LAST:event_BTeditarActionPerformed
 
     /**
@@ -206,14 +213,14 @@ public class Listagem extends javax.swing.JFrame {
     private TemplateLista tl;
     
     private void atualizaTabela() {
-        //lista = DAO.listaNative(classe);
+        lista = DAO.listaNative(classe);
    
-        Object[][] dados= new Object[6][tl.getTitulos().length];
-        /*
+        Object[][] dados= new Object[lista.size()][tl.getTitulos().length];
+        
         for (int i = 0; i < lista.size(); i++) {
             dados[i]=lista.get(i).getDados();
         }
-        */
+        
         JTtabela.setModel(new DefaultTableModel(dados,tl.getTitulos()));
     }
 }

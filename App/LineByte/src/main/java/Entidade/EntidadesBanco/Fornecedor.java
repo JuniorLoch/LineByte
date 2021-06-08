@@ -2,18 +2,28 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name = "tabFornecedor")
 public class Fornecedor implements Serializable,TemplateLista{
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
+    @Column(name = "nome")
     private String nomeFornecedor;
+    
+    @Column(name = "cnpj")
     private String cpnj;
+    
     @OneToOne
+    @JoinColumn(name = "id_endereco")
     private Endereco endereco;
     
 

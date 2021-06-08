@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import Entidade.DAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
  * @author User
  */
 public class TLogin extends javax.swing.JFrame {
-
+    DAO dao = new DAO();
     /**
      * Creates new form Login
      */

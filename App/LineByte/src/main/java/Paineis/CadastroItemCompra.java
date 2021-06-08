@@ -5,14 +5,17 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.ItemCompra;
 import Entidade.EntidadesBanco.ItemVenda;
 import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplateLista;
 import Interfaces.TemplatePainelCadastro;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,6 +37,7 @@ public class CadastroItemCompra extends TemplatePainelCadastro {
             Logger.getLogger(CadastroItemCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
         atualizaTabela();
+        CBproduto.setModel(new DefaultComboBoxModel(DAO.listaNative(Produto.class).toArray()));
     }
 
     /**
@@ -166,14 +170,45 @@ public class CadastroItemCompra extends TemplatePainelCadastro {
     private ItemCompra ic;
     
     public void atualizaTabela() {
-        //lista = DAO.listaNative(classe);
+        lista = DAO.listaNative(ItemCompra.class);
    
         Object[][] dados= new Object[6][ic.getTitulos().length];
-        /*
+        
         for (int i = 0; i < lista.size(); i++) {
             dados[i]=lista.get(i).getDados();
         }
-        */
+        
         JTitemCompra.setModel(new DefaultTableModel(dados,ic.getTitulos()));
+    }
+
+    @Override
+    public Object getObjeto(Object o) {
+        ItemCompra itc;
+        if(o == null){
+            itc = new ItemCompra();
+
+        } else {
+            itc = (ItemCompra) o;
+        }
+        //preenchendo o objeto para salvar, daqui pra baixo voce exclui oq tem e copia tudo do getobjeto() la em cima, tirando
+        // a primeira linha q é a declaracao
+        itc.setCompra(null); //descobrir como colocar a compra selecionada aqui dentro
+        itc.setProduto((Produto) CBproduto.getSelectedItem());
+        itc.setQuantidade(Integer.parseInt(TFquantidade.getText()));
+        return itc;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        if(o == null){
+            TFquantidade.setText("");
+            TFvalor.setText("");
+            CBproduto.setSelectedItem(null);
+        }else{
+            ItemCompra itc = (ItemCompra) o; //coloquei itc pq netbeans tava reclamando
+            TFquantidade.setText(Integer.toString(itc.getQuantidade())); 
+            TFvalor.setText(Float.toString(itc.getProduto().getValor()*itc.getQuantidade())); // vai ter q mudar depois, temporário
+            CBproduto.setSelectedItem(itc.getProduto());
+        }
     }
 }

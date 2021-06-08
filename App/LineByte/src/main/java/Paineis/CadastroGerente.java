@@ -5,10 +5,12 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Gerente;
 import Entidade.EntidadesBanco.Login;
 import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -21,6 +23,8 @@ public class CadastroGerente extends TemplatePainelCadastro {
      */
     public CadastroGerente() {
         initComponents();
+        CBlogin.setModel(new DefaultComboBoxModel(DAO.listaNative(Login.class).toArray()));
+        CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
     }
 
     /**
@@ -92,5 +96,31 @@ public class CadastroGerente extends TemplatePainelCadastro {
         g.setPessoa((Pessoa) CBpessoa.getSelectedItem());
         return g;
         
+    }
+
+    @Override
+    public Object getObjeto(Object o) {
+        Gerente g;
+        if(o == null){
+            g = new Gerente();
+
+        } else {
+            g = (Gerente) o;
+        }
+        g.setLogin((Login) CBlogin.getSelectedItem());
+        g.setPessoa((Pessoa) CBpessoa.getSelectedItem());
+        return g;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        if(o == null){
+            CBlogin.setSelectedItem(null);
+            CBpessoa.setSelectedItem(null);
+        } else {
+            Gerente g = (Gerente) o;
+            CBlogin.setSelectedItem(g.getLogin());
+            CBpessoa.setSelectedItem(g.getPessoa());
+        }
     }
 }

@@ -5,10 +5,15 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Funcionario;
 import Entidade.EntidadesBanco.Pontos;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +27,7 @@ public class CadastroPontos extends TemplatePainelCadastro {
      */
     public CadastroPontos() {
         initComponents();
+        CBfuncionario.setModel(new DefaultComboBoxModel(DAO.listaNative(Funcionario.class).toArray()));
     }
 
     /**
@@ -54,9 +60,17 @@ public class CadastroPontos extends TemplatePainelCadastro {
         LBhoraSaida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBhoraSaida.setText("Hora Saida:");
 
-        FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
-        FTFhoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFhoraEntrada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         try {
             FTFhoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
@@ -129,7 +143,7 @@ public class CadastroPontos extends TemplatePainelCadastro {
     private void FTFhoraSaidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FTFhoraSaidaKeyPressed
         String s = FTFhoraSaida.getText();
         if(s.length() > 0 && Integer.parseInt(s.charAt(0)+"")>2){
-            FTFhoraSaida.setText("");
+            //FTFhoraSaida.setText("");
         }
     }//GEN-LAST:event_FTFhoraSaidaKeyPressed
 
@@ -148,12 +162,68 @@ public class CadastroPontos extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Pontos p = new Pontos();
+        SimpleDateFormat sdfdata = new SimpleDateFormat("dd/MM/YYYY");
         p.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
-        p.setDataPonto(null); // fazer a conversao do formattedtextfield em simpledate
+        try {
+            p.setDataPonto(sdfdata.parse(FTFdata.getText())); // fazer a conversao do formattedtextfield em simpledate
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPontos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        p.setHoraEntrada(null); // como converter a string digitada em TIME
-        p.setHoraSaida(null);// como converter a string digitada em TIME
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        try {
+            p.setHoraEntrada(sdf.parse(FTFhoraEntrada.getText()));
+            p.setHoraSaida(sdf.parse(FTFhoraSaida.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPontos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return p;
+    }
+
+    @Override
+    public Object getObjeto(Object o) {
+        Pontos p;
+        if(o == null){
+            p = new Pontos();
+
+        } else {
+            p = (Pontos) o;
+        }
+        //nomes dos campos da tela
+        SimpleDateFormat sdfdata = new SimpleDateFormat("dd/MM/YYYY");
+        p.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
+        try {
+            p.setDataPonto(sdfdata.parse(FTFdata.getText())); // fazer a conversao do formattedtextfield em simpledate
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPontos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        try {
+            p.setHoraEntrada(sdf.parse(FTFhoraEntrada.getText()));
+            p.setHoraSaida(sdf.parse(FTFhoraSaida.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroPontos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        SimpleDateFormat sdfdata = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat sdfhora = new SimpleDateFormat("hh:mm");
+        if(o == null){
+            FTFdata.setText("");
+            FTFhoraEntrada.setText("");
+            FTFhoraSaida.setText("");
+            CBfuncionario.setSelectedItem(null);
+        }else{
+            Pontos p = (Pontos) o;
+            FTFdata.setText(sdfdata.format(p.getDataPonto()));
+            FTFhoraEntrada.setText(sdfhora.format(p.getHoraEntrada()));
+            FTFhoraSaida.setText(sdfhora.format(p.getHoraSaida()));
+            CBfuncionario.setSelectedItem(p.getFuncionario());
+        }
     }
 }

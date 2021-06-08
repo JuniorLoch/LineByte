@@ -5,9 +5,15 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Despesa;
 import Entidade.EntidadesBanco.TipoDespesa;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -20,6 +26,7 @@ public class CadastroDespesa extends TemplatePainelCadastro {
      */
     public CadastroDespesa() {
         initComponents();
+        CBcategoria.setModel(new DefaultComboBoxModel(DAO.listaNative(TipoDespesa.class).toArray()));
     }
 
     /**
@@ -60,7 +67,11 @@ public class CadastroDespesa extends TemplatePainelCadastro {
 
         CBpago.setText("Sim");
 
-        FTFvencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFvencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         FTFvencimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FTFvencimentoActionPerformed(evt);
@@ -151,11 +162,57 @@ public class CadastroDespesa extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Despesa d = new Despesa();
-        d.setDataVencimento(null);//precisa saber como fazer aquela conversao com simpledateformat
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            d.setDataVencimento(sdf.parse(FTFvencimento.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroDespesa.class.getName()).log(Level.SEVERE, null, ex);
+        }
         d.setNome(TFnome.getText());
         d.setPago(CBpago.isSelected());
         d.setTipoDespesa((TipoDespesa)CBcategoria.getSelectedItem());
         d.setValor(Float.parseFloat(TFvalor.getText()));
         return d;
+    }
+
+    @Override
+    public Object getObjeto(Object o) {
+        Despesa d;
+        if(o == null){
+            d = new Despesa();
+
+        } else {
+            d = (Despesa) o;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            d.setDataVencimento(sdf.parse(FTFvencimento.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroDespesa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        d.setNome(TFnome.getText());
+        d.setPago(CBpago.isSelected());
+        d.setTipoDespesa((TipoDespesa)CBcategoria.getSelectedItem());
+        d.setValor(Float.parseFloat(TFvalor.getText()));
+        return d;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // se houver algum campo de data isso é necessario
+        if(o == null){
+            TFnome.setText("");
+            TFvalor.setText("");
+            FTFvencimento.setText(""); 
+            CBcategoria.setSelectedItem(null); 
+            CBpago.setSelected(false); 
+        }else{
+            Despesa d = (Despesa) o;
+            TFnome.setText(d.getNome());
+            TFvalor.setText(d.getValor().toString());
+            FTFvencimento.setText(sdf.format(d.getDataVencimento())); 
+            CBcategoria.setSelectedItem(d.getTipoDespesa()); 
+            CBpago.setSelected(d.getPago()); 
+        }
     }
 }

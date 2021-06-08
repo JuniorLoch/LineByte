@@ -3,13 +3,15 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity(name = "tablogin")
 public class Login implements Serializable,TemplateLista{
     
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
     private String usuario;

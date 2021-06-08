@@ -2,11 +2,14 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,21 +18,27 @@ import javax.persistence.TemporalType;
 public class Venda implements Serializable,TemplateLista {
     
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     //ajustar para @ManyToOne
     @ManyToOne
+    @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
     
+    @Column(name = "valor_venda")
     private Float valorVenda;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_venda")
     private Date dataVenda;
     
     //ajustar para @ManyToOne
     @ManyToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
     
+    @Column(name = "nota_fiscal")
     private String notaFiscal;
 
     public Integer getId() {

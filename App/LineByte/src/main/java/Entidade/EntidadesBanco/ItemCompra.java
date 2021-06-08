@@ -3,18 +3,24 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity(name = "tabitem_compra")
+@Entity(name = "tabitemcompra")
 public class ItemCompra implements Serializable,TemplateLista{
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     @ManyToOne
+    @JoinColumn(name = "id_produto")
     private Produto produto;
     
     @ManyToOne
+    @JoinColumn(name = "id_compra")
     private Compra compra;
     
     private Integer quantidade;

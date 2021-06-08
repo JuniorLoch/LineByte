@@ -5,10 +5,17 @@
  */
 package Paineis;
 
+import Entidade.DAO;
 import Entidade.EntidadesBanco.Cliente;
 import Entidade.EntidadesBanco.Funcionario;
+import Entidade.EntidadesBanco.Produto;
 import Entidade.EntidadesBanco.Venda;
 import Interfaces.TemplatePainelCadastro;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -21,6 +28,8 @@ public class CadastroVenda extends TemplatePainelCadastro {
      */
     public CadastroVenda() {
         initComponents();
+        CBcliente.setModel(new DefaultComboBoxModel(DAO.listaNative(Cliente.class).toArray()));
+        CBfuncionario.setModel(new DefaultComboBoxModel(DAO.listaNative(Funcionario.class).toArray()));
     }
 
     /**
@@ -59,7 +68,11 @@ public class CadastroVenda extends TemplatePainelCadastro {
         LBnotaFiscal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBnotaFiscal.setText("Nota Fiscal:");
 
-        FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         LBvalor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBvalor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -87,25 +100,24 @@ public class CadastroVenda extends TemplatePainelCadastro {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CBcliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(LBdata)
-                        .addGap(18, 18, 18)
-                        .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 251, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(LBfuncionario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CBfuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(CBfuncionario, 0, 351, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LBnotaFiscal)
                         .addGap(18, 18, 18)
-                        .addComponent(TFnotaFiscal))
+                        .addComponent(TFnotaFiscal)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(LBdata)
+                        .addGap(18, 18, 18)
+                        .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(LBvalor)
                         .addGap(18, 18, 18)
-                        .addComponent(LBvalorVendaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(LBvalorVendaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +125,9 @@ public class CadastroVenda extends TemplatePainelCadastro {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBcliente)
-                    .addComponent(LBnotaFiscal)
-                    .addComponent(TFnotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CBcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LBdata)
+                    .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LBfuncionario)
@@ -124,15 +136,15 @@ public class CadastroVenda extends TemplatePainelCadastro {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LBdata)
-                            .addComponent(FTFdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LBnotaFiscal)
+                            .addComponent(TFnotaFiscal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LBvalor)
                             .addComponent(LBvalorVendaDinamico))
-                        .addGap(19, 19, 19))))
+                        .addGap(22, 22, 22))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,11 +165,55 @@ public class CadastroVenda extends TemplatePainelCadastro {
     @Override
     public Object getObjeto() {
         Venda v = new Venda();
-        v.setCliente((Cliente) CBcliente.getSelectedItem());
-        v.setDataVenda(null);// precisa fazer o role do simpledate format esqueci como faz
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        v.setCliente((Cliente) CBcliente.getSelectedItem());        
+        try {
+            v.setDataVenda(sdf.parse(FTFdata.getText()));// precisa fazer o role do simpledate format esqueci como faz
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
         v.setNotaFiscal(TFnotaFiscal.getText());
         v.setValorVenda(Float.parseFloat(LBvalor.getText()));
         return v;
+    }
+
+    @Override
+    public Object getObjeto(Object o) {
+        Venda v;
+        if(o == null){
+            v = new Venda();
+
+        } else {
+            v = (Venda) o;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        v.setCliente((Cliente) CBcliente.getSelectedItem());        
+        try {
+            v.setDataVenda(sdf.parse(FTFdata.getText()));// precisa fazer o role do simpledate format esqueci como faz
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        v.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
+        v.setNotaFiscal(TFnotaFiscal.getText());
+        v.setValorVenda(Float.parseFloat(LBvalor.getText()));
+        return v;
+    }
+
+    @Override
+    public void preencherCampos(Object o) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        if(o == null){
+            TFnotaFiscal.setText("");
+            FTFdata.setText("");
+            CBcliente.setSelectedItem(null);
+            CBfuncionario.setSelectedItem(null);
+        }else{
+            Venda v = (Venda) o;
+            TFnotaFiscal.setText(v.getNotaFiscal());
+            FTFdata.setText(sdf.format(v.getDataVenda()));
+            CBcliente.setSelectedItem(v.getCliente());
+            CBfuncionario.setSelectedItem(v.getFuncionario());
+        }
     }
 }

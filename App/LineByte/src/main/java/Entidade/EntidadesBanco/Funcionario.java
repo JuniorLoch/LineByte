@@ -2,9 +2,13 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -14,19 +18,29 @@ import javax.persistence.TemporalType;
 public class Funcionario implements Serializable,TemplateLista{
     
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
     @OneToOne
+    @JoinColumn(name = "id_pessoa")
     private Pessoa pessoa;
     
     @ManyToOne
+    @JoinColumn(name = "id_cargo")
     private Cargo cargo;
     
     @OneToOne
+    @JoinColumn(name = "id_login")
     private Login login;
     
     @Temporal(TemporalType.DATE)
+    @Column(name = "data_admissao")
     private Date dataAdmissao;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_demissao")
+    private Date dataDemissao;
+    
     
     private String descricao;
 
@@ -62,6 +76,14 @@ public class Funcionario implements Serializable,TemplateLista{
         this.login = login;
     }
 
+    public Date getDataDemissao() {
+        return dataDemissao;
+    }
+
+    public void setDataDemissao(Date dataDemissao) {
+        this.dataDemissao = dataDemissao;
+    }
+
     public Date getDataAdmissao() {
         return dataAdmissao;
     }
@@ -80,12 +102,12 @@ public class Funcionario implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,pessoa,cargo,login,dataAdmissao,descricao};
+        return new Object[]{id,pessoa,cargo,login,dataAdmissao,dataDemissao,descricao};
     }
 
     @Override
     public String[] getTitulos() {
-        return new String[]{"ID","Pessoa","Cargo","Login","DataAdmissao","Descricao"};
+        return new String[]{"ID","Pessoa","Cargo","Login","DataAdmissao","DataDemissao","Descricao"};
     }
 
     @Override
