@@ -100,11 +100,27 @@ public class CadastroGerente extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gerente g;
+        if(o == null){
+            g = new Gerente();
+
+        } else {
+            g = (Gerente) o;
+        }
+        g.setLogin((Login) CBlogin.getSelectedItem());
+        g.setPessoa((Pessoa) CBpessoa.getSelectedItem());
+        return g;
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(o == null){
+            CBlogin.setSelectedItem(null);
+            CBpessoa.setSelectedItem(null);
+        } else {
+            Gerente g = (Gerente) o;
+            CBlogin.setSelectedItem(g.getLogin());
+            CBpessoa.setSelectedItem(g.getPessoa());
+        }
     }
 }

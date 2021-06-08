@@ -103,10 +103,10 @@ public class CadastroCliente extends TemplatePainelCadastro {
     @Override
     public void preencherCampos(Object o) {
        if(o == null){
-            
+            CBpessoa.setSelectedItem(null);
         }else{
             Cliente c = (Cliente) o;
-            CBpessoa.setSelectedItem(c);
+            CBpessoa.setSelectedItem(c.getPessoa());
         }
     }
 }

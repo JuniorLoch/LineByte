@@ -250,8 +250,8 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
         }else{
             Funcionario f = (Funcionario) o; // declara o objeto
             TFdescricao.setText(f.getDescricao());
-            FTFdataDemissao.setText(f.getDataDemissao().toString());
-            FTFdataAdmissao.setText(f.getDataAdmissao().toString());
+            FTFdataDemissao.setText(sdf.format(f.getDataDemissao())+"");
+            FTFdataAdmissao.setText(sdf.format(f.getDataAdmissao())+"");
             CBpessoa.setSelectedItem(f.getPessoa());
             CBlogin.setSelectedItem(f.getLogin());
             CBcargo.setSelectedItem(f.getCargo());

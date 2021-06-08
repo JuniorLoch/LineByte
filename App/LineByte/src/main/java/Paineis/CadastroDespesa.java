@@ -177,11 +177,42 @@ public class CadastroDespesa extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Despesa d;
+        if(o == null){
+            d = new Despesa();
+
+        } else {
+            d = (Despesa) o;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            d.setDataVencimento(sdf.parse(FTFvencimento.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroDespesa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        d.setNome(TFnome.getText());
+        d.setPago(CBpago.isSelected());
+        d.setTipoDespesa((TipoDespesa)CBcategoria.getSelectedItem());
+        d.setValor(Float.parseFloat(TFvalor.getText()));
+        return d;
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // se houver algum campo de data isso é necessario
+        if(o == null){
+            TFnome.setText("");
+            TFvalor.setText("");
+            FTFvencimento.setText(""); 
+            CBcategoria.setSelectedItem(null); 
+            CBpago.setSelected(false); 
+        }else{
+            Despesa d = (Despesa) o;
+            TFnome.setText(d.getNome());
+            TFvalor.setText(d.getValor().toString());
+            FTFvencimento.setText(sdf.format(d.getDataVencimento())); 
+            CBcategoria.setSelectedItem(d.getTipoDespesa()); 
+            CBpago.setSelected(d.getPago()); 
+        }
     }
 }

@@ -180,11 +180,40 @@ public class CadastroVenda extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Venda v;
+        if(o == null){
+            v = new Venda();
+
+        } else {
+            v = (Venda) o;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        v.setCliente((Cliente) CBcliente.getSelectedItem());        
+        try {
+            v.setDataVenda(sdf.parse(FTFdata.getText()));// precisa fazer o role do simpledate format esqueci como faz
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        v.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
+        v.setNotaFiscal(TFnotaFiscal.getText());
+        v.setValorVenda(Float.parseFloat(LBvalor.getText()));
+        return v;
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        if(o == null){
+            TFnotaFiscal.setText("");
+            FTFdata.setText("");
+            CBcliente.setSelectedItem(null);
+            CBfuncionario.setSelectedItem(null);
+        }else{
+            Venda v = (Venda) o;
+            TFnotaFiscal.setText(v.getNotaFiscal());
+            FTFdata.setText(sdf.format(v.getDataVenda()));
+            CBcliente.setSelectedItem(v.getCliente());
+            CBfuncionario.setSelectedItem(v.getFuncionario());
+        }
     }
 }

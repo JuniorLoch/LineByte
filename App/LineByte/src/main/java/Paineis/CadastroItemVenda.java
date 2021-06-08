@@ -184,11 +184,31 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ItemVenda itv;
+        if(o == null){
+            itv = new ItemVenda();
+
+        } else {
+            itv = (ItemVenda) o;
+        }
+        itv.setProduto((Produto) CBproduto.getSelectedItem());
+        itv.setQuantidade(Integer.parseInt(TFquantidade.getText()));
+        itv.setValor(Float.parseFloat(TFvalor.getText()));
+        itv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
+        return itv;
     }
 
     @Override
     public void preencherCampos(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(o == null){
+            TFquantidade.setText("");
+            TFvalor.setText("");
+            CBproduto.setSelectedItem(null);
+        }else{
+            ItemVenda itv = (ItemVenda) o; //coloquei ivc pq netbeans tava reclamando
+            TFquantidade.setText(Integer.toString(itv.getQuantidade())); 
+            TFvalor.setText(Float.toString(itv.getProduto().getValor()*itv.getQuantidade())); //acho q vai ter q mudar depois, temporário
+            CBproduto.setSelectedItem(itv.getProduto());
+        }
     }
 }

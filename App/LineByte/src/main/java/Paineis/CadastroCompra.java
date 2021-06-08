@@ -179,11 +179,12 @@ public class CadastroCompra extends TemplatePainelCadastro {
         if(o == null){
             TFnotaFiscal.setText("");
             FTFdata.setText("");
+            CBfornecedor.setSelectedItem(null);
         }else{
             Compra c = (Compra) o;
             TFnotaFiscal.setText(c.getNotaFiscal());
             FTFdata.setText(c.getDataCompra().toString());
-            CBfornecedor.setSelectedItem(c);
+            CBfornecedor.setSelectedItem(c.getFornecedor());
         }
     }
 }

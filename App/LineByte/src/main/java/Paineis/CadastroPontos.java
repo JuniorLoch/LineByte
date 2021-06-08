@@ -211,15 +211,19 @@ public class CadastroPontos extends TemplatePainelCadastro {
 
     @Override
     public void preencherCampos(Object o) {
+        SimpleDateFormat sdfdata = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat sdfhora = new SimpleDateFormat("hh:mm");
         if(o == null){
             FTFdata.setText("");
             FTFhoraEntrada.setText("");
             FTFhoraSaida.setText("");
+            CBfuncionario.setSelectedItem(null);
         }else{
             Pontos p = (Pontos) o;
-            FTFdata.setText(p.getDataPonto().toString());
-            FTFhoraEntrada.setText(p.getHoraEntrada().toString());
-            FTFhoraSaida.setText(p.getHoraSaida().toString());
+            FTFdata.setText(sdfdata.format(p.getDataPonto()));
+            FTFhoraEntrada.setText(sdfhora.format(p.getHoraEntrada()));
+            FTFhoraSaida.setText(sdfhora.format(p.getHoraSaida()));
+            CBfuncionario.setSelectedItem(p.getFuncionario());
         }
     }
 }

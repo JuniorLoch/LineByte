@@ -102,12 +102,12 @@ public class Funcionario implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,pessoa,cargo,login,dataAdmissao,descricao};
+        return new Object[]{id,pessoa,cargo,login,dataAdmissao,dataDemissao,descricao};
     }
 
     @Override
     public String[] getTitulos() {
-        return new String[]{"ID","Pessoa","Cargo","Login","DataAdmissao","Descricao"};
+        return new String[]{"ID","Pessoa","Cargo","Login","DataAdmissao","DataDemissao","Descricao"};
     }
 
     @Override
