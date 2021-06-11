@@ -3,6 +3,8 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity(name = "tabvenda")
 public class Venda implements Serializable,TemplateLista {
+
+    public Venda() {
+        itemVendas = new LinkedList<>();
+    }
+
+    @OneToMany(mappedBy = "venda")
+    private List<ItemVenda> itemVendas;
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
@@ -41,6 +51,18 @@ public class Venda implements Serializable,TemplateLista {
     @Column(name = "nota_fiscal")
     private String notaFiscal;
 
+    public List<ItemVenda> getItemVendas() {
+        return itemVendas;
+    }
+
+    public void setItemVendas(List<ItemVenda> itemVendas) {
+        this.itemVendas = itemVendas;
+    }
+
+    public void setItemVendas(ItemVenda itemVendas) { // sobrecarga para aceitar a adicao de um item na lista
+        this.itemVendas.add(itemVendas);
+    }
+    
     public Integer getId() {
         return id;
     }

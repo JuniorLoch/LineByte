@@ -9,6 +9,7 @@ import Entidade.DAO;
 import Entidade.EntidadesBanco.Cliente;
 import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
+import Telas.Cadastro;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -23,6 +24,7 @@ public class CadastroCliente extends TemplatePainelCadastro {
     public CadastroCliente() {
         initComponents();
         CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
+        CBpessoa.addItem("novo");
     }
 
     /**
@@ -42,6 +44,11 @@ public class CadastroCliente extends TemplatePainelCadastro {
         LBpessoa.setText("Pessoa:");
 
         CBpessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBpessoa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBpessoaItemStateChanged(evt);
+            }
+        });
         CBpessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBpessoaActionPerformed(evt);
@@ -71,8 +78,16 @@ public class CadastroCliente extends TemplatePainelCadastro {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CBpessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBpessoaActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_CBpessoaActionPerformed
+
+    private void CBpessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBpessoaItemStateChanged
+        if("novo".equals(CBpessoa.getSelectedItem()+"")){
+            CadastroPessoa CP;
+            new Cadastro(null, true, CP = new CadastroPessoa()).setVisible(true);
+            CBpessoa.getModel().setSelectedItem(CP.getObjeto(null));
+        }
+    }//GEN-LAST:event_CBpessoaItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -96,7 +111,8 @@ public class CadastroCliente extends TemplatePainelCadastro {
         } else {
             c = (Cliente) o;
         }
-        c.setPessoa((Pessoa) CBpessoa.getSelectedItem());
+       
+            c.setPessoa((Pessoa) CBpessoa.getSelectedItem());
         return c;
     }
 

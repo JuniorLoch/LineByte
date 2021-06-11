@@ -16,7 +16,6 @@ public class ItemVenda implements Serializable,TemplateLista{
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
-    
     @ManyToOne
     @JoinColumn(name = "id_produto")
     private Produto produto;

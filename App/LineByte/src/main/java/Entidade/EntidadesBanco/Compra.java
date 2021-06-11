@@ -3,6 +3,7 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,10 @@ import javax.persistence.TemporalType;
 
 @Entity(name = "tabcompra")
 public class Compra implements Serializable,TemplateLista{
+
+    public Compra() {
+        itemCompras = new LinkedList<>();
+    }
     
     @OneToMany(mappedBy = "compra",fetch = FetchType.LAZY)
     private List<ItemCompra> itemCompras;
@@ -46,6 +51,10 @@ public class Compra implements Serializable,TemplateLista{
 
     public void setItemCompras(List<ItemCompra> itemCompras) {
         this.itemCompras = itemCompras;
+    }
+    
+    public void setItemCompras(ItemCompra itemCompras) {
+        this.itemCompras.add(itemCompras);
     }
 
     public Integer getId() {

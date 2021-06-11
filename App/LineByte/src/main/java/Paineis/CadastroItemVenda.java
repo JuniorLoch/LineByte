@@ -158,12 +158,12 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto() {
-        ItemVenda iv = new ItemVenda();
-        iv.setProduto((Produto) CBproduto.getSelectedItem());
-        iv.setQuantidade(Integer.parseInt(TFquantidade.getText()));
-        iv.setValor(Float.parseFloat(TFvalor.getText()));
-        iv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
-        return iv;
+        ItemVenda itv = new ItemVenda();
+        itv.setProduto((Produto) CBproduto.getSelectedItem());
+        itv.setQuantidade(Integer.parseInt(TFquantidade.getText()));
+        itv.setValor(Float.parseFloat(TFvalor.getText()));
+        itv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
+        return itv;
         
     }
     
@@ -195,6 +195,7 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
         itv.setQuantidade(Integer.parseInt(TFquantidade.getText()));
         itv.setValor(Float.parseFloat(TFvalor.getText()));
         itv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
+        
         return itv;
     }
 
@@ -205,9 +206,9 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
             TFvalor.setText("");
             CBproduto.setSelectedItem(null);
         }else{
-            ItemVenda itv = (ItemVenda) o; //coloquei ivc pq netbeans tava reclamando
+            ItemVenda itv = (ItemVenda) o; //coloquei itv pq netbeans tava reclamando
             TFquantidade.setText(Integer.toString(itv.getQuantidade())); 
-            TFvalor.setText(Float.toString(itv.getProduto().getValor()*itv.getQuantidade())); //acho q vai ter q mudar depois, temporário
+            TFvalor.setText(Float.toString(itv.getProduto().getValor()*itv.getQuantidade())); //acho q vai ter q mudar depois
             CBproduto.setSelectedItem(itv.getProduto());
         }
     }
