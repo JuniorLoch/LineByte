@@ -24,7 +24,7 @@ public class CadastroCliente extends TemplatePainelCadastro {
     public CadastroCliente() {
         initComponents();
         CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
-        CBpessoa.addItem("novo");
+        CBpessoa.addItem("novo");// colar no resto dos construtores que possuem combobox
     }
 
     /**
@@ -82,6 +82,7 @@ public class CadastroCliente extends TemplatePainelCadastro {
     }//GEN-LAST:event_CBpessoaActionPerformed
 
     private void CBpessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBpessoaItemStateChanged
+        // fazer isso com todas as combobox
         if("novo".equals(CBpessoa.getSelectedItem()+"")){
             CadastroPessoa CP;
             new Cadastro(null, true, CP = new CadastroPessoa()).setVisible(true);

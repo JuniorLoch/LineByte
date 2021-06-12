@@ -5,12 +5,15 @@
  */
 package Telas;
 
+import Entidade.DAO;
+import Entidade.EntidadesBanco.Venda;
 import Interfaces.TemplateLista;
 import Interfaces.TemplatePainelCadastro;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +23,7 @@ public class VendaCompra extends javax.swing.JDialog {
 
     private TemplatePainelCadastro painelVendaCompra;
     private TemplatePainelCadastro painelItem;
+    private Object dado;
     
     /**
      * Creates new form VendaCompra
@@ -138,11 +142,15 @@ public class VendaCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_BTsairActionPerformed
 
     private void BTsalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsalvar1ActionPerformed
-        // TODO add your handling code here:
+        dado = painelVendaCompra.getObjeto();
+        painelVendaCompra.getObjeto(painelItem.getObjeto(dado));//só pra nao passar nulo, quero que adiciona o item na tabela
     }//GEN-LAST:event_BTsalvar1ActionPerformed
 
     private void BTsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsalvarActionPerformed
-        // TODO add your handling code here:
+        //Object dados = painelVendaCompra.getObjeto(painelItem.getObjeto(painelVendaCompra.getObjeto()));
+        DAO.salvar(dado);
+        JOptionPane.showMessageDialog(null, "Venda salva com sucesso!");
+        dispose();
     }//GEN-LAST:event_BTsalvarActionPerformed
 
     
