@@ -2,6 +2,7 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class ItemCompra implements Serializable,TemplateLista{
     @JoinColumn(name = "id_compra")
     private Compra compra;
     
+    @Column(name = "quantidade")
     private Integer quantidade;
 
     public Integer getId() {

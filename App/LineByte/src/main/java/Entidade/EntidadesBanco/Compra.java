@@ -39,10 +39,10 @@ public class Compra implements Serializable,TemplateLista{
     @JoinColumn(name = "id_fornecedor")
     private Fornecedor fornecedor;
     
-    @Column(name = "valor_total")
+    @Column(name = "valor_compra")
     private Double valorTotal;
     
-    @Column(name = "nota_fiscal")
+    @Column(name = "nota_fiscal", length = 70)
     private String notaFiscal;
 
     public List<ItemCompra> getItemCompras() {

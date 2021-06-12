@@ -41,7 +41,7 @@ public class Funcionario implements Serializable,TemplateLista{
     @Column(name = "data_demissao")
     private Date dataDemissao;
     
-    
+    @Column(name = "descricao", length = 300)
     private String descricao;
 
     public int getId() {

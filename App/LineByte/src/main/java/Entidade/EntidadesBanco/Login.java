@@ -2,6 +2,7 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,10 @@ public class Login implements Serializable,TemplateLista{
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "usuario", length = 10)
     private String usuario;
+    
+    @Column(name = "senha", length = 10)
     private String senha;
 
     public int getId() {

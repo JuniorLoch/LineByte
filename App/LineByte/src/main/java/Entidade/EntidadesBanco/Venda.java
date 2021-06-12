@@ -48,7 +48,7 @@ public class Venda implements Serializable,TemplateLista {
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
     
-    @Column(name = "nota_fiscal")
+    @Column(name = "nota_fiscal", length = 70)
     private String notaFiscal;
 
     public List<ItemVenda> getItemVendas() {

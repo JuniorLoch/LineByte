@@ -16,11 +16,11 @@ public class Fornecedor implements Serializable,TemplateLista{
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
-    @Column(name = "nome")
+    @Column(name = "nome", length = 200)
     private String nomeFornecedor;
     
-    @Column(name = "cnpj")
-    private String cpnj;
+    @Column(name = "cnpj", length = 20)
+    private String cpnj;//cPNj = cNPjo cara colocou CPNJ mas na verdade eh CNPJ Bom dia!
     
     @OneToOne
     @JoinColumn(name = "id_endereco")

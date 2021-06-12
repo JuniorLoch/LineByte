@@ -21,20 +21,24 @@ public class Pessoa implements Serializable,TemplateLista{
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
+    @Column(name = "nome", length = 200)
     private String nome;
     
     @OneToOne
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
+    @Column(name = "cpf", length = 20)
     private String cpf;
 
+    @Column(name = "rg", length = 20)
     private String rg;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "data_nasc")
     private Date dataNasc;
 
+    @Column(name = "sexo")
     private String sexo;
 
     public Integer getId() {

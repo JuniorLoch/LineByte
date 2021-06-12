@@ -2,6 +2,7 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,12 +13,26 @@ public class Endereco implements Serializable,TemplateLista{
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
+    
+    @Column(name = "cidade", length = 50)
     private String cidade;
+    
+    @Column(name = "estado", length = 50)
     private String estado;
+    
+    @Column(name = "bairro", length = 50)
     private String bairro;
+    
+    @Column(name = "rua", length = 50)
     private String rua;
+    
+    @Column(name = "numero", length = 10)
     private String numero;
+    
+    @Column(name = "cep", length = 12)
     private String cep;
+    
+    @Column(name = "complemento", length = 1000)
     private String complemento;
 
     public int getId() {

@@ -27,8 +27,13 @@ public class Despesa implements Serializable,TemplateLista{
     @Column(name = "data_vencimento")
     private Date dataVencimento;
     
+    @Column(name = "pago")
     private Boolean pago;
+    
+    @Column(name = "nome", length = 200)
     private String nome;
+    
+    @Column(name = "valor")
     private Float valor;
     
     public Float getValor() {
