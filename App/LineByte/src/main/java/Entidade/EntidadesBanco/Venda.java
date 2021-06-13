@@ -28,7 +28,7 @@ public class Venda implements Serializable,TemplateLista {
     private List<ItemVenda> itemVendas;
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     //ajustar para @ManyToOne
@@ -36,11 +36,11 @@ public class Venda implements Serializable,TemplateLista {
     @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
     
-    @Column(name = "valor_venda")
+    @Column(name = "valor")
     private Float valorVenda;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_venda")
+    @Column(name = "datad")
     private Date dataVenda;
     
     //ajustar para @ManyToOne

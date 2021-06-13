@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 @Entity(name = "tabdespesa")
 public class Despesa implements Serializable,TemplateLista{
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne
@@ -24,7 +24,7 @@ public class Despesa implements Serializable,TemplateLista{
     private TipoDespesa tipoDespesa;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_vencimento")
+    @Column(name = "datad")
     private Date dataVencimento;
     
     @Column(name = "pago")

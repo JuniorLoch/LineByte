@@ -44,7 +44,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="SPdadosAnalize" min="-2" pref="904" max="-2" attributes="0"/>
+                          <Component id="SPdadosAnalize" alignment="0" min="-2" pref="904" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -57,7 +57,7 @@
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="BTanalizeCompra" min="-2" pref="150" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -72,19 +72,22 @@
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="LBdataFinal" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="FTFdataFinal" max="32767" attributes="0"/>
+                                              <Component id="FTFdataFinal" min="-2" pref="144" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <Component id="LBfiltros" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="BTaplicarFiltros" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="BTsair" min="-2" pref="129" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="BTsair" alignment="1" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="BTaplicarFiltros" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -106,24 +109,20 @@
                   <Component id="BTsair" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="LBfiltros" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="LBdataInicial" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="LBcodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="TFcodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="FTFdataInicial" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="LBdataFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="FTFdataFinal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Component id="BTaplicarFiltros" max="32767" attributes="0"/>
-              </Group>
+              <Component id="LBfiltros" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="LBdataInicial" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="LBcodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TFcodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="FTFdataInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LBdataFinal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="FTFdataFinal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BTaplicarFiltros" alignment="3" pref="26" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="SPdadosAnalize" min="-2" pref="327" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="LBtotais" min="-2" max="-2" attributes="0"/>
@@ -136,7 +135,7 @@
                   </Group>
                   <Component id="TFvalor" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -222,7 +221,7 @@
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Data FInal:"/>
+        <Property name="text" type="java.lang.String" value="Data Final:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LBcodigo">
@@ -290,6 +289,11 @@
           <Format subtype="1" type="1"/>
         </Property>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="LBcodigo"/>
+        </Property>
+      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="FTFdataInicial">
       <Properties>

@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class TipoDespesa implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column(name = "nome", length = 200)

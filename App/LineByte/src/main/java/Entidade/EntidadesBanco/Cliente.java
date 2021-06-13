@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 @Entity(name = "tabcliente")
 public class Cliente implements Serializable,TemplateLista{
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @OneToOne

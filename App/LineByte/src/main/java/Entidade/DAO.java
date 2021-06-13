@@ -49,6 +49,23 @@ public class DAO {
         return  em.createNativeQuery("select * from tab"+c.getSimpleName(),c).getResultList();
     }
     
+    public static void criaView(){ //como fazer com que a querry pegue o padrao do banco
+        em.createNativeQuery("create or replace view vw_financeiro as " +
+        " select tc.id, tc.datad as período, tc.valor*-1,'compra' as tipo from tabcompra tc " +
+        " union all " +
+        " select tv.id, tv.datad as período, tv.valor,'venda' as tipo from tabvenda tv " +
+        " union all " +
+        " select td.id, td.datad as período, td.valor*-1,'despesa' as tipo from tabdespesa td ");
+    }
+    
+    public static List listaView(){ //como fazer com que a querry pegue o padrao do banco
+        return  em.createNativeQuery("select * from vw_financeiro").getResultList();
+    }
+    
+    public static List listaNative(Class c,String sql){ //como fazer com que a querry pegue o padrao do banco
+        return  em.createNativeQuery("select * from tab"+c.getSimpleName()+" o where 1=1 and "+sql+" ",c).getResultList();
+    }
+    
     public static List listarItemVenda(){ 
         return  em.createNativeQuery("select * from tabvenda o join tabitem_venda i on i.id_venda=o.id").getResultList();
     }

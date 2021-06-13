@@ -87,7 +87,11 @@ public class CadastroCliente extends TemplatePainelCadastro {
         if("novo".equals(CBpessoa.getSelectedItem()+"") && check == true){
             CadastroPessoa CP;
             new Cadastro(null, true, CP = new CadastroPessoa()).setVisible(true);
-            CBpessoa.getModel().setSelectedItem(CP.getObjeto(null));
+            CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
+            CBpessoa.setSelectedItem(CP.getObjeto(null));
+            check = false;
+            CBpessoa.addItem("novo");
+            check = true;
         }
     }//GEN-LAST:event_CBpessoaItemStateChanged
 

@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class Pontos implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne

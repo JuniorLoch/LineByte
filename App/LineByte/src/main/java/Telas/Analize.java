@@ -32,6 +32,8 @@ public class Analize extends javax.swing.JFrame {
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }
+        DAO.criaView(); // isso é executado mas nao é criada a view para pegar no atualizatabela
+        BTanalizeFinanceira.setVisible(false);// escondendo o botao para deixar o código aqui ainda
         atualizaTabela();
     }
     /**
@@ -113,7 +115,7 @@ public class Analize extends javax.swing.JFrame {
 
         LBdataFinal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBdataFinal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LBdataFinal.setText("Data FInal:");
+        LBdataFinal.setText("Data Final:");
 
         LBcodigo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         LBcodigo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -182,7 +184,7 @@ public class Analize extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(SPdadosAnalize, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SPdadosAnalize, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -193,7 +195,7 @@ public class Analize extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(TFcodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
                                         .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(BTanalizeCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
@@ -207,14 +209,16 @@ public class Analize extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(LBdataFinal)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(FTFdataFinal))))
+                                                .addComponent(FTFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addComponent(LBfiltros))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(BTaplicarFiltros)
-                                        .addGap(115, 115, 115))
-                                    .addComponent(BTsair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(BTsair, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BTaplicarFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addContainerGap(33, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -228,20 +232,18 @@ public class Analize extends javax.swing.JFrame {
                     .addComponent(BTanalizeFinanceira, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTsair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LBfiltros)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LBdataInicial, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(LBcodigo)
-                                .addComponent(TFcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(FTFdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(LBdataFinal)
-                                .addComponent(FTFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(BTaplicarFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LBfiltros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LBdataInicial, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(LBcodigo)
+                        .addComponent(TFcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(FTFdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LBdataFinal)
+                        .addComponent(FTFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BTaplicarFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SPdadosAnalize, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LBtotais)
@@ -252,8 +254,10 @@ public class Analize extends javax.swing.JFrame {
                         .addComponent(LBvalor)
                         .addComponent(TFquantidadeRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(TFvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                .addContainerGap())
         );
+
+        FTFdataFinal.getAccessibleContext().setAccessibleParent(LBcodigo);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -269,7 +273,7 @@ public class Analize extends javax.swing.JFrame {
     }//GEN-LAST:event_BTanalizeDespesaActionPerformed
 
     private void BTanalizeFinanceiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeFinanceiraActionPerformed
-        // TODO add your handling code here:
+        atualizaTabelaView();
     }//GEN-LAST:event_BTanalizeFinanceiraActionPerformed
 
     private void BTanalizeVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeVendaActionPerformed
@@ -363,6 +367,23 @@ public class Analize extends javax.swing.JFrame {
         
         for (int i = 0; i < lista.size(); i++) {
             dados[i]=lista.get(i).getDados();
+        }
+        
+        JTanalize.setModel(new DefaultTableModel(dados,tl.getTitulos()));
+    }
+    
+    
+    
+    private void atualizaTabelaView() {
+        lista = DAO.listaView();
+        
+        String Titulos[] = new String[] {"Id", "Período", "valor", "tipo"};
+        Object[][] dados= new Object[lista.size()][Titulos.length];
+        
+        for (int i = 0; i < lista.size(); i++) {
+            dados[i]=lista.get(i).getDados();
+//          nao conseguimos prosseguir a partir desse ponto, pelo jeito o eclipse nao pega dados de views, 
+//          tentei pesquisar mas só achei pessoas com o mesmo problema sem solucao mudando pro  hibernate que nao sei usar
         }
         
         JTanalize.setModel(new DefaultTableModel(dados,tl.getTitulos()));

@@ -28,18 +28,18 @@ public class Compra implements Serializable,TemplateLista{
     private List<ItemCompra> itemCompras;
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_compra")
+    @Column(name = "datad")
     private Date dataCompra;
     
     @ManyToOne
     @JoinColumn(name = "id_fornecedor")
     private Fornecedor fornecedor;
     
-    @Column(name = "valor_compra")
+    @Column(name = "valor")
     private Double valorTotal;
     
     @Column(name = "nota_fiscal", length = 70)

@@ -18,7 +18,7 @@ public class Produto implements Serializable,TemplateLista{
     private List<Estoque> estoques;
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column(name = "nome", length = 200)

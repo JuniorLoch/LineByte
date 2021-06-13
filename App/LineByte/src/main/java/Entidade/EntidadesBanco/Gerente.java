@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 public class Gerente implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     
     @OneToOne

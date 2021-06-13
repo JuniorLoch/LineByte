@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Entity(name = "tabendereco")
 public class Endereco implements Serializable,TemplateLista{
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column(name = "cidade", length = 50)

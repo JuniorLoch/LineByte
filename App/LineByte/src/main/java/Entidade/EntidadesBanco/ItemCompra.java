@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 @Entity(name = "tabitemcompra")
 public class ItemCompra implements Serializable,TemplateLista{
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne

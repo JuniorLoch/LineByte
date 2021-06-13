@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class Cargo implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Column(name = "nome_cargo" , length = 30)

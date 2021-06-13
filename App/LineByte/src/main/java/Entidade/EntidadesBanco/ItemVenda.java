@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 public class ItemVenda implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne

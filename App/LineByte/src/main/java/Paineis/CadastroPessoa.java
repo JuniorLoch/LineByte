@@ -161,7 +161,11 @@ public class CadastroPessoa extends TemplatePainelCadastro {
         if("novo".equals(CBendereco.getSelectedItem()+"") && check == true){
             CadastroEndereco CE;
             new Cadastro(null, true, CE = new CadastroEndereco()).setVisible(true);
-            CBendereco.getModel().setSelectedItem(CE.getObjeto(null));
+            CBendereco.setModel(new DefaultComboBoxModel(DAO.listaNative(Endereco.class).toArray()));
+            CBendereco.setSelectedItem(CE.getObjeto(null));
+            check = false;
+            CBendereco.addItem("novo");
+            check = true;
         }
     }//GEN-LAST:event_CBenderecoItemStateChanged
 

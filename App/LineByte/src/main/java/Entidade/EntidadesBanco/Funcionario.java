@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 public class Funcionario implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @OneToOne

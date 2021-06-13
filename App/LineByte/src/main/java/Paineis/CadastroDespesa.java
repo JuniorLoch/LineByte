@@ -157,7 +157,11 @@ public class CadastroDespesa extends TemplatePainelCadastro {
         if("novo".equals(CBcategoria.getSelectedItem()+"") && check == true){
             CadastroTipoDespesa TD;//nome doque?
             new Cadastro(null, true, TD = new CadastroTipoDespesa()).setVisible(true);
-            CBcategoria.getModel().setSelectedItem(TD.getObjeto(null));
+            CBcategoria.setModel(new DefaultComboBoxModel(DAO.listaNative(TipoDespesa.class).toArray()));
+            CBcategoria.setSelectedItem(TD.getObjeto(null));
+            check = false;
+            CBcategoria.addItem("novo");
+            check = true;
         }
     }//GEN-LAST:event_CBcategoriaItemStateChanged
 

@@ -107,6 +107,11 @@ public class Listagem extends javax.swing.JFrame {
         });
 
         BTpesquisa.setText("Pesquisar");
+        BTpesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTpesquisaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PainelCabecalhoLayout = new javax.swing.GroupLayout(PainelCabecalho);
         PainelCabecalho.setLayout(PainelCabecalhoLayout);
@@ -175,8 +180,12 @@ public class Listagem extends javax.swing.JFrame {
     }//GEN-LAST:event_BTsairActionPerformed
 
     private void BTexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTexcluirActionPerformed
-        DAO.remover(lista.get(JTtabela.getSelectedRow()));
-        atualizaTabela();
+         if(JTtabela.getSelectedRow() != -1){
+            DAO.remover(lista.get(JTtabela.getSelectedRow()));
+            atualizaTabela();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um item para excluir");
+        }
     }//GEN-LAST:event_BTexcluirActionPerformed
 
     private void BTnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTnovoActionPerformed
@@ -193,6 +202,10 @@ public class Listagem extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um item para editar");
         }
     }//GEN-LAST:event_BTeditarActionPerformed
+
+    private void BTpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTpesquisaActionPerformed
+        atualizaTabela(TFpesquisa.getText());
+    }//GEN-LAST:event_BTpesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +228,27 @@ public class Listagem extends javax.swing.JFrame {
     
     private void atualizaTabela() {
         lista = DAO.listaNative(classe);
-   
+        
+        Object[][] dados= new Object[lista.size()][tl.getTitulos().length];
+        
+        for (int i = 0; i < lista.size(); i++) {
+            dados[i]=lista.get(i).getDados();
+        }
+        
+        JTtabela.setModel(new DefaultTableModel(dados,tl.getTitulos()));
+    }
+//         Só pesquisa por id, nao consegui achar um modo de realizar uma pesquisa genérica
+//         sem criar um case gigante, porque nao tenho modos de especificar a coluna do banco
+//         mas a coluna id existe em todas as tabelas
+    private void atualizaTabela(String pesquisa) { 
+
+        if("".equals(pesquisa)){
+            lista = DAO.listaNative(classe);
+        } else {
+            lista = DAO.listaNative(classe,"o.id = "+pesquisa);
+        }
+        
+        
         Object[][] dados= new Object[lista.size()][tl.getTitulos().length];
         
         for (int i = 0; i < lista.size(); i++) {
