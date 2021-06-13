@@ -159,7 +159,11 @@ public class CadastroPontos extends TemplatePainelCadastro {
         if("novo".equals(CBfuncionario.getSelectedItem()+"") && check == true){
             CadastroFuncionario CF;
             new Cadastro(null, true, CF = new CadastroFuncionario()).setVisible(true);
-            CBfuncionario.getModel().setSelectedItem(CF.getObjeto(null));
+            CBfuncionario.setModel(new DefaultComboBoxModel(DAO.listaNative(Funcionario.class).toArray()));
+            CBfuncionario.setSelectedItem(CF.getObjeto(null));
+            check = false;
+            CBfuncionario.addItem("novo");
+            check = true;
         }
     }//GEN-LAST:event_CBfuncionarioItemStateChanged
 

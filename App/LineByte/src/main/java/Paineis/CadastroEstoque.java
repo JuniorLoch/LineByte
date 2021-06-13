@@ -95,7 +95,11 @@ public class CadastroEstoque extends TemplatePainelCadastro {
         if("novo".equals(CBproduto.getSelectedItem()+"") && check == true){
             CadastroProdutos CP;
             new Cadastro(null, true, CP = new CadastroProdutos()).setVisible(true);
-            CBproduto.getModel().setSelectedItem(CP.getObjeto(null));
+            CBproduto.setModel(new DefaultComboBoxModel(DAO.listaNative(Produto.class).toArray()));
+            CBproduto.setSelectedItem(CP.getObjeto(null));
+            check = false;
+            CBproduto.addItem("novo");
+            check = true;
         }
     }//GEN-LAST:event_CBprodutoItemStateChanged
 

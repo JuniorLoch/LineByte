@@ -100,7 +100,11 @@ public class CadastroGerente extends TemplatePainelCadastro {
         if("novo".equals(CBpessoa.getSelectedItem()+"") && check == true){
             CadastroPessoa CP;
             new Cadastro(null, true, CP = new CadastroPessoa()).setVisible(true);
-            CBpessoa.getModel().setSelectedItem(CP.getObjeto(null));
+            CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
+            CBpessoa.setSelectedItem(CP.getObjeto(null));
+            check = false;
+            CBpessoa.addItem("novo");
+            check = true;
         }
     }//GEN-LAST:event_CBpessoaItemStateChanged
 
@@ -108,7 +112,11 @@ public class CadastroGerente extends TemplatePainelCadastro {
         if("novo".equals(CBlogin.getSelectedItem()+"") && check == true){
             CadastroLogin CL;
             new Cadastro(null, true, CL = new CadastroLogin()).setVisible(true);
-            CBlogin.getModel().setSelectedItem(CL.getObjeto(null));
+            CBlogin.setModel(new DefaultComboBoxModel(DAO.listaNative(Login.class).toArray()));
+            CBlogin.setSelectedItem(CL.getObjeto(null));
+            check = false;
+            CBlogin.addItem("novo");
+            check = true;
         }
     }//GEN-LAST:event_CBloginItemStateChanged
 

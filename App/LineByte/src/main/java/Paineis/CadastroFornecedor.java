@@ -112,7 +112,11 @@ public class CadastroFornecedor extends TemplatePainelCadastro {
         if("novo".equals(CBendereco.getSelectedItem()+"") && check == true){
             CadastroEndereco CE;
             new Cadastro(null, true, CE = new CadastroEndereco()).setVisible(true);
-            CBendereco.getModel().setSelectedItem(CE.getObjeto(null));
+            CBendereco.setModel(new DefaultComboBoxModel(DAO.listaNative(Endereco.class).toArray()));
+            CBendereco.setSelectedItem(CE.getObjeto(null));
+            check = false;
+            CBendereco.addItem("novo");// colar no resto dos construtores que possuem combobox
+            check = true;
         }
     }//GEN-LAST:event_CBenderecoItemStateChanged
 
