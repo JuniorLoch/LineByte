@@ -164,9 +164,10 @@ public class CadastroVenda extends TemplatePainelCadastro {
     private javax.swing.JLabel LBvalorVendaDinamico;
     private javax.swing.JTextField TFnotaFiscal;
     // End of variables declaration//GEN-END:variables
-  
+    private List listaItens = new LinkedList<ItemVenda>(); // acho q nao faz mais nada
+    private Venda v;
     @Override
-    public Object getObjeto() {
+    public Object getObjeto() { // esse aqui cria uma nova venda, preenche os campos e retorna
         if (v == null){
             v = new Venda();
         }
@@ -181,11 +182,9 @@ public class CadastroVenda extends TemplatePainelCadastro {
         v.setNotaFiscal(TFnotaFiscal.getText());
         return v;
     }
-    private List listaItens = new LinkedList<ItemVenda>();
-    private Venda v;
+    
     @Override
-    public Object getObjeto(Object o) {
-        
+    public Object getObjeto(Object o) { //esse aqu recebe uma lista de itens venda e seta ela, e faz calcula o valor total, e retorna a venda 
         v.setItemVendas((List<ItemVenda>) o);
         Float valor = 0f;
         for (ItemVenda itemVenda : v.getItemVendas()) {
@@ -205,11 +204,11 @@ public class CadastroVenda extends TemplatePainelCadastro {
             CBcliente.setSelectedItem(null);
             CBfuncionario.setSelectedItem(null);
         }else{
-            Venda v = (Venda) o;
-            TFnotaFiscal.setText(v.getNotaFiscal());
-            FTFdata.setText(sdf.format(v.getDataVenda()));
-            CBcliente.setSelectedItem(v.getCliente());
-            CBfuncionario.setSelectedItem(v.getFuncionario());
+            Venda vv = (Venda) o;
+            TFnotaFiscal.setText(vv.getNotaFiscal());
+            FTFdata.setText(sdf.format(vv.getDataVenda()));
+            CBcliente.setSelectedItem(vv.getCliente());
+            CBfuncionario.setSelectedItem(vv.getFuncionario());
         }
     }
 }

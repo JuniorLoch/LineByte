@@ -32,7 +32,6 @@ public class Analize extends javax.swing.JFrame {
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         atualizaTabela();
     }
     /**
@@ -260,7 +259,8 @@ public class Analize extends javax.swing.JFrame {
 
     private void BTanalizeDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeDespesaActionPerformed
         try {
-            tl= (TemplateLista) Despesa.class.newInstance();//cria instacia
+            classe = Despesa.class;
+            tl= (TemplateLista) classe.newInstance();//cria instacia
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -273,7 +273,8 @@ public class Analize extends javax.swing.JFrame {
 
     private void BTanalizeVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeVendaActionPerformed
         try {
-            tl= (TemplateLista) Venda.class.newInstance();//cria instacia
+            classe = Venda.class;
+            tl= (TemplateLista) classe.newInstance();//cria instacia
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -282,7 +283,8 @@ public class Analize extends javax.swing.JFrame {
 
     private void BTanalizeCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTanalizeCompraActionPerformed
         try {
-            tl= (TemplateLista) Compra.class.newInstance();//cria instacia
+            classe = Compra.class;
+            tl= (TemplateLista) classe.newInstance();//cria instacia
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(Listagem.class.getName()).log(Level.SEVERE, null, ex);
         }

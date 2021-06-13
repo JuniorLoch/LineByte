@@ -23,12 +23,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="LBproduto" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="CBproduto" min="-2" pref="225" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="LBValor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="TFvalor" min="-2" pref="89" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="CBproduto" min="-2" pref="350" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Component id="LBquantidade" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="TFquantidade" min="-2" pref="89" max="-2" attributes="0"/>
@@ -46,9 +42,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="LBproduto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="LBquantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TFvalor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TFquantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="LBValor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CBproduto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -67,20 +61,6 @@
         <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="text" type="java.lang.String" value="Produto:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="LBValor">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="0"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="Valor:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="TFvalor">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TFvalorActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="LBquantidade">
       <Properties>

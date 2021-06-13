@@ -149,7 +149,7 @@ public class VendaCompra extends javax.swing.JDialog {
     private void BTsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsalvarActionPerformed
         //Object dados = painelVendaCompra.getObjeto(painelItem.getObjeto(painelVendaCompra.getObjeto()));
         DAO.salvar(dado);
-        JOptionPane.showMessageDialog(null, "Venda salva com sucesso!");
+        JOptionPane.showMessageDialog(null, "Salvo com sucesso");
         dispose();
     }//GEN-LAST:event_BTsalvarActionPerformed
 

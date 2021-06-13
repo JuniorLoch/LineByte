@@ -17,7 +17,7 @@ import javax.swing.DefaultComboBoxModel;
  * @author r4f4s
  */
 public class CadastroCliente extends TemplatePainelCadastro {
-
+    private boolean check = false;
     /**
      * Creates new form CadastroCliente
      */
@@ -25,6 +25,7 @@ public class CadastroCliente extends TemplatePainelCadastro {
         initComponents();
         CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
         CBpessoa.addItem("novo");// colar no resto dos construtores que possuem combobox
+        check = true;
     }
 
     /**
@@ -80,10 +81,10 @@ public class CadastroCliente extends TemplatePainelCadastro {
     private void CBpessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBpessoaActionPerformed
        
     }//GEN-LAST:event_CBpessoaActionPerformed
-
+    
     private void CBpessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBpessoaItemStateChanged
         // fazer isso com todas as combobox
-        if("novo".equals(CBpessoa.getSelectedItem()+"")){
+        if("novo".equals(CBpessoa.getSelectedItem()+"") && check == true){
             CadastroPessoa CP;
             new Cadastro(null, true, CP = new CadastroPessoa()).setVisible(true);
             CBpessoa.getModel().setSelectedItem(CP.getObjeto(null));

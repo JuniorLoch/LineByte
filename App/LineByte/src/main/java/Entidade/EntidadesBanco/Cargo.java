@@ -16,7 +16,7 @@ public class Cargo implements Serializable,TemplateLista{
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     
-    @Column(name = "nome_cargo")
+    @Column(name = "nome_cargo" , length = 30)
     private String nomeCargo;
     
     private Float salario;

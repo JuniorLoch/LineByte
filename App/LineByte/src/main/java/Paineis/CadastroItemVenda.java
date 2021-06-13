@@ -179,26 +179,21 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
         itv.setValor(Float.parseFloat(TFvalor.getText()));
         itv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
         return itv;
-        
     }
     
     private List<TemplateLista> lista;
     private ItemVenda iv;
     
     public void atualizaTabela() {
-        
-   
         Object[][] dados= new Object[lista.size()][iv.getTitulos().length];
-        
         for (int i = 0; i < lista.size(); i++) {
-            dados[i]=lista.get(i).getDados();
+            dados[i]=lista.get(i).getDados();   
         }
-        
         JTItemVenda.setModel(new DefaultTableModel(dados,iv.getTitulos()));
     }
 
     @Override
-    public Object getObjeto(Object o) {
+    public Object getObjeto(Object o) { 
         ItemVenda itv = new ItemVenda();
         itv.setProduto((Produto) CBproduto.getSelectedItem());
         itv.setQuantidade(Integer.parseInt(TFquantidade.getText()));
