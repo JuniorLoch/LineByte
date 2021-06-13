@@ -9,6 +9,7 @@ import Entidade.DAO;
 import Entidade.EntidadesBanco.Despesa;
 import Entidade.EntidadesBanco.TipoDespesa;
 import Interfaces.TemplatePainelCadastro;
+import Telas.Cadastro;//c
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -20,13 +21,15 @@ import javax.swing.DefaultComboBoxModel;
  * @author r4f4s
  */
 public class CadastroDespesa extends TemplatePainelCadastro {
-
+    private boolean check = false;
     /**
      * Creates new form CadastroDespesa
      */
     public CadastroDespesa() {
         initComponents();
         CBcategoria.setModel(new DefaultComboBoxModel(DAO.listaNative(TipoDespesa.class).toArray()));
+        CBcategoria.addItem("novo");// colar no resto dos construtores que possuem combobox
+        check = true;
     }
 
     /**
@@ -83,6 +86,11 @@ public class CadastroDespesa extends TemplatePainelCadastro {
         LBvalor.setText("Valor:");
 
         CBcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBcategoria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBcategoriaItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,6 +152,14 @@ public class CadastroDespesa extends TemplatePainelCadastro {
     private void FTFvencimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFvencimentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FTFvencimentoActionPerformed
+
+    private void CBcategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBcategoriaItemStateChanged
+        if("novo".equals(CBcategoria.getSelectedItem()+"") && check == true){
+            CadastroTipoDespesa TD;//nome doque?
+            new Cadastro(null, true, TD = new CadastroTipoDespesa()).setVisible(true);
+            CBcategoria.getModel().setSelectedItem(TD.getObjeto(null));
+        }
+    }//GEN-LAST:event_CBcategoriaItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

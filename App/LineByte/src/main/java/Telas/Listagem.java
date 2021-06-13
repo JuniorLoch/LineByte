@@ -60,6 +60,7 @@ public class Listagem extends javax.swing.JFrame {
         BTpesquisa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Listagem");
 
         JTtabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

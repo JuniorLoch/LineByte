@@ -10,6 +10,7 @@ import Entidade.EntidadesBanco.Gerente;
 import Entidade.EntidadesBanco.Login;
 import Entidade.EntidadesBanco.Pessoa;
 import Interfaces.TemplatePainelCadastro;
+import Telas.Cadastro;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -17,7 +18,7 @@ import javax.swing.DefaultComboBoxModel;
  * @author r4f4s
  */
 public class CadastroGerente extends TemplatePainelCadastro {
-
+    private boolean check = false;
     /**
      * Creates new form CadastroGerente
      */
@@ -25,6 +26,10 @@ public class CadastroGerente extends TemplatePainelCadastro {
         initComponents();
         CBlogin.setModel(new DefaultComboBoxModel(DAO.listaNative(Login.class).toArray()));
         CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
+        //adicionando novo no CB
+        CBlogin.addItem("novo");// colar no resto dos construtores que possuem combobox
+        CBpessoa.addItem("novo");// colar no resto dos construtores que possuem combobox
+        check = true;
     }
 
     /**
@@ -48,8 +53,18 @@ public class CadastroGerente extends TemplatePainelCadastro {
         LBpessoa1.setText("Pessoa:");
 
         CBpessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBpessoa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBpessoaItemStateChanged(evt);
+            }
+        });
 
         CBlogin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBlogin.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBloginItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,6 +95,22 @@ public class CadastroGerente extends TemplatePainelCadastro {
                 .addContainerGap(283, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CBpessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBpessoaItemStateChanged
+        if("novo".equals(CBpessoa.getSelectedItem()+"") && check == true){
+            CadastroPessoa CP;
+            new Cadastro(null, true, CP = new CadastroPessoa()).setVisible(true);
+            CBpessoa.getModel().setSelectedItem(CP.getObjeto(null));
+        }
+    }//GEN-LAST:event_CBpessoaItemStateChanged
+
+    private void CBloginItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBloginItemStateChanged
+        if("novo".equals(CBlogin.getSelectedItem()+"") && check == true){
+            CadastroLogin CL;
+            new Cadastro(null, true, CL = new CadastroLogin()).setVisible(true);
+            CBlogin.getModel().setSelectedItem(CL.getObjeto(null));
+        }
+    }//GEN-LAST:event_CBloginItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

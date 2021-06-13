@@ -58,6 +58,7 @@ public class Cadastro extends javax.swing.JDialog {
         BTsair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro");
 
         BTsalvar.setBackground(new java.awt.Color(204, 255, 204));
         BTsalvar.setForeground(new java.awt.Color(0, 0, 0));

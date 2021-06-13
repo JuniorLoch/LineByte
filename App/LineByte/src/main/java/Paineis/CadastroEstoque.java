@@ -11,6 +11,7 @@ import Entidade.EntidadesBanco.Estoque;
 import Entidade.EntidadesBanco.Pessoa;
 import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
+import Telas.Cadastro;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -18,13 +19,15 @@ import javax.swing.DefaultComboBoxModel;
  * @author r4f4s
  */
 public class CadastroEstoque extends TemplatePainelCadastro {
-
+    private boolean check = false;
     /**
      * Creates new form CadastroEstoque
      */
     public CadastroEstoque() {
         initComponents();
         CBproduto.setModel(new DefaultComboBoxModel(DAO.listaNative(Produto.class).toArray()));
+        CBproduto.addItem("novo");// colar no resto dos construtores que possuem combobox
+        check = true;
     }
 
     /**
@@ -50,6 +53,11 @@ public class CadastroEstoque extends TemplatePainelCadastro {
         LBquantidade.setText("Quantidade:");
 
         CBproduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBproduto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBprodutoItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -82,6 +90,14 @@ public class CadastroEstoque extends TemplatePainelCadastro {
                 .addContainerGap(237, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CBprodutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBprodutoItemStateChanged
+        if("novo".equals(CBproduto.getSelectedItem()+"") && check == true){
+            CadastroProdutos CP;
+            new Cadastro(null, true, CP = new CadastroProdutos()).setVisible(true);
+            CBproduto.getModel().setSelectedItem(CP.getObjeto(null));
+        }
+    }//GEN-LAST:event_CBprodutoItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

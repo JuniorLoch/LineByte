@@ -27,7 +27,7 @@ public class Produto implements Serializable,TemplateLista{
     @Column(name = "tamanho", length = 10)
     private String tamanho;
     
-    @Column(name = "merca", length = 100)
+    @Column(name = "marca", length = 100)
     private String marca;
     
     @Column(name = "valor")

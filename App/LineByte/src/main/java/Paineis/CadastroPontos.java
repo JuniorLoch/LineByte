@@ -9,6 +9,7 @@ import Entidade.DAO;
 import Entidade.EntidadesBanco.Funcionario;
 import Entidade.EntidadesBanco.Pontos;
 import Interfaces.TemplatePainelCadastro;
+import Telas.Cadastro;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -21,13 +22,15 @@ import javax.swing.JOptionPane;
  * @author r4f4s
  */
 public class CadastroPontos extends TemplatePainelCadastro {
-
+    private boolean check = false;
     /**
      * Creates new form CadastroPontos
      */
     public CadastroPontos() {
         initComponents();
         CBfuncionario.setModel(new DefaultComboBoxModel(DAO.listaNative(Funcionario.class).toArray()));
+        CBfuncionario.addItem("novo");// colar no resto dos construtores que possuem combobox
+        check = true;
     }
 
     /**
@@ -89,6 +92,11 @@ public class CadastroPontos extends TemplatePainelCadastro {
         });
 
         CBfuncionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBfuncionario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBfuncionarioItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -146,6 +154,14 @@ public class CadastroPontos extends TemplatePainelCadastro {
             //FTFhoraSaida.setText("");
         }
     }//GEN-LAST:event_FTFhoraSaidaKeyPressed
+
+    private void CBfuncionarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBfuncionarioItemStateChanged
+        if("novo".equals(CBfuncionario.getSelectedItem()+"") && check == true){
+            CadastroFuncionario CF;
+            new Cadastro(null, true, CF = new CadastroFuncionario()).setVisible(true);
+            CBfuncionario.getModel().setSelectedItem(CF.getObjeto(null));
+        }
+    }//GEN-LAST:event_CBfuncionarioItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
