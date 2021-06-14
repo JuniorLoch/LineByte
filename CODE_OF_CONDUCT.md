@@ -1,8 +1,8 @@
 # Nossos padroes
 
-##A gente faz o programa
+## A gente faz o programa
 
-##o programa funciona
+## o programa funciona
 
-##é isso
+## é isso
 
