@@ -1,7 +1,9 @@
 package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
+import Interfaces.TemplateValor;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +20,7 @@ import javax.persistence.TemporalType;
 
 
 @Entity(name = "tabvenda")
-public class Venda implements Serializable,TemplateLista {
+public class Venda implements Serializable,TemplateLista,TemplateValor {
 
     public Venda() {
         itemVendas = new LinkedList<>();
@@ -28,7 +30,7 @@ public class Venda implements Serializable,TemplateLista {
     private List<ItemVenda> itemVendas;
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     //ajustar para @ManyToOne
@@ -36,11 +38,11 @@ public class Venda implements Serializable,TemplateLista {
     @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
     
-    @Column(name = "valor_venda")
+    @Column(name = "valor")
     private Float valorVenda;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_venda")
+    @Column(name = "datad")
     private Date dataVenda;
     
     //ajustar para @ManyToOne
@@ -48,7 +50,7 @@ public class Venda implements Serializable,TemplateLista {
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
     
-    @Column(name = "nota_fiscal")
+    @Column(name = "nota_fiscal", length = 70)
     private String notaFiscal;
 
     public List<ItemVenda> getItemVendas() {
@@ -113,17 +115,24 @@ public class Venda implements Serializable,TemplateLista {
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,funcionario,dataVenda,cliente,notaFiscal};
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return new Object[]{id,funcionario,sdf.format(dataVenda),cliente,notaFiscal,valorVenda};
     }
 
     @Override
     public String[] getTitulos() {
-        return new String[]{"ID","Funcionario","DataVenda","Cliente","NotaFiscal"};
+        return new String[]{"ID","Funcionario","DataVenda","Cliente","NotaFiscal","Valor da venda"};
     }
 
     @Override
     public String toString() {
         return id+" - "+funcionario.getPessoa().getNome()+" - "+dataVenda+" - "+valorVenda;
+    }
+
+
+    @Override
+    public Float getValorv() {
+        return Float.parseFloat(valorVenda+"");
     }
     
     

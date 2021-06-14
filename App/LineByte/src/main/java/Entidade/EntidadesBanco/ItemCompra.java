@@ -2,6 +2,7 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 @Entity(name = "tabitemcompra")
 public class ItemCompra implements Serializable,TemplateLista{
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne
@@ -23,6 +24,10 @@ public class ItemCompra implements Serializable,TemplateLista{
     @JoinColumn(name = "id_compra")
     private Compra compra;
     
+    @Column(name = "valor")
+    private Float valor;
+    
+    @Column(name = "quantidade")
     private Integer quantidade;
 
     public Integer getId() {
@@ -49,6 +54,14 @@ public class ItemCompra implements Serializable,TemplateLista{
         this.compra = compra;
     }
 
+    public Float getValor() {
+        return valor;
+    }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
+    }
+    
     public Integer getQuantidade() {
         return quantidade;
     }
@@ -59,12 +72,12 @@ public class ItemCompra implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,produto,compra,quantidade};
+        return new Object[]{id,produto,compra,valor,quantidade};
     }
 
     @Override
     public String[] getTitulos() {
-        return new String[]{"ID","Produto","Compra","Quantidade"};
+        return new String[]{"ID","Produto","Compra","valor","Quantidade"};
     }
     
     @Override

@@ -60,6 +60,7 @@ public class Listagem extends javax.swing.JFrame {
         BTpesquisa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Listagem");
 
         JTtabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,6 +75,8 @@ public class Listagem extends javax.swing.JFrame {
         ));
         SPtabela.setViewportView(JTtabela);
 
+        BTnovo.setBackground(new java.awt.Color(153, 255, 153));
+        BTnovo.setForeground(new java.awt.Color(0, 0, 0));
         BTnovo.setText("Novo");
         BTnovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,6 +92,8 @@ public class Listagem extends javax.swing.JFrame {
             }
         });
 
+        BTeditar.setBackground(new java.awt.Color(255, 255, 153));
+        BTeditar.setForeground(new java.awt.Color(0, 0, 0));
         BTeditar.setText("Editar");
         BTeditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +101,7 @@ public class Listagem extends javax.swing.JFrame {
             }
         });
 
-        BTexcluir.setBackground(new java.awt.Color(255, 255, 117));
+        BTexcluir.setBackground(new java.awt.Color(255, 153, 153));
         BTexcluir.setForeground(new java.awt.Color(0, 0, 0));
         BTexcluir.setText("Excluir");
         BTexcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +111,11 @@ public class Listagem extends javax.swing.JFrame {
         });
 
         BTpesquisa.setText("Pesquisar");
+        BTpesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTpesquisaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PainelCabecalhoLayout = new javax.swing.GroupLayout(PainelCabecalho);
         PainelCabecalho.setLayout(PainelCabecalhoLayout);
@@ -174,8 +184,12 @@ public class Listagem extends javax.swing.JFrame {
     }//GEN-LAST:event_BTsairActionPerformed
 
     private void BTexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTexcluirActionPerformed
-        DAO.remover(lista.get(JTtabela.getSelectedRow()));
-        atualizaTabela();
+         if(JTtabela.getSelectedRow() != -1){
+            DAO.remover(lista.get(JTtabela.getSelectedRow()));
+            atualizaTabela();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um item para excluir");
+        }
     }//GEN-LAST:event_BTexcluirActionPerformed
 
     private void BTnovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTnovoActionPerformed
@@ -192,6 +206,10 @@ public class Listagem extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um item para editar");
         }
     }//GEN-LAST:event_BTeditarActionPerformed
+
+    private void BTpesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTpesquisaActionPerformed
+        atualizaTabela(TFpesquisa.getText());
+    }//GEN-LAST:event_BTpesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +232,27 @@ public class Listagem extends javax.swing.JFrame {
     
     private void atualizaTabela() {
         lista = DAO.listaNative(classe);
-   
+        
+        Object[][] dados= new Object[lista.size()][tl.getTitulos().length];
+        
+        for (int i = 0; i < lista.size(); i++) {
+            dados[i]=lista.get(i).getDados();
+        }
+        
+        JTtabela.setModel(new DefaultTableModel(dados,tl.getTitulos()));
+    }
+//         Só pesquisa por id, nao consegui achar um modo de realizar uma pesquisa genérica
+//         sem criar um case gigante, porque nao tenho modos de especificar a coluna do banco
+//         mas a coluna id existe em todas as tabelas
+    private void atualizaTabela(String pesquisa) { 
+
+        if("".equals(pesquisa)){
+            lista = DAO.listaNative(classe);
+        } else {
+            lista = DAO.listaNative(classe,"o.id = "+pesquisa);
+        }
+        
+        
         Object[][] dados= new Object[lista.size()][tl.getTitulos().length];
         
         for (int i = 0; i < lista.size(); i++) {

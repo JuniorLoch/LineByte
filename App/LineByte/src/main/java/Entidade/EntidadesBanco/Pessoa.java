@@ -2,6 +2,7 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -18,23 +19,27 @@ import javax.persistence.TemporalType;
 public class Pessoa implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    @Column(name = "nome", length = 200)
     private String nome;
     
     @OneToOne
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
 
+    @Column(name = "cpf", length = 20)
     private String cpf;
 
+    @Column(name = "rg", length = 20)
     private String rg;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "data_nasc")
     private Date dataNasc;
 
+    @Column(name = "sexo")
     private String sexo;
 
     public Integer getId() {
@@ -96,7 +101,8 @@ public class Pessoa implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,nome,endereco,cpf,rg,dataNasc,sexo};
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return new Object[]{id,nome,endereco,cpf,rg,sdf.format(dataNasc),sexo};
     }
 
     @Override

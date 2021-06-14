@@ -8,10 +8,12 @@ package Paineis;
 import Entidade.DAO;
 import Entidade.EntidadesBanco.Compra;
 import Entidade.EntidadesBanco.Fornecedor;
+import Entidade.EntidadesBanco.ItemCompra;
 import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -138,12 +140,13 @@ public class CadastroCompra extends TemplatePainelCadastro {
     private javax.swing.JLabel LBvalorCompraDinamico;
     private javax.swing.JTextField TFnotaFiscal;
     // End of variables declaration//GEN-END:variables
-
+    private Compra c;
     @Override
     public Object getObjeto() {
-        Compra c = new Compra();
+        if(c == null){
+            c = new Compra();
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
         try {
             c.setDataCompra(sdf.parse(FTFdata.getText()));
         } catch (ParseException ex) {
@@ -156,21 +159,13 @@ public class CadastroCompra extends TemplatePainelCadastro {
 
     @Override
     public Object getObjeto(Object o) {
-        Compra c;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        if(o == null){
-            c = new Compra();
-
-        } else {
-            c = (Compra) o;
+        c.setItemCompras((List<ItemCompra>) o);
+        Double valor = 0.0;
+        for (ItemCompra itemCompra : c.getItemCompras()) {
+             valor += itemCompra.getProduto().getValor() * itemCompra.getQuantidade();
         }
-         try {
-            c.setDataCompra(sdf.parse(FTFdata.getText()));
-        } catch (ParseException ex) {
-            Logger.getLogger(CadastroCompra.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        c.setFornecedor((Fornecedor) CBfornecedor.getSelectedItem());
-        c.setNotaFiscal(TFnotaFiscal.getText());
+        LBvalorCompraDinamico.setText(valor+"");
+        c.setValorTotal(valor);
         return c;
     }
 
@@ -181,10 +176,10 @@ public class CadastroCompra extends TemplatePainelCadastro {
             FTFdata.setText("");
             CBfornecedor.setSelectedItem(null);
         }else{
-            Compra c = (Compra) o;
-            TFnotaFiscal.setText(c.getNotaFiscal());
-            FTFdata.setText(c.getDataCompra().toString());
-            CBfornecedor.setSelectedItem(c.getFornecedor());
+            Compra cc = (Compra) o;
+            TFnotaFiscal.setText(cc.getNotaFiscal());
+            FTFdata.setText(cc.getDataCompra().toString());
+            CBfornecedor.setSelectedItem(cc.getFornecedor());
         }
     }
 }

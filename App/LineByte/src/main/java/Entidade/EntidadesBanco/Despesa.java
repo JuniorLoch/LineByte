@@ -1,7 +1,9 @@
 package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
+import Interfaces.TemplateValor;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,9 +16,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "tabdespesa")
-public class Despesa implements Serializable,TemplateLista{
+public class Despesa implements Serializable,TemplateLista,TemplateValor{
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne
@@ -24,11 +26,16 @@ public class Despesa implements Serializable,TemplateLista{
     private TipoDespesa tipoDespesa;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_vencimento")
+    @Column(name = "datad")
     private Date dataVencimento;
     
+    @Column(name = "pago")
     private Boolean pago;
+    
+    @Column(name = "nome", length = 200)
     private String nome;
+    
+    @Column(name = "valor")
     private Float valor;
     
     public Float getValor() {
@@ -81,11 +88,19 @@ public class Despesa implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,nome,tipoDespesa,valor,pago,dataVencimento};
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return new Object[]{id,nome,tipoDespesa,valor,pago,sdf.format(dataVencimento)};
     }
 
     @Override
     public String[] getTitulos() {
         return new String[]{"ID","Nome","TipoDespesa","Valor","Pago","DataVencimento"};
     }
+
+    @Override
+    public Float getValorv() {
+        return Float.parseFloat(valor+"");
+    }
+    
+    
 }

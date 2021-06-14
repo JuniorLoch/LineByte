@@ -1,7 +1,9 @@
 package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
+import Interfaces.TemplateValor;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +20,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity(name = "tabcompra")
-public class Compra implements Serializable,TemplateLista{
+public class Compra implements Serializable,TemplateLista,TemplateValor{
 
     public Compra() {
         itemCompras = new LinkedList<>();
@@ -28,21 +30,21 @@ public class Compra implements Serializable,TemplateLista{
     private List<ItemCompra> itemCompras;
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_compra")
+    @Column(name = "datad")
     private Date dataCompra;
     
     @ManyToOne
     @JoinColumn(name = "id_fornecedor")
     private Fornecedor fornecedor;
     
-    @Column(name = "valor_total")
+    @Column(name = "valor")
     private Double valorTotal;
     
-    @Column(name = "nota_fiscal")
+    @Column(name = "nota_fiscal", length = 70)
     private String notaFiscal;
 
     public List<ItemCompra> getItemCompras() {
@@ -99,7 +101,8 @@ public class Compra implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,dataCompra,fornecedor,valorTotal,notaFiscal};
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return new Object[]{id,sdf.format(dataCompra),fornecedor,valorTotal,notaFiscal};
     }
 
     @Override
@@ -110,6 +113,11 @@ public class Compra implements Serializable,TemplateLista{
     @Override
     public String toString() {
         return id+" - "+fornecedor.getNomeFornecedor()+" - "+dataCompra+" - "+valorTotal;
+    }
+
+    @Override
+    public Float getValorv() {
+        return Float.parseFloat(valorTotal+"");
     }
     
     

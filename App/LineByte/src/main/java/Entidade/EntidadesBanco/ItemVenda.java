@@ -2,6 +2,7 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,7 @@ import javax.persistence.ManyToOne;
 public class ItemVenda implements Serializable,TemplateLista{
     
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne
@@ -24,7 +25,10 @@ public class ItemVenda implements Serializable,TemplateLista{
     @JoinColumn(name = "id_venda")
     private Venda venda;
     
+    @Column(name = "valor")
     private Float valor;
+    
+    @Column(name = "quantidade")
     private Integer quantidade;
 
     public Integer getId() {

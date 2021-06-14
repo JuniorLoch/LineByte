@@ -11,6 +11,7 @@ import Entidade.EntidadesBanco.Fornecedor;
 import Entidade.EntidadesBanco.Pessoa;
 import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
+import Telas.Cadastro;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -23,13 +24,15 @@ import javax.swing.JOptionPane;
  * @author r4f4s
  */
 public class CadastroFornecedor extends TemplatePainelCadastro {
-
+    private boolean check = false;
     /**
      * Creates new form CadastroFornecedor
      */
     public CadastroFornecedor() {
         initComponents();
         CBendereco.setModel(new DefaultComboBoxModel(DAO.listaNative(Endereco.class).toArray()));
+        CBendereco.addItem("novo");// colar no resto dos construtores que possuem combobox
+        check = true;
     }
 
     /**
@@ -61,6 +64,11 @@ public class CadastroFornecedor extends TemplatePainelCadastro {
         LBendereco.setText("Endereco:");
 
         CBendereco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBendereco.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBenderecoItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,6 +107,18 @@ public class CadastroFornecedor extends TemplatePainelCadastro {
                 .addContainerGap(275, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CBenderecoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBenderecoItemStateChanged
+        if("novo".equals(CBendereco.getSelectedItem()+"") && check == true){
+            CadastroEndereco CE;
+            new Cadastro(null, true, CE = new CadastroEndereco()).setVisible(true);
+            CBendereco.setModel(new DefaultComboBoxModel(DAO.listaNative(Endereco.class).toArray()));
+            CBendereco.setSelectedItem(CE.getObjeto(null));
+            check = false;
+            CBendereco.addItem("novo");// colar no resto dos construtores que possuem combobox
+            check = true;
+        }
+    }//GEN-LAST:event_CBenderecoItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

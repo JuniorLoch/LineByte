@@ -60,9 +60,9 @@
               <Component id="LBlogin" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               <Component id="TFusuario1" min="-2" pref="38" max="-2" attributes="0"/>
-              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Component id="PFsenha" min="-2" pref="38" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Component id="PFsenha" min="-2" pref="38" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="BTentrar" min="-2" pref="34" max="-2" attributes="0"/>
               <EmptySpace pref="142" max="32767" attributes="0"/>
           </Group>
@@ -86,13 +86,21 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TFusuario1MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="PFsenha">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Senha"/>
         <Property name="toolTipText" type="java.lang.String" value="Senha"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PFsenhaMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BTentrar">
       <Properties>

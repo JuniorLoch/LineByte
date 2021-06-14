@@ -3,6 +3,7 @@ package Entidade.EntidadesBanco;
 import Interfaces.TemplateLista;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,14 +18,25 @@ public class Produto implements Serializable,TemplateLista{
     private List<Estoque> estoques;
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    @Column(name = "nome", length = 200)
     private String nome;
+    
+    @Column(name = "tamanho", length = 10)
     private String tamanho;
+    
+    @Column(name = "marca", length = 100)
     private String marca;
+    
+    @Column(name = "valor")
     private Float valor;
+    
+    @Column(name = "cor", length = 100)
     private String cor;
+    
+    @Column(name = "sexo", length = 7)
     private String sexo;
 
     public List<Estoque> getEstoques() {

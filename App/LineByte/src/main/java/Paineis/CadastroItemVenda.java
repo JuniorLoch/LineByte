@@ -9,8 +9,10 @@ import Entidade.DAO;
 import Entidade.EntidadesBanco.ItemCompra;
 import Entidade.EntidadesBanco.ItemVenda;
 import Entidade.EntidadesBanco.Produto;
+import Entidade.EntidadesBanco.Venda;
 import Interfaces.TemplateLista;
 import Interfaces.TemplatePainelCadastro;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,8 +37,12 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
         } catch (IllegalAccessException ex) {
             Logger.getLogger(CadastroItemVenda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        atualizaTabela();
         CBproduto.setModel(new DefaultComboBoxModel(DAO.listaNative(Produto.class).toArray()));
+        //
+        if (lista == null) {
+            lista = new LinkedList<>();
+        }
+        atualizaTabela();
     }
 
     /**
@@ -95,6 +101,11 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
         });
 
         CBproduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBproduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBprodutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,7 +155,11 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
         // TODO add your handling code here:
     }//GEN-LAST:event_TFquantidadeActionPerformed
 
+    private void CBprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBprodutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBprodutoActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBproduto;
     private javax.swing.JTable JTItemVenda;
@@ -164,39 +179,31 @@ public class CadastroItemVenda extends TemplatePainelCadastro {
         itv.setValor(Float.parseFloat(TFvalor.getText()));
         itv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
         return itv;
-        
     }
     
     private List<TemplateLista> lista;
     private ItemVenda iv;
     
     public void atualizaTabela() {
-        lista = DAO.listaNative(ItemVenda.class);
-   
         Object[][] dados= new Object[lista.size()][iv.getTitulos().length];
-        
         for (int i = 0; i < lista.size(); i++) {
-            dados[i]=lista.get(i).getDados();
+            dados[i]=lista.get(i).getDados();   
         }
-        
         JTItemVenda.setModel(new DefaultTableModel(dados,iv.getTitulos()));
     }
 
     @Override
-    public Object getObjeto(Object o) {
-        ItemVenda itv;
-        if(o == null){
-            itv = new ItemVenda();
-
-        } else {
-            itv = (ItemVenda) o;
-        }
+    public Object getObjeto(Object o) { 
+        ItemVenda itv = new ItemVenda();
         itv.setProduto((Produto) CBproduto.getSelectedItem());
         itv.setQuantidade(Integer.parseInt(TFquantidade.getText()));
         itv.setValor(Float.parseFloat(TFvalor.getText()));
-        itv.setVenda(null);//descobrir como colocar a venda selecionada aqui dentro
-        
-        return itv;
+        itv.setVenda((Venda) o);
+        if (o != null){
+            lista.add(itv);
+        } 
+        atualizaTabela();
+        return lista;
     }
 
     @Override

@@ -8,11 +8,14 @@ package Paineis;
 import Entidade.DAO;
 import Entidade.EntidadesBanco.Cliente;
 import Entidade.EntidadesBanco.Funcionario;
+import Entidade.EntidadesBanco.ItemVenda;
 import Entidade.EntidadesBanco.Produto;
 import Entidade.EntidadesBanco.Venda;
 import Interfaces.TemplatePainelCadastro;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -161,10 +164,13 @@ public class CadastroVenda extends TemplatePainelCadastro {
     private javax.swing.JLabel LBvalorVendaDinamico;
     private javax.swing.JTextField TFnotaFiscal;
     // End of variables declaration//GEN-END:variables
-
+    private List listaItens = new LinkedList<ItemVenda>(); // acho q nao faz mais nada
+    private Venda v;
     @Override
-    public Object getObjeto() {
-        Venda v = new Venda();
+    public Object getObjeto() { // esse aqui cria uma nova venda, preenche os campos e retorna
+        if (v == null){
+            v = new Venda();
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         v.setCliente((Cliente) CBcliente.getSelectedItem());        
         try {
@@ -174,29 +180,18 @@ public class CadastroVenda extends TemplatePainelCadastro {
         }
         v.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
         v.setNotaFiscal(TFnotaFiscal.getText());
-        v.setValorVenda(Float.parseFloat(LBvalor.getText()));
         return v;
     }
-
+    
     @Override
-    public Object getObjeto(Object o) {
-        Venda v;
-        if(o == null){
-            v = new Venda();
-
-        } else {
-            v = (Venda) o;
+    public Object getObjeto(Object o) { //esse aqu recebe uma lista de itens venda e seta ela, e faz calcula o valor total, e retorna a venda 
+        v.setItemVendas((List<ItemVenda>) o);
+        Float valor = 0f;
+        for (ItemVenda itemVenda : v.getItemVendas()) {
+            valor += itemVenda.getValor() * itemVenda.getQuantidade();
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        v.setCliente((Cliente) CBcliente.getSelectedItem());        
-        try {
-            v.setDataVenda(sdf.parse(FTFdata.getText()));// precisa fazer o role do simpledate format esqueci como faz
-        } catch (ParseException ex) {
-            Logger.getLogger(CadastroVenda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        v.setFuncionario((Funcionario) CBfuncionario.getSelectedItem());
-        v.setNotaFiscal(TFnotaFiscal.getText());
-        v.setValorVenda(Float.parseFloat(LBvalor.getText()));
+        LBvalorVendaDinamico.setText(valor+"");
+        v.setValorVenda(valor);
         return v;
     }
 
@@ -209,11 +204,11 @@ public class CadastroVenda extends TemplatePainelCadastro {
             CBcliente.setSelectedItem(null);
             CBfuncionario.setSelectedItem(null);
         }else{
-            Venda v = (Venda) o;
-            TFnotaFiscal.setText(v.getNotaFiscal());
-            FTFdata.setText(sdf.format(v.getDataVenda()));
-            CBcliente.setSelectedItem(v.getCliente());
-            CBfuncionario.setSelectedItem(v.getFuncionario());
+            Venda vv = (Venda) o;
+            TFnotaFiscal.setText(vv.getNotaFiscal());
+            FTFdata.setText(sdf.format(vv.getDataVenda()));
+            CBcliente.setSelectedItem(vv.getCliente());
+            CBfuncionario.setSelectedItem(vv.getFuncionario());
         }
     }
 }

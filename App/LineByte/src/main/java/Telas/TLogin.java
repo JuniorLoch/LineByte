@@ -6,8 +6,15 @@
 package Telas;
 
 import Entidade.DAO;
+import Entidade.EntidadesBanco.Login;
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -46,9 +53,21 @@ public class TLogin extends javax.swing.JFrame {
         TFusuario1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TFusuario1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TFusuario1.setText("Usuário");
+        TFusuario1.setToolTipText("");
+        TFusuario1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TFusuario1MouseClicked(evt);
+            }
+        });
 
         PFsenha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        PFsenha.setText("Senha");
         PFsenha.setToolTipText("Senha");
+        PFsenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PFsenhaMouseClicked(evt);
+            }
+        });
 
         BTentrar.setBackground(new java.awt.Color(153, 255, 255));
         BTentrar.setForeground(new java.awt.Color(0, 0, 0));
@@ -101,9 +120,9 @@ public class TLogin extends javax.swing.JFrame {
                 .addComponent(LBlogin)
                 .addGap(73, 73, 73)
                 .addComponent(TFusuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(PFsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
+                .addComponent(PFsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BTentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(142, Short.MAX_VALUE))
         );
@@ -112,13 +131,35 @@ public class TLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTentrarActionPerformed
-        new Principal().setVisible(true);
-        dispose();
+        List listalogin = new LinkedList();
+        listalogin = DAO.listaNative(Login.class);
+        Login login = new Login();
+        boolean ver = false;
+        for (Object loginlista : listalogin) {
+            login = (Login) loginlista;
+            if(login.getUsuario().equals(TFusuario1.getText()) && login.getSenha().equals(String.valueOf(PFsenha.getPassword()))){
+               ver = true; 
+            }
+        }
+        if (ver == true){
+            new Principal().setVisible(true);
+            dispose();
+        } else {
+             JOptionPane.showMessageDialog(null, "Usuario e/ou senha incorretos!!");
+        }
     }//GEN-LAST:event_BTentrarActionPerformed
 
     private void BTsairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsairActionPerformed
        System.exit(0);
     }//GEN-LAST:event_BTsairActionPerformed
+
+    private void TFusuario1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TFusuario1MouseClicked
+        TFusuario1.setText("");
+    }//GEN-LAST:event_TFusuario1MouseClicked
+
+    private void PFsenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PFsenhaMouseClicked
+        PFsenha.setText("");
+    }//GEN-LAST:event_PFsenhaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -129,6 +170,20 @@ public class TLogin extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        UIManager.put( "control", new Color( 255, 229, 106) );
+        UIManager.put( "info", new Color(255, 229, 106) );
+        UIManager.put( "nimbusBase", new Color( 255, 214, 106) );
+        UIManager.put( "nimbusAlertYellow", new Color( 248, 187, 0) );
+        UIManager.put( "nimbusDisabledText", new Color( 128, 128, 128) );
+        UIManager.put( "nimbusFocus", new Color(115,164,209) );
+        UIManager.put( "nimbusInfoBlue", new Color( 66, 139, 221) );
+        UIManager.put( "nimbusLightBackground", new Color(255, 214, 106) );
+        UIManager.put( "nimbusOrange", new Color(191,98,4) );
+        UIManager.put( "nimbusRed", new Color(169,46,34) );
+        UIManager.put( "nimbusSelectedText", new Color( 38, 32, 16) );
+        UIManager.put( "nimbusSelectionBackground", new Color( 255, 236, 148) );
+        UIManager.put("nimbusBlueGrey", new Color(255, 214, 106));
+        UIManager.put( "text", new Color( 38, 32, 16) );
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

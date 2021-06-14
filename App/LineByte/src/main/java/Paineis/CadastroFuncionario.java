@@ -12,6 +12,7 @@ import Entidade.EntidadesBanco.Login;
 import Entidade.EntidadesBanco.Pessoa;
 import Entidade.EntidadesBanco.Produto;
 import Interfaces.TemplatePainelCadastro;
+import Telas.Cadastro;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -23,7 +24,7 @@ import javax.swing.DefaultComboBoxModel;
  * @author r4f4s
  */
 public class CadastroFuncionario extends TemplatePainelCadastro {
-
+    private boolean check = false;
     /**
      * Creates new form CadastroFuncionario
      */
@@ -32,6 +33,11 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
         CBcargo.setModel(new DefaultComboBoxModel(DAO.listaNative(Cargo.class).toArray()));
         CBlogin.setModel(new DefaultComboBoxModel(DAO.listaNative(Login.class).toArray()));
         CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
+        //Adicionando o NOVO nos ComboBox
+        CBcargo.addItem("novo");// colar no resto dos construtores que possuem combobox
+        CBlogin.addItem("novo");// colar no resto dos construtores que possuem combobox
+        CBpessoa.addItem("novo");// colar no resto dos construtores que possuem combobox
+        check = true;
     }
 
     /**
@@ -97,10 +103,25 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
         });
 
         CBpessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBpessoa.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBpessoaItemStateChanged(evt);
+            }
+        });
 
         CBcargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBcargo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBcargoItemStateChanged(evt);
+            }
+        });
 
         CBlogin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBlogin.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBloginItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -175,6 +196,42 @@ public class CadastroFuncionario extends TemplatePainelCadastro {
     private void FTFdataAdmissaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFdataAdmissaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FTFdataAdmissaoActionPerformed
+
+    private void CBpessoaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBpessoaItemStateChanged
+        if("novo".equals(CBpessoa.getSelectedItem()+"") && check == true){
+            CadastroPessoa CP;
+            new Cadastro(null, true, CP = new CadastroPessoa()).setVisible(true);
+            CBpessoa.setModel(new DefaultComboBoxModel(DAO.listaNative(Pessoa.class).toArray()));
+            CBpessoa.setSelectedItem(CP.getObjeto(null));
+            check = false;
+            CBpessoa.addItem("novo");
+            check = true;
+        }
+    }//GEN-LAST:event_CBpessoaItemStateChanged
+
+    private void CBcargoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBcargoItemStateChanged
+        if("novo".equals(CBcargo.getSelectedItem()+"") && check == true){
+            CadastroCargo CC;
+            new Cadastro(null, true, CC = new CadastroCargo()).setVisible(true);
+            CBcargo.setModel(new DefaultComboBoxModel(DAO.listaNative(Cargo.class).toArray()));
+            CBcargo.setSelectedItem(CC.getObjeto(null));
+            check = false;
+            CBcargo.addItem("novo");
+            check = true;
+        }
+    }//GEN-LAST:event_CBcargoItemStateChanged
+
+    private void CBloginItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBloginItemStateChanged
+        if("novo".equals(CBlogin.getSelectedItem()+"") && check == true){
+            CadastroLogin CL;
+            new Cadastro(null, true, CL = new CadastroLogin()).setVisible(true);
+            CBlogin.setModel(new DefaultComboBoxModel(DAO.listaNative(Login.class).toArray()));
+            CBlogin.setSelectedItem(CL.getObjeto(null));
+            check = false;
+            CBlogin.addItem("novo");
+            check = true;
+        }
+    }//GEN-LAST:event_CBloginItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
