@@ -2,6 +2,7 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 //import java.sql.Time;
@@ -79,7 +80,9 @@ public class Pontos implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,funcionario,horaEntrada,horaSaida,dataPonto};
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdfhora = new SimpleDateFormat("hh:mm");
+        return new Object[]{id,funcionario,sdfhora.format(horaEntrada),sdfhora.format(horaSaida),sdf.format(dataPonto)};
     }
 
     @Override

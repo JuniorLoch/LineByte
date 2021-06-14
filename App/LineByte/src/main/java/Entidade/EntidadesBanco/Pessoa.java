@@ -2,6 +2,7 @@ package Entidade.EntidadesBanco;
 
 import Interfaces.TemplateLista;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -100,7 +101,8 @@ public class Pessoa implements Serializable,TemplateLista{
 
     @Override
     public Object[] getDados() {
-        return new Object[]{id,nome,endereco,cpf,rg,dataNasc,sexo};
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return new Object[]{id,nome,endereco,cpf,rg,sdf.format(dataNasc),sexo};
     }
 
     @Override

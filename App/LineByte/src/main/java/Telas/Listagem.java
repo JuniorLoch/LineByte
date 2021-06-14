@@ -75,6 +75,8 @@ public class Listagem extends javax.swing.JFrame {
         ));
         SPtabela.setViewportView(JTtabela);
 
+        BTnovo.setBackground(new java.awt.Color(153, 255, 153));
+        BTnovo.setForeground(new java.awt.Color(0, 0, 0));
         BTnovo.setText("Novo");
         BTnovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +92,8 @@ public class Listagem extends javax.swing.JFrame {
             }
         });
 
+        BTeditar.setBackground(new java.awt.Color(255, 255, 153));
+        BTeditar.setForeground(new java.awt.Color(0, 0, 0));
         BTeditar.setText("Editar");
         BTeditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +101,7 @@ public class Listagem extends javax.swing.JFrame {
             }
         });
 
-        BTexcluir.setBackground(new java.awt.Color(255, 255, 117));
+        BTexcluir.setBackground(new java.awt.Color(255, 153, 153));
         BTexcluir.setForeground(new java.awt.Color(0, 0, 0));
         BTexcluir.setText("Excluir");
         BTexcluir.addActionListener(new java.awt.event.ActionListener() {

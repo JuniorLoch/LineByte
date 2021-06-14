@@ -10,6 +10,10 @@ import Entidade.EntidadesBanco.Compra;
 import Entidade.EntidadesBanco.Despesa;
 import Entidade.EntidadesBanco.Venda;
 import Interfaces.TemplateLista;
+import Interfaces.TemplateValor;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,6 +69,7 @@ public class Analize extends javax.swing.JFrame {
         TFvalor = new javax.swing.JTextField();
         BTaplicarFiltros = new javax.swing.JButton();
         BTsair = new javax.swing.JButton();
+        BTlimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Analize");
@@ -146,13 +151,38 @@ public class Analize extends javax.swing.JFrame {
         LBquantidadeRegistros.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LBquantidadeRegistros.setText("Quantidade de Registros:");
 
-        FTFdataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        TFcodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFcodigoActionPerformed(evt);
+            }
+        });
 
-        FTFdataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            FTFdataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            FTFdataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        TFquantidadeRegistros.setEditable(false);
+        TFquantidadeRegistros.setForeground(new java.awt.Color(153, 0, 0));
+
+        TFvalor.setEditable(false);
+        TFvalor.setForeground(new java.awt.Color(153, 0, 0));
 
         BTaplicarFiltros.setBackground(new java.awt.Color(153, 255, 153));
         BTaplicarFiltros.setForeground(new java.awt.Color(0, 0, 0));
         BTaplicarFiltros.setText("Aplicar FIltros");
+        BTaplicarFiltros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTaplicarFiltrosActionPerformed(evt);
+            }
+        });
 
         BTsair.setBackground(new java.awt.Color(255, 86, 86));
         BTsair.setForeground(new java.awt.Color(0, 0, 0));
@@ -160,6 +190,15 @@ public class Analize extends javax.swing.JFrame {
         BTsair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTsairActionPerformed(evt);
+            }
+        });
+
+        BTlimpar.setBackground(new java.awt.Color(51, 153, 255));
+        BTlimpar.setForeground(new java.awt.Color(0, 0, 0));
+        BTlimpar.setText("Limpar");
+        BTlimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTlimparActionPerformed(evt);
             }
         });
 
@@ -185,32 +224,33 @@ public class Analize extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(SPdadosAnalize, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(LBfiltros)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(BTlimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                    .addComponent(BTanalizeVenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(LBcodigo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(TFcodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(BTanalizeVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(LBcodigo)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(TFcodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
+                                        .addComponent(BTanalizeCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(BTanalizeCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(BTanalizeDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(BTanalizeFinanceira, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(LBdataInicial)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(FTFdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(LBdataFinal)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(FTFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(LBfiltros))
+                                        .addComponent(BTanalizeDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BTanalizeFinanceira, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(LBdataInicial)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(FTFdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(LBdataFinal)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(FTFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -232,7 +272,9 @@ public class Analize extends javax.swing.JFrame {
                     .addComponent(BTanalizeFinanceira, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTsair, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(LBfiltros)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LBfiltros)
+                    .addComponent(BTlimpar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LBdataInicial, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -242,7 +284,7 @@ public class Analize extends javax.swing.JFrame {
                         .addComponent(FTFdataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(LBdataFinal)
                         .addComponent(FTFdataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BTaplicarFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
+                        .addComponent(BTaplicarFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SPdadosAnalize, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -300,6 +342,39 @@ public class Analize extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BTsairActionPerformed
 
+    private void BTaplicarFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTaplicarFiltrosActionPerformed
+        String codigo;
+        Date DataI;
+        Date DataF;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+        codigo = Integer.parseInt(TFcodigo.getText())+"";
+        } catch (NumberFormatException ex) {
+            codigo = "";
+        }
+        try {
+            DataI = sdf.parse(FTFdataInicial.getText());
+        } catch (ParseException ex) {
+            DataI = null;
+        }
+        try {
+            DataF = sdf.parse(FTFdataFinal.getText());
+        } catch (ParseException ex) {
+            DataF = null;
+        }
+        atualizaTabela(codigo,DataI,DataF);
+    }//GEN-LAST:event_BTaplicarFiltrosActionPerformed
+
+    private void TFcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFcodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFcodigoActionPerformed
+
+    private void BTlimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTlimparActionPerformed
+        FTFdataFinal.setText("");
+        FTFdataInicial.setText("");
+        TFcodigo.setText("");
+    }//GEN-LAST:event_BTlimparActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -341,6 +416,7 @@ public class Analize extends javax.swing.JFrame {
     private javax.swing.JButton BTanalizeFinanceira;
     private javax.swing.JButton BTanalizeVenda;
     private javax.swing.JButton BTaplicarFiltros;
+    private javax.swing.JButton BTlimpar;
     private javax.swing.JButton BTsair;
     private javax.swing.JFormattedTextField FTFdataFinal;
     private javax.swing.JFormattedTextField FTFdataInicial;
@@ -357,19 +433,50 @@ public class Analize extends javax.swing.JFrame {
     private javax.swing.JTextField TFquantidadeRegistros;
     private javax.swing.JTextField TFvalor;
     // End of variables declaration//GEN-END:variables
-    private List<TemplateLista> lista;
+    private List<TemplateValor> lista;
     private TemplateLista tl;
     
     private void atualizaTabela() {
         lista = DAO.listaNative(classe);
    
         Object[][] dados= new Object[lista.size()][tl.getTitulos().length];
-        
+        float valor = 0f;
         for (int i = 0; i < lista.size(); i++) {
             dados[i]=lista.get(i).getDados();
+            valor += lista.get(i).getValorv();
+        }
+        JTanalize.setModel(new DefaultTableModel(dados,tl.getTitulos()));
+        TFquantidadeRegistros.setText(lista.size()+"");
+        TFvalor.setText(valor+"");
+    }
+    private void atualizaTabela(String cod,Date dataI, Date dataF) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        if("".equals(cod) && dataI== null && dataF == null){ // deveria verificar todas as possibilidades de escolha de filtros, ta feio mas nao sei fazer mais bonito
+            lista = DAO.listaNative(classe);
+        } else if(dataI== null && dataF == null){
+            lista = DAO.listaNative(classe, "o.id = "+cod);
+        } else if("".equals(cod)){
+            lista = DAO.listaNative(classe, "o.datad >= '"+sdf.format(dataI)+"' and o.datad <= '"+sdf.format(dataF)+"'");
+        } else if(dataI== null){
+            lista = DAO.listaNative(classe, "o.id = "+cod+" and o.datad <= '"+sdf.format(dataF)+"'");
+        } else if(dataF== null){
+            lista = DAO.listaNative(classe, "o.id = "+cod+" and o.datad >= '"+sdf.format(dataI)+"'");
+        } else if("".equals(cod) && dataI== null){
+            lista = DAO.listaNative(classe, "o.datad <= '"+sdf.format(dataF)+"'");
+        } else if("".equals(cod) && dataF== null){
+            lista = DAO.listaNative(classe, "o.datad >= '"+sdf.format(dataI)+"'");
+        }
+   
+        Object[][] dados= new Object[lista.size()][tl.getTitulos().length];
+        float valor = 0f;
+        for (int i = 0; i < lista.size(); i++) {
+            dados[i]=lista.get(i).getDados();
+            valor += lista.get(i).getValorv();
         }
         
         JTanalize.setModel(new DefaultTableModel(dados,tl.getTitulos()));
+        TFquantidadeRegistros.setText(lista.size()+"");
+        TFvalor.setText(valor+"");
     }
     
     
