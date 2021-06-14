@@ -1,1 +1,1 @@
-![bomdia](https://i.ytimg.com/vi/rVgArC2szRs/maxresdefault.jpg)
+![bomdia](https://mundoconectado.com.br/uploads/chamadas/bom-dia-mundo-conectado.jpg)
