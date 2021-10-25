@@ -1,6 +1,7 @@
 # BOM DIA CORP
 
 ## LineByte
+.
 
 # Integrantes:
 ## Gilberto Gaspar 802.205
